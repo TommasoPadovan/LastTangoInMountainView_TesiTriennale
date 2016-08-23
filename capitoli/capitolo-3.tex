@@ -12,7 +12,9 @@
 
 %**************************************************************
 \section{Introduzione al progetto}
-Data la natura innovativa del progetto è stato necessario 
+Data la natura innovativa del progetto è stato necessario produrre diversi prototipi ed effettuare l'\emph{Analisi dei Rischi} e lo \emph{Studio di Fattibilità} in diverse fasi.\\
+Questo approccio è stato estremamente utile per far emergere rischi dovuti sia alla non piena maturità delle \emph{API}, sia ai limiti fisici del dispositivo in dotazione.
+
 
 %**************************************************************
 \section{Analisi preventiva dei rischi}
@@ -20,10 +22,37 @@ Data la natura innovativa del progetto è stato necessario
 Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
 Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
 
-\begin{risk}{Performance del simulatore hardware}
-    \riskdescription{le performance del simulatore hardware e la comunicazione con questo potrebbero risultare lenti o non abbastanza buoni da causare il fallimento dei test}
-    \risksolution{coinvolgimento del responsabile a capo del progetto relativo il simulatore hardware}
-    \label{risk:hardware-simulator} 
+\subsection{Rischi generali}
+\begin{risk}{Immaturità di API/librerie/documentazione}
+	\riskchance{Alta}
+	\riskseverity{Media}
+    \riskdescription{Le tecnologie adottate sono innovative e tuttora in fase di sviluppo, molte sono ancora segnalate come \emph{"Sperimentali e soggette a cambiamenti"}. Per questo le librerie usate potrebbero rivelarsi instabili o potrebbero mancare di adeguata documentazione}
+    \risksolution{Iscrizione ai vari canali di segnalazione e supporto offerti da \emph{Google} per gli sviluppatori, sviluppo di piccoli esempi giocattolo per testare le funzionalità offerte dalle \emph{API} da cui è stata generata della documentazione interna}
+    \label{risk:API-immaturity} 
+\end{risk}
+
+\begin{risk}{Limiti fisici del dispositivo}
+	\riskchance{Alta}
+	\riskseverity{Media}
+    \riskdescription{Il dispositivo è dotato di sensori infrarossi e sfrutta la riflessione della luce per determinare la distanza dei punti che è in grado di individuare. Superfici riflettenti o molto scure possono compromettere la qualità della misurazione, allo stesso modo situazioni di illuminazione scarsa o assente}
+    \risksolution{Accurata analisi della documentazione fornita dal produttore\footcite{site: https://developers.google.com/tango/overview/depth-perception}, test preventivi nelle situazioni critiche utilizzando una semplice applicazione di prova fornita da \emph{Google}\footcite{site: https://github.com/googlesamples/tango-examples-java/tree/master/java_point_cloud_example}}
+    \label{risk:device-limit} 
+\end{risk}
+
+\subsection{Rischi specifici}
+\begin{risk}{Difficoltà nel Motion Tracking}
+	\riskchance{Media}
+	\riskseverity{Alta}
+    \riskdescription{Determinare la posizione e l'orientamento del dispositivo in maniera assoluta è fondamentale per permettere la ricostruzione dell'oggetto inquadrato. Il \emph{device} fornisce ad intervalli regolari la sua posizione tramite una tripletta di coordinate ed la sua rotazione rappresentata come un quaternione. }
+    \risksolution{}
+    \label{} 
+\end{risk}
+\begin{risk}{}
+	\riskchance{}
+	\riskseverity{}
+    \riskdescription{}
+    \risksolution{}
+    \label{} 
 \end{risk}
 
 %**************************************************************
