@@ -43,7 +43,42 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
 \begin{risk}{Difficoltà nel Motion Tracking}
 	\riskchance{Media}
 	\riskseverity{Alta}
-    \riskdescription{Determinare la posizione e l'orientamento del dispositivo in maniera assoluta è fondamentale per permettere la ricostruzione dell'oggetto inquadrato. Il \emph{device} fornisce ad intervalli regolari la sua posizione tramite una tripletta di coordinate ed la sua rotazione rappresentata come un quaternione. }
+    \riskdescription{Determinare la posizione e l'orientamento del dispositivo in maniera assoluta è fondamentale per permettere la ricostruzione dell'oggetto inquadrato. Il \emph{device} fornisce ad intervalli regolari la sua posizione tramite una tripletta di coordinate ed la sua rotazione rappresentata come un quaternione. La somma di piccoli errori relativi nella stima della posizione crea un fenomeno detto \emph{drifting} che comporta imporanti errori nella stima finale. Questo rischio può portare al fallimento del progetto, in quanto se non opportunamente mitigato renderebbe le ricostruzioni tridimensionali totalmente errate.}
+    \risksolution{Si è per questo deciso di adottare una tecnica denominata \emph{Area Learning}. Il disposivo quindi riconoscerà alcune \emph{features}, ovvero dei punti fissi, rispetto ai quali determinerà la sua posizione.}
+    \label{risk:motion-tracking} 
+\end{risk}
+\begin{risk}{Prerequisiti dell'\emph{Area Learning}}
+	\riskchance{Alta}
+	\riskseverity{Alta}
+    \riskdescription{Utilizzando l'\emph{Area Learning} il dispositivo ha necessità di un tempo di inizializzazione di circa 30-40 secondi in cui la stima della posizione è di fatto errata.}
+    \risksolution{Durante l'inizializzazione devono essere fornite istruzioni per l'utente.}
+    \label{risk:area-learning} 
+\end{risk}
+\begin{risk}{}
+	\riskchance{}
+	\riskseverity{}
+    \riskdescription{}
+    \risksolution{}
+    \label{} 
+\end{risk}
+\begin{risk}{}
+	\riskchance{}
+	\riskseverity{}
+    \riskdescription{}
+    \risksolution{}
+    \label{} 
+\end{risk}
+\begin{risk}{}
+	\riskchance{}
+	\riskseverity{}
+    \riskdescription{}
+    \risksolution{}
+    \label{} 
+\end{risk}
+\begin{risk}{}
+	\riskchance{}
+	\riskseverity{}
+    \riskdescription{}
     \risksolution{}
     \label{} 
 \end{risk}
@@ -57,6 +92,7 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
 
 %**************************************************************
 \section{Requisiti e obiettivi}
+
 
 
 %**************************************************************

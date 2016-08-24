@@ -38,6 +38,31 @@ Da qui nasce l'idea di fornire agli ispettori uno strumento informatico in grado
 	\item Confrontare l'oggetto con un modello idea, permettendo così un rapido controllo eventuali di danni o deformazioni.
 \end{itemize}
 
+\section{Il Prodotto}
+L'applicazione prodotta risponde, in maniera minimale, alle esigenze citate nel punto precedente.\\
+La sua realizzazione presenta molti punti critici e rischi piuttosto difficili da prevedere. Per questo sono stati realizzati molti prototipi, al fine di escludere vie non percorribili e trovare una soluzione soddisfacente.\\
+Lo scopo principale della applicazione lato tablet è quello di rilevare ed elaborare un corretto \emph{Point Cloud} dell'oggetto che si vuole ispezionare.\\
+Un \emph{Point Cloud} non è altro che una descrizione algebrica di un oggetto tridimensionale ottenuta tramite un insieme, il più possibile fitto, di punti che lo compongono. I dispositivi Tango infatti, grazie al sensore di profondità, cercano di rilevare le triplette di coordinate del maggior numero di punti possibile. Sfruttando questi dati è possibile posizionare dei punti nello spazio in maniera da fornire all'utente una rappresentazione comprensibile dell'oggetto.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{pointClouds/bidoneConico.png} 
+    \caption{Point Cloud di un bidone Conico}
+\end{figure}
+
+\subsection{Primo prototipo}
+Il primo protitpo realizzato risponde all'esigenza di catturare e salvare in formato leggibile da un \emph{render} grafico i dati forniti dal sensore di profondità.
+Nella sua semplicità ha dato modo allo studente di testare la stabilità delle \emph{API} e produrre della documentazione interna che riportava quali fossero i metodi delle \emph{API} da utlizzare e quali fossero invece quelli poco stabili, sperimentale o addirittura non ancora implementati dal produttore.
+
+\subsection{Secondo prototipo: Cloude}
+Un solo \emph{Point Cloud} non è sufficiente a ricostruire un oggetto. Ovviamente il dispositivo, registrando la nuvola di punti inquadrata in un determinato istante, riesce a rilevare solamente i punti che "riesce a vedere": i punti presenti nella parte posteriore dell'oggetto scansionato non possono essere "visti" e conseguentemente nemmeno misurati.\\
+Se si vuole avere una ricostruzione completa e non solamente di una facciata è necessario prendere più rilevazioni ed unirle assieme.\\
+Questo prototipo, denominato \emph{Cloude}, è stato realizzato allo scopo di rispondere a questa esigenza. L'idea che ne sta a fondamento è la seguente:
+\begin{itemize}
+	\item Permettere all'utente di scattare alcune foto all'oggetto, quindi di rilevare diversi \emph{Point Cloud}.
+	\item 
+	\item Una volta acquisito i dati dal Point Cloud usare la posizione e la rotazione del dispositivo per trasformare punto per punto la nuvola rispetto a delle coordinate assolute.
+\end{itemize}
+
 %**************************************************************
 \section{Organizzazione del testo}
 xxxx
