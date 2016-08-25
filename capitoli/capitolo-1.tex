@@ -98,11 +98,57 @@ Il meccanismo è piuttosto simile a quello della memoria spaziale umana: una per
 Allo stesso modo il tablet è in grado memorizzare alcune \emph{features} all'interno dell'ambiente ed usarle come faro per la triangolazione. \\
 Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. Per rendere l'aplicazione maggiornamente responsiva e più vicina alle esigenze dell'utenza \emph{Samba} adotta un approccio detto \emph{Drift Correction}: inzialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere la creazione di una minimale memorizzazione, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto nonappena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più la qualità della registazione.\\
 
-\subsection{Dimensioni eccessive dei file, ridondanza dei punti sovrapposti}
+\subsubsection{Dimensioni eccessive dei file, ridondanza dei punti sovrapposti}
 Data la grande mole di punti registrati dai sensori di profondità i \emph{file} contenenti le ricostruzioni generati da \emph{Cloude} sono di dimensione eccessiva, anche più di 10Mb una decina scatti.
 Considerando che idealmente gli scatti da riprendere potrebbero essere molti e spesso dovranno essere inviati al \emph{Server} tramite connessione a consumo il peso di questi \emph{file} non è da trascurare.\\
-Inoltre c'è una grossa ridondanza di punti: è comune caso d'uso che una stessa zona venga inquadrata in più scatti, quindi tali \emph{Point Cloud} ruotati ed uniti presenterebbero molti punti con le stesse coordinate e semplicemente sovrapposti, qunidi sera dare alcuna informazione aggiuntiva.\\
+Inoltre c'è una grossa ridondanza di punti: è comune caso d'uso che una stessa zona venga inquadrata in più scatti, quindi tali \emph{Point Cloud} ruotati ed uniti presenterebbero molti punti con le stesse coordinate e semplicemente sovrapposti, qunidi senza dare alcuna informazione aggiuntiva.\\
 \emph{Samba} risolve questo problema utilizzando un leggero \emph{voxeling}, ovvero suddividendo lo spazio in cubi o \emph{voxel} di lato prefissato e registrando quali sono i \emph{voxel} che contengono i punti della nuvola.
+Scegliendo una opportuna definizione, ovvero una opportuna dimesione dei \emph{voxel}, si può ottenere una ricostruzione comunque con un buon livello di dattaglio, ma priva di ridondanza dei punti e quindi meno pesante in termini di memoria.\\
+Dopo diversi test è emerso che definizioni più fine di un millimetro non portano a nessun effettivo miglioramento della qualità della ripresa, e quindi questo è stato scelto come definizione predefinita.
+
+\subsection{Ulteriore incremento di Samba, il prototipo finale}
+\emph{Samba}, nella sua prima realizzazione, soddisfava completamente gli obiettivi fissati per quanto riguarda la \emph{business logic} tuttavia è risultato carente nell'onterfacciarsi con l'utente.\\
+Quindi è stato pianificato un ulteriore ciclo di raffinamento che ha portato questo prototipo allo stato attuale. Segue una breve lista delle principali migliorie.
+
+\subsubsection{Preview dell'inquadratura}
+La sola preview della fotocamera a colori si è rivelata non sufficiente. Oltre a non fornire una chiara idea dei punti che verranno registrati non da la possibilità all'utente di controllare se foto che sta per scattare sia "buona" oppure no.\\
+Il sensore di profondità sfrutta la tecnologia \emph{infrared} e per questo è soggetto a tutti i limiti fisici di quest'ultima; infatti sono emerse grosse dificoltà nel misurare i punti
+\begin{itemize}
+	\item di una superficie molto scura.
+	\item di una superficie riflettente o particolarmente lucida.
+	\item all'interno di stanze con illuminazione scarsa o assente.
+\end{itemize}
+A volte il problema è insormontabile e la ricostruzione non potrà avvenire con successo, altre è sufficiente trovare una buona posizione per permettere al sensore di effettuare le misurazioni. Questo rende necessario mostrare sullo schermo non solo quello che "vede" la fotocamera, ma anche quello che "vede" il dispositivo \emph{infrared}.\\
+A questo scopo è stata parzialmente riusata una applicazione di prova fornita sotto licenza \emph{Open Source} dalla \emph{Google}\footcite{GitHub: https://github.com/googlesamples/tango-examples-java} e che utlizza la libreria grafica \emph{Rajawali}\footcite{GitHub: https://github.com/Rajawali/Rajawali}.\\
+Il \emph{render} in questione è moto semplice ma efficace ed aumenta il valore aggiunto dell'applicazione dandole un aspetto gradevole e permettendo all'utente di avere aggiornamenti in tempo reale sul \emph{Point Cloud} inquadrato.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{varie/rajawaliRenderer.jpg} 
+    \caption{Il render di Java Point Cloud Example mentre viene inquadrata una credenza}
+\end{figure}
+
+
+\subsubsection{Visulizzazione su tablet del \emph{Point Cloud} ricostruito}
+Con il \emph{render} descritto nel punto precedente è possibile visualizzare ciò che "vede" il sensore di profondità in tempo reale. Questo tuttavia non è sufficiente: mano a mano che si effettua la ripresa, in background viene calcolata la ricostruzione dell'oggetto in analisi, non poterlo visualizzare sul \emph{tablet}, ma solo lato \emph{server} appare quantomeno frustrante e soprattutto non da la possibilità all'utente di avere una idea dello stato in cui è la ricostruzione. \\
+Per questo si è pensato di sfruttare lo stesso meccanismo di \emph{rendering} per far visualizzare all'utente la ricostruzione che sta effettuando. É quindi stata aggiunta la possibilità di alternare tra la visualizzazione in tempo reale e la possibilità di visualizzare l'intera ricostruzione generata.
+
+
+\subsubsection{Aggiunta operazioni di undo}
+Nonostante gli sforzi per mantenere una alta qualità delle riprese qualcuno dei \emph{Point Cloud} catturati continua a presentare grossi difetti (come errato posizionamento, deformita, grossa presenza di rumore etc).
+Importante miglioria effettuata in questa fase è stata l'inserimento della possibilità di annullare un certo numero di operazioni; in questo modo le riprese che contengono dei difetti possono essere annullate ed effettuate successivamente.
+
+\subsubsection{Istruzione dell'utente}
+Questa applicazione, come tutte le applicazioni \emph{Tango}, introduce nuove azioni che l'utente deve compiere per mettere il dispositivo nella condizione di poter operare al meglio; ed è compito degli applicativi istruire l'utente sul comportamento da tenere.\\
+Ad esempio, durante l'avvio dell'app, l'utente deve avere cura di mantenere il \emph{tablet} in posizione verticale ed il più possibile fermo. Questa, come la maggior parte delle indicazioni, possono essere notificate all'utente tramite un \emph{framework} messo a disposizione dal produttore in grado di integrare segnali e notifiche all'interno del ciclo di vita dell'applicazione stessa.\\
+Fanno eccezione le istruzioni che devono essere date all'utente durante la fase di localizzazione. Le \emph{API Tango} non forniscono alcun aiuto per stabilire se il dispositivo si sia orientato o meno. È stato quindi necessario studiare un metodo per intuire se il dispositivo "si senta a casa o meno".\\
+L'idea sta nello sfruttare il fatto che, i dispositivi \emph{Tango}, una volta imparato un ambiente, fissano l'origine $O$ del loro sistema di riferimento (per quel particolare ambiente) in un punto arbitrario dello stesso. A questo punto è sufficiente richiedere, durante la fase di localizzazione, la posizione della suddetta origine rispetto ad un punto speciale detto \emph{start-of-service point} che chiameremo $O'$, ovvero il punto in cui era il dispositivo quando è stata aperta l'applicazione. Prima che avvenga la localizzazione il sistema \emph{Tango} non ha altra scelta che posizionare $O$ nelle stesse coordinate di $O'$; successivamente avverrà un brusco cambiamento nella distanza tra questi due punti perché tutto d'un tratto il sistema riconoscerà qualche \emph{feature} e sposterà immediatamente l'origine degli assi.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{grafici/fluttuazioneCoordDriftCorrection.png} 
+    \caption{Grafico della coordinate di $O'$ rispetto ad $O$ durante la fase di inizializzazione della \emph{Drift Correction}}
+\end{figure}
+
+
 
 
 
