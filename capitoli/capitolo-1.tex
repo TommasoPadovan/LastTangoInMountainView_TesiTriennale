@@ -32,7 +32,7 @@ VIC è la prima ed unica azienda in campo ispettivo ad offrire un'ampia gamma di
 
 Mansioni come determinare la corretta forma, peso, quantità e dimensioni degli oggetti da ispezionare sono tra le più importanti per i controlli effettuati dall'azienda.\\
 Gli ispettori possono scattare molte fotografie, prendere appunti e sfruttare la loro esperienza per fornire stime accurate; si è manifestata però la necessità di affiancare queste ultime a dei dati quanto più possibile oggettivi e rapidi da ottenere.\\
-Da qui nasce l'idea di fornire agli ispettori uno strumento informatico in grado di effettuare queste stime. Grazie alla ricostruzione computerizzata resa disponibile dai \emph{Tango device} sarà possibile non solo visualizzare su uno schermo il modello 3D del soggetto della ispezione, ma anche ottenere ulteriori vantaggi come:
+Da qui nasce l'idea di fornire agli ispettori uno strumento informatico in grado di effettuare queste stime. Grazie alla ricostruzione computerizzata resa disponibile dai \emph{Tango device} sarà possibile non solo visualizzare su uno schermo il modello 3D del soggetto della ispezione, ma anche ottenere ulteriori vantaggi quali:
 \begin{itemize}
 	\item Avere una stima del volume e quindi del peso della materia prima.
 	\item Confrontare l'oggetto con un modello idea, permettendo così un rapido controllo eventuali di danni o deformazioni.
@@ -45,19 +45,19 @@ Lo scopo principale della applicazione lato tablet è quello di rilevare ed elab
 Un \emph{Point Cloud} non è altro che una descrizione algebrica di un oggetto tridimensionale ottenuta tramite un insieme, il più possibile fitto, di punti che lo compongono. I dispositivi Tango infatti, grazie al sensore di profondità, cercano di rilevare le triplette di coordinate del maggior numero di punti possibile. Sfruttando questi dati è possibile posizionare dei punti nello spazio in maniera da fornire all'utente una rappresentazione comprensibile dell'oggetto.
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{pointClouds/bidoneConico.png} 
+    \includegraphics[width=1.0\columnwidth]{pointClouds/bidoneConico.png} 
     \caption{Point Cloud di un bidone Conico}
 \end{figure}
 
 
 \subsection{Primo prototipo}
 Il primo protitpo realizzato risponde all'esigenza di catturare e salvare in formato leggibile da un \emph{render} grafico i dati forniti dal sensore di profondità.
-Nella sua semplicità ha dato modo allo studente di testare la stabilità delle \emph{API} e produrre della documentazione interna che riportava quali fossero i metodi delle \emph{API} da utlizzare e quali fossero invece quelli poco stabili, sperimentale o addirittura non ancora implementati dal produttore.
+Nella sua semplicità ha dato modo allo studente di testare la stabilità delle \emph{API} e produrre della documentazione interna che riportava quali fossero i metodi delle \emph{API} da utlizzare e quali fossero invece quelli poco stabili, sperimentali o addirittura non ancora implementati dal produttore.
 
 \subsection{Secondo prototipo: Cloude}
 \subsubsection{Affrontare la discrepanza tra coordinate assolute e coordinate relative}
-Un solo \emph{Point Cloud} non è sufficiente a ricostruire un oggetto. Ovviamente il dispositivo, registrando la nuvola di punti inquadrata in un determinato istante, riesce a rilevare solamente i punti che "riesce a vedere": i punti presenti nella parte posteriore dell'oggetto scansionato non possono essere "visti" e conseguentemente nemmeno misurati. Se si vuole avere una ricostruzione completa e non solamente di una facciata è necessario prendere più rilevazioni ed unirle assieme.\\
-Le seuguenti immagini mostrano il \emph{Point Cloud} che descrive la parte anteriore di una scatola rettangolare; dato che la ripresa è stata effettuata da di fronte ed in alto solo le facce superiore ed anteriore sono state memorizzate, mentre delle altre non si hanno dati. (I contorni sono stati evidenziati successivamente per permettere una migliore comprensione della forma).
+Un solo \emph{Point Cloud} non è sufficiente a ricostruire un oggetto. Ovviamente il dispositivo, registrando la nuvola di punti inquadrata in un determinato istante, riesce a rilevare solamente i punti che "riesce a vedere": i punti presenti nella parte posteriore dell'oggetto scansionato non possono essere "visti" e conseguentemente nemmeno misurati. Se si vuole avere una ricostruzione completa e non solamente di una facciata è necessario prendere più rilevazioni ed integrarle.\\
+Le seuguenti immagini mostrano il \emph{Point Cloud} che descrive la parte anteriore di una scatola rettangolare; dato che la ripresa è stata effettuata da di fronte ed in alto solo le facce superiore ed anteriore sono state memorizzate, mentre delle altre non si hanno dati. I contorni sono stati evidenziati successivamente per permettere una migliore comprensione della forma.
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{pointClouds/singoloShot.png} 
@@ -67,14 +67,14 @@ Le seuguenti immagini mostrano il \emph{Point Cloud} che descrive la parte anter
 Questo prototipo, denominato \emph{Cloude}, è stato realizzato allo scopo di rispondere a questa esigenza. L'idea che ne sta a fondamento è la seguente:
 \begin{itemize}
 	\item Permettere all'utente di scattare alcune foto all'oggetto, quindi di rilevare diversi \emph{Point Cloud}.
-	\item Tenere costamente traccia della posizione del dispositivo, in particolare delle posizioni di quando vengono scattate le foto.
+	\item Tenere costamente traccia della posizione del dispositivo, in particolare delle posizioni nei momenti in cui vengono scattate le foto.
 	\item Usare la posizione relativa al \emph{Point Cloud} per translare e ruotare lo stesso punto a punto, riducendo così le coordinate a dei valori assoluti.
 	\item Ora le nuvole di punti registrate sono sovrapponibili le une con le altre e forniscono una prima ricostruzione dell'oggetto.
 \end{itemize}
 
 \subsection{Terzo protipo: Samba}
 Il prototipo precedente generava delle ricostruzioni riconoscibili, ma piuttosto imprecise.\\
-Una analisi dello stesso ha fatto emergere diverse criticità che sono state documentate, assieme alle possibili soluzioni, all'interno di un documento descrittivo che è stato alla base dello svilluppo di \emph{Samba}.
+Una analisi dello stesso ha fatto emergere diverse criticità che sono state documentate, assieme alle possibili soluzioni, all'interno di un documento descrittivo. Quest'ultimo è stato alla base dello svilluppo di \emph{Samba}.
 \subsubsection{Eccessiva complessità dell'elaborazione}
 \emph{Cloude} sfrutta un metedo delle librerie \emph{Tango} che transforma le coordinate di un singolo punto in coordinate assolute fruttando la posizione relativa a cui si trovava il dispositivo, permette di scrivere poco codice, ma ha una elevata complessità. Ciò comporta un sensibile rallentamento dell'elaborazione dei \emph{Point Cloud}. Un \emph{cloud} medio conta intorno ai 90000 punti e con questo approccio richiede mediamente 1,5-2 secondi per essere completamente elaborato, tempo non accettabile per lo scopo per cui l'applicazione è pensata.\\
 In \emph{Samba} è stato cambiato radicalmente approccio:
@@ -84,9 +84,9 @@ In \emph{Samba} è stato cambiato radicalmente approccio:
 	\item Si è ottenuta così una complessità di \texttt{O(n)} sul numero dei punti da transformare riducendo i tempi di elaborazione da 1,5-2s a circa 200ms (sullo stesso dispositivo).
 \end{itemize}
 \subsubsection{Bassa qualità delle ricostruzioni}
-Nelle ricostruzioni generate da \emph{Cloude} gli oggetti appaiono deformati, spesso i vari \emph{Point Cloud} non si sovrappongono correttamente generando fenomeni di \emph{ghosting}, oppure rendendo addirittura irriconoscibile l'oggetto.\\
+Nelle ricostruzioni generate da \emph{Cloude} gli oggetti appaiono deformati, spesso i vari \emph{Point Cloud} non si sovrappongono correttamente generando fenomeni di \emph{ghosting}, talvolta rendendo addirittura irriconoscibile l'oggetto.\\
 Questo è dovuto ad una scorretta stima della posizione del dispositivo, che induce il calcolo di una erronea matrice di transformazione, e quindi ad un errato posizionamento delle nuvole di punti all'interno dello spazio.\\
-Il fenomeno in questione è detto \emph{"drifting"}: i \emph{device Tango}, esattamente come le più comuni applicazioni in realtà aumentata, utilizzano la tecnica del \emph{Motion Tracking} che consiste calcolare la propria posizione frequentemente ed in maniera relativa alla coordinate che aveva nella stima precedente. Per quando queste stime siano estremamente precise generano una catena di piccoli errori che sommati tra loro molto presto portano ad una importante discrepanza tra la posizione stimata dal dispositivo e quella reale. Ad esempio partendo da una determinata posizione e camminando in cerchio è praticamente impossibile che la traiettoria stimata passi nuovamente per il punto di partenza.
+Il fenomeno in questione è detto \emph{"drifting"}: i \emph{device Tango}, esattamente come le più comuni applicazioni in realtà aumentata, utilizzano la tecnica del \emph{Motion Tracking} che consiste nel calcolare la propria posizione frequentemente ed in maniera relativa alla coordinate acquisite nella stima precedente. Per quando queste stime siano estremamente precise generano una catena di piccoli errori che sommati tra loro molto presto portano ad una importante discrepanza tra la posizione stimata dal dispositivo e quella reale. Ad esempio partendo da una determinata posizione e camminando in cerchio è praticamente impossibile che la traiettoria stimata passi nuovamente per il punto di partenza.
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.9\columnwidth]{varie/Drift_Correction.png} 
@@ -99,10 +99,10 @@ Allo stesso modo il tablet è in grado memorizzare alcune \emph{features} all'in
 Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. Per rendere l'aplicazione maggiornamente responsiva e più vicina alle esigenze dell'utenza \emph{Samba} adotta un approccio detto \emph{Drift Correction}: inzialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere la creazione di una minimale memorizzazione, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto nonappena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più la qualità della registazione.\\
 
 \subsection{Dimensioni eccessive dei file, ridondanza dei punti sovrapposti}
-Data la grande mole di punti registrati dai sensori di profondità del dispositivo i \emph{file} contenenti le ricostruzioni generati da \emph{Cloude} sono di dimensione eccessiva, anche più di 10Mb una decina scatti.
-Considerando che idealmente gli scatti da riprendere potrebbero essere molti e spesso dovranno essere inviati al \emph{Server} tramite connessione a consumo il peso di questi \emph{File} non è da trascurare.\\
+Data la grande mole di punti registrati dai sensori di profondità i \emph{file} contenenti le ricostruzioni generati da \emph{Cloude} sono di dimensione eccessiva, anche più di 10Mb una decina scatti.
+Considerando che idealmente gli scatti da riprendere potrebbero essere molti e spesso dovranno essere inviati al \emph{Server} tramite connessione a consumo il peso di questi \emph{file} non è da trascurare.\\
 Inoltre c'è una grossa ridondanza di punti: è comune caso d'uso che una stessa zona venga inquadrata in più scatti, quindi tali \emph{Point Cloud} ruotati ed uniti presenterebbero molti punti con le stesse coordinate e semplicemente sovrapposti, qunidi sera dare alcuna informazione aggiuntiva.\\
-xxxx
+\emph{Samba} risolve questo problema utilizzando un leggero \emph{voxeling}, ovvero suddividendo lo spazio in cubi o \emph{voxel} di lato prefissato e registrando quali sono i \emph{voxel} che contengono i punti della nuvola.
 
 
 
