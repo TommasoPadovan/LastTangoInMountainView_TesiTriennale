@@ -4,11 +4,11 @@
 % !TEX spellcheck = it-IT
 
 %**************************************************************
-\chapter{Descrizione dello stage}
+\chapter{Studio di fattibilità ed analisi dei rischi}
 \label{cap:descrizione-stage}
 %**************************************************************
 
-\intro{xxxx Breve introduzione al capitolo}\\
+\intro{Iniziare, quasi da zero, un progetto così impegnativo basandosi su di una tecnologia al limite dell'essere sperimentale espone a gravi rischi di fallimento. Per ciò in questa fase sono state investite molte risorse.}\\
 
 %**************************************************************
 \section{Introduzione al progetto}
@@ -30,7 +30,6 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
     \risksolution{Iscrizione ai vari canali di segnalazione e supporto offerti da \emph{Google} per gli sviluppatori, sviluppo di piccoli esempi giocattolo per testare le funzionalità offerte dalle \emph{API} da cui è stata generata della documentazione interna}
     \label{risk:API-immaturity} 
 \end{risk}
-
 \begin{risk}{Limiti fisici del dispositivo}
 	\riskchance{Alta}
 	\riskseverity{Media}
@@ -47,11 +46,11 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
     \risksolution{Si è per questo deciso di adottare una tecnica denominata \emph{Area Learning}. Il disposivo quindi riconoscerà alcune \emph{features}, ovvero dei punti fissi, rispetto ai quali determinerà la sua posizione.}
     \label{risk:motion-tracking} 
 \end{risk}
-\begin{risk}{Prerequisiti dell'\emph{Area Learning}}
+\begin{risk}{Necessità di azioni specifiche da parte dell'utente}
 	\riskchance{Alta}
 	\riskseverity{Alta}
-    \riskdescription{Utilizzando l'\emph{Area Learning} il dispositivo ha necessità di un tempo di inizializzazione di circa 30-40 secondi in cui la stima della posizione è di fatto errata.}
-    \risksolution{Durante l'inizializzazione devono essere fornite istruzioni per l'utente.}
+    \riskdescription{Tutte le applicazioni che usano la tecnologia \emph{Tango} iteragiscono strettamente con i movimenti e la posizione dell'utente. La scarsa diffusione di questa tecnologia fa si che la maggior parte dell'utenza non sia a conoscenza del comportamento che deve tenere. Azioni compiute dall'utente in maniera scorretta possono compromettere il buon funzionamento dell'applicazione.}
+    \risksolution{Tutto lo sviluppo dell'applicazione deve tenere conto di questo fatto. Devono essere fornite chiare informazioni all'utente e si devono studiare soluzioni che non costringano l'\emph{user} ad un comportamento troppo antiintuitivo.}
     \label{risk:area-learning} 
 \end{risk}
 \begin{risk}{}
@@ -61,39 +60,23 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
     \risksolution{}
     \label{} 
 \end{risk}
-\begin{risk}{}
-	\riskchance{}
-	\riskseverity{}
-    \riskdescription{}
-    \risksolution{}
-    \label{} 
-\end{risk}
-\begin{risk}{}
-	\riskchance{}
-	\riskseverity{}
-    \riskdescription{}
-    \risksolution{}
-    \label{} 
-\end{risk}
-\begin{risk}{}
-	\riskchance{}
-	\riskseverity{}
-    \riskdescription{}
-    \risksolution{}
-    \label{} 
-\end{risk}
-\begin{risk}{}
-	\riskchance{}
-	\riskseverity{}
-    \riskdescription{}
-    \risksolution{}
-    \label{} 
-\end{risk}
-
-%**************************************************************
-\section{Requisiti e obiettivi}
-
 
 
 %**************************************************************
-\section{Pianificazione}
+\section{Studio di fattibilità}
+\subsection{Preventivo}
+Prima di iniziare il progetto è stato effettuato un accurato studio di fattibilità basato sulla ricerca di progetti con funzionalità simili e sulla lettura delle numerose discussioni e pubblicazioni presenti nel \emph{web} a riguardo di \emph{Project Tango}.
+xxxx
+
+
+
+
+
+
+
+
+
+
+
+
+
