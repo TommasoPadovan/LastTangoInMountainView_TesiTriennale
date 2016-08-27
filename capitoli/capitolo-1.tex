@@ -132,7 +132,13 @@ Il \emph{render} in questione è moto semplice ma efficace ed aumenta il valore 
 
 \subsubsection{Visualizzazione su tablet del \emph{Point Cloud} ricostruito}
 Con il \emph{render} descritto nel punto precedente è possibile visualizzare ciò che "vede" il sensore di profondità in tempo reale. Questo tuttavia non è sufficiente: mano a mano che si effettua la ripresa, in background viene calcolata la ricostruzione dell'oggetto in analisi, non poterlo visualizzare sul \emph{tablet}, ma solo lato \emph{server} appare quantomeno frustrante e soprattutto non da la possibilità all'utente di avere una idea dello stato in cui è la ricostruzione. \\
-Per questo si è pensato di sfruttare lo stesso meccanismo di \emph{rendering} per far visualizzare all'utente la ricostruzione che sta effettuando. É quindi stata aggiunta la possibilità di alternare tra la visualizzazione in tempo reale e la visualizzazione dell'intera ricostruzione generata.
+Per questo si è pensato di sfruttare lo stesso meccanismo di \emph{rendering} per far visualizzare all'utente la ricostruzione che sta effettuando. É quindi stata aggiunta la possibilità di alternare tra la visualizzazione in tempo reale e la visualizzazione dell'intera ricostruzione generata.\\
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{varie/sambaRenderer.png} 
+    \caption{Le due modalità del render di \emph{Samba}: in alto la visulizzazione in tempo reale, in basso la visualizzazione della ricostruzione.}
+\end{figure}
+
 
 \subsubsection{Aggiunta operazioni di undo}
 Nonostante gli sforzi per mantenere una alta qualità delle riprese qualcuno dei \emph{Point Cloud} catturati continua a presentare grossi difetti (come errato posizionamento, deformità, grossa presenza di rumore etc).
