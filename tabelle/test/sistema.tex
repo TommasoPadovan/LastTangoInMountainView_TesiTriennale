@@ -1,0 +1,141 @@
+\newcolumntype{s}{>{\hsize=.30\hsize}X}
+\newcolumntype{f}{>{\hsize=.42\hsize}X}
+\newcolumntype{m}{>{\hsize=.18\hsize}X}
+
+%f da aggiungere per aggiungere i requisiti tracciati
+
+\begin{longtable}{s X m}  
+			%\rowcolor{orange!85}Test & Descrizione & Stato & Requisiti \\
+\endhead
+\hline\hline
+	\textbf{Test} & \textbf{Descrizione} & \textbf{Stato}\\
+
+\hline
+	TS1.0 &
+	L'app al primo avvio deve mostrare la richiesta di permessi per l'\emph{area learning}. &
+	Success.\\
+\hline
+	TS1.1 &
+	L'app deve caricare correttamente il render dei punti, il quadratino della telecamera e tutta l'\emph{UI}. &
+	Success.\\
+\hline
+	TS1.2 &
+	Il pulsante \emph{"List 3D object"} deve portare alla corretta \emph{activity}. &
+	Success.\\
+\hline
+	TS1.3 &
+	Il pulsante \emph{"OBJ"} deve portare alla corretta \emph{activity}. &
+	Success.\\
+
+\hline
+	TS2.0 &
+	All'avvio di \emph{PointCloudActivity} deve comparire lo \emph{splash screen} di Tango. &
+	Success.\\
+\hline
+	TS2.1 &
+	Segue la fase di localizzazione in cui l'utente non dovrebbe poter scattare foto e deve essere mostrato un avviso fintantoché la localizzazione non sarà avvenuta. &
+	Success.\\
+\hline
+	TS2.2 &
+	A localizzazione avvenuta deve venire mostrato un avviso contenente la precisione stimata della localizzazione. &
+	Success.\\
+
+\hline
+	TS3.0 &
+	La \emph{preview} della fotocamera deve mostrare correttamente quello che inquadra. &
+	Success.\\
+\hline
+	TS3.1 &
+	La preview deve essere sempre disponibile nell'\emph{activity} principale. (nelle versioni precedenti a causa di un bug a volta la fotocamera non era disponibile se ci si ritornava all'\emph{activity} principale da un'altra \emph{activity}.) &
+	Fallito.\\
+	
+\hline
+	TS4.0 &
+	Nello schermo deve essere disponibile il rendering dei punti attualmente visualizzati dal dispositivo \emph{Tango}. Deve aggiornarsi in tempo reale e non effettuare salti o particolari fluttuazioni. &
+	Success.\\
+\hline
+	TS4.1 &
+	Mediante \emph{toggle} dell'interruttore \emph{"Reconstruction mode"} deve essere possibile visualizzare gli \emph{shot} catturati fino a quel momento e tornare indietro alla visione standard. &
+	Success.\\
+\hline
+	TS4.2 &
+	Con i pulsanti \emph{"third person"} e \emph{"first person"} deve essere possibile passare dalla visione in prima a quella in terza persona. &
+	Success.\\
+\hline
+	TS4.3 &
+	Con \emph{pinch/swipe} deve essere possibile cambiare zoom/orientamento del \emph{rendering} (orientamento solo in terza persona). &
+	Success.\\
+\hline
+	TS4.4 &
+	Premendo il tasto \emph{"shot"} il sistema deve rilevare e salvare i punti ruotati secondo l'orientamento/posizione del dispositivo. &
+	Success.\\
+\hline
+	TS4.5 &
+	Dopo un fissato numero di shot si deve attivare il servizio di \emph{voxeling}. La ricostruzione visualizzata apparirà infatti più rada. &
+	Success.\\
+\hline
+	TS4.6 &
+	Premendo il tasto \emph{"undo"} deve essere sempre disponibile quella operazione. (Almeno una). &
+	Success.\\
+\hline
+	TS4.7 &
+	Le operazioni di \emph{"shot"} e \emph{"undo"} devono modificare correttamente numero di \emph{shot} presi e numero di punti salvati. &
+	Success.\\
+\hline
+	TS4.8 &
+	Dopo un certo numero di shot scattati ad un oggetto esso deve apparire ben formato quando ricostruito. &
+	Success.\\
+\hline
+	TS4.9 &
+	Premendo il tasto \emph{"reset"} deve essere possibile eliminare il \emph{Point Cloud} attualmente registrato ed iniziarne uno nuovo. &
+	Success.\\
+	
+\hline
+	TS5.0 &
+	I pulsanti devono essere tutti correttamente funzionanti. &
+	Success.\\
+\hline
+	TS5.1 &
+	La \emph{dashboad} deve contenere: punti visualizzati, distanza media, posizione $x$, $y$ e $z$, \emph{frames-of-refece}. &
+	Success.\\
+\hline
+	TS5.2 &
+	I valori della \emph{dashboard} devono essere aggiornati correttamente in tempo reale. &
+	Success.\\
+
+
+\hline
+	TS6.0 &
+	Una volta memorizzato una ricostruzione a \emph{Point Cloud} (come nel test 4) deve essere possibile salvarlo con in tasto \emph{"save"} ed inserendo un nome per il \emph{file}. &
+	Success.\\
+\hline
+	TS6.1 &
+	Premendo \emph{"list 3d object"} deve apparire la lista dei \emph{Point Cloud} precedentemente salvati. &
+	Success.\\
+\hline
+	TS6.2 &
+	Ognuno di questi \emph{file} deve poter essere caricato in memoria ed eliminato dal disco. &
+	Success.\\
+
+
+\hline
+	TS7.0 &
+	Premendo il tasto \emph{"send record"} l'\emph{app} deve inviare l'oggetto attualmente in costruzione al \emph{Server}. &
+	Success.\\
+\hline
+	TS7.1 &
+	Premendo il tasto \emph{"OBJ"} l'app deve visualizzare la lista delle \emph{mashe} attualmente disponibili sul \emph{Server}. &
+	Success.\\
+\hline
+	TS7.2 &
+	Da questo menù deve essere possibile selezionarne una per visualizzare ricostruzione e volume. &
+	Success.\\
+\hline
+	TS7.3 &
+	Deve essere anche possibile cancellare la \emph{mesh}. &
+	Success.\\
+	
+\hline
+\bottomrule
+\caption{Test di sistema}
+\end{longtable}   
