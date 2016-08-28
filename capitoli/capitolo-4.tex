@@ -2,7 +2,6 @@
 % !TEX TS-program = pdflatex
 % !TEX root = ../tesi.tex
 % !TEX spellcheck = it-IT
-
 %**************************************************************
 \chapter{Analisi dei requisiti}
 \label{cap:analisi-requisiti}
@@ -23,20 +22,6 @@ Per ogni \emph{use case} sono stati inoltre riportati:
 \end{itemize}
 Seguono i diagrammi riguardanti l'applicativo lato \emph{tablet}, ovvero quello di cui mi sono occupato di persona.
 
-\begin{figure}[!h] 
-    \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/scenario-principale} 
-    \caption{Use Case - UC0: Scenario principale}
-\end{figure}
-
-\begin{usecase}{0}{Scenario principale}
-\usecaseactors{Sviluppatore applicativi}
-\usecasepre{Lo sviluppatore è entrato nel plug-in di simulazione all'interno dell'IDE}
-\usecasedesc{La finestra di simulazione mette a disposizione i comandi per configurare, registrare o eseguire un test}
-\usecasepost{Il sistema è pronto per permettere una nuova interazione}
-\label{uc:scenario-principale}
-\end{usecase}
-
 
 \subsection{UC0: Scenario principale}
 \begin{figure}[!h] 
@@ -53,7 +38,7 @@ Seguono i diagrammi riguardanti l'applicativo lato \emph{tablet}, ovvero quello 
 	\item Utilizzo fotocamera.
 	\item Accesso ad internet.
 \end{itemize}
-Inoltente deve aver avviato l'applicazione in un ambiente sufficientemente illuminato.
+Inoltre deve aver avviato l'applicazione in un ambiente sufficientemente illuminato.
 \\\\ \textbf{Descrizione}: La schermata principale, mentre è immediatamente in atto il processo di localizzazione, mette a disposizione il \emph{render} dei punti e tutti gli strumenti per permettere all'utente effettuare la rilevazione e di accedere agli altri menù.
 \\\\ \textbf{Postcondizioni}: Il sistema è pronto per permettere una nuova interazione con l'utente.
 
@@ -243,10 +228,13 @@ Sono stati individuati diversi tipi di requisiti e si è quindi fatto utilizzo d
 Il codice dei requisiti è così strutturato R(F/Q/V)(N/D/O) dove:
 \begin{enumerate}
 	\item[R =] requisito
+	
     \item[F =] funzionale
     \item[Q =] qualitativo
     \item[V =] di vincolo
-    \item[N =] obbligatorio (necessario)
+    \item[P =] prestazionale
+    
+    \item[O =] obbligatorio (necessario)
     \item[D =] desiderabile
     \item[Z =] opzionale
 \end{enumerate}
@@ -254,38 +242,32 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
 
 \newpage
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisti funzionali}
-\label{tab:requisiti-funzionali}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}\\
-\hline
-RFN-1     & L'interfaccia permette di configurare il tipo di sonde del test & UC1 \\
-\hline
-\end{tabularx}
-\end{table}%
+\subsection{Requisiti Funzionali}
+\LTXtable{\textwidth}{tabelle/requisiti/funzionali.tex}
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisiti qualitativi}
-\label{tab:requisiti-qualitativi}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}\\
-\hline
-RQD-1    & Le prestazioni del simulatore hardware deve garantire la giusta esecuzione dei test e non la generazione di falsi negativi & - \\
-\hline
-\end{tabularx}
-\end{table}%
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisiti di vincolo}
-\label{tab:requisiti-vincolo}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}\\
-\hline
-RVO-1    & La libreria per l'esecuzione dei test automatici deve essere riutilizzabile & - \\
-\hline
-\end{tabularx}
-\end{table}%
+\subsection{Requisiti Qualitativi}
+\LTXtable{\textwidth}{tabelle/requisiti/qualitativi.tex}
+
+\subsection{Requisiti di Vincolo}
+\LTXtable{\textwidth}{tabelle/requisiti/vincolo.tex}
+
+\subsection{Requisiti Prestazionali}
+\LTXtable{\textwidth}{tabelle/requisiti/prestazionali.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

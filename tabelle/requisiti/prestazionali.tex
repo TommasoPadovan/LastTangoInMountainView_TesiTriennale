@@ -1,0 +1,51 @@
+\newcolumntype{s}{>{\hsize=.37\hsize}X}
+\newcolumntype{f}{>{\hsize=.42\hsize}X}
+\newcolumntype{m}{>{\hsize=.21\hsize}X}
+
+\begin{longtable}{s X m}  
+			%\rowcolor{orange!85}Codice & Nome & Fonte & Descrizione \\
+\endhead
+\hline\hline
+	\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+	RPO-1 &
+	Le operazioni di ricostruzione e visualizzazione del \emph{Point Cloud} devono essere svolte efficientemente &
+	Richiesta committente \\
+\hline
+	RPO-1.1 &
+	L'elaborazione del \emph{Point Cloud} deve essere svolta in un tempo finito e senza grosse variazioni tra una rilevazione e l'altra. &
+	UC1.1 \\
+\hline
+	RPD-1.2 &
+	L'elaborazione del \emph{Point Cloud} deve essere sufficientemente ottimizzata da poter permettere almeno 5-6 catture al secondo. &
+	UC1.1 \\
+\hline
+	RPD-1.3 &
+	Il cambio di modalità del render deve essere effettuato senza \emph{delay} in quato è una operazione molto frequente durante la rilevazione. &	
+	UC1.2 \newline UC 1.3 \\
+\hline
+
+
+	RPD-2 &
+	I \emph{file} e le strutture dati utilizzate per salvare e spedire le ricostruzioni ed i singoli \emph{Point Cloud} devono essere ottimizzati. &
+	Richiesta committente \newline analisi dei rischi\\
+\hline
+	RPD-2.1 &
+	I \emph{file} \texttt{pcd} generati devono essere di dimensioni ridotte e non devono prensentare punti uguali ripetuti. &
+	UC1.5 \newline UC1.6 \newline UC2\\
+\hline
+	RDP-1.2 &
+	I pacchetti da inviare al \emph{Server} devono essere di dimensioni adeguate e il \emph{file} da inviare deve essere diviso e non essere inviato tutto in una volta. &
+	UC 1.6 \newline UC2.3 \newline UC3.2\\
+\hline
+	RDP-2 &
+	Il \emph{render} dei \emph{Point Cloud} deve prensentarsi fluido, non scattoso e rappresentare sempre quello che il dispositivo sta inquadrando momento per momento. &
+	UC1.9\\
+\hline
+	RDP-3 &
+	Il \emph{render} delle \emph{mesh} deve prensentarsi fluido e non scattoso. &
+	UC3.3\\
+\hline
+\bottomrule
+\caption{Tabella del tracciamento dei requisti di vincolo}
+\end{longtable}

@@ -1,0 +1,207 @@
+\newcolumntype{s}{>{\hsize=.37\hsize}X}
+\newcolumntype{f}{>{\hsize=.42\hsize}X}
+\newcolumntype{m}{>{\hsize=.21\hsize}X}
+
+\begin{longtable}{s X m}  
+			%\rowcolor{orange!85}Codice & Nome & Fonte & Descrizione \\
+\endhead
+\hline\hline
+	\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}\\
+\hline
+	RFO-1 &
+	L'utente può effettuare una nuova rilevazione &
+	UC1 \\
+\hline
+	RFO-1.1 &
+	L'utente può riprendere, mediante la pressione di un tasto, il \emph{Point Cloud} attualmente inquadrato. &
+	UC1.1 \\
+\hline
+	RFO-1.2 &
+	Il \emph{Point Cloud} catturato deve essere correttamente aggiunto alla ricostruzione corrente. &
+	UC 1.1 \\
+\hline
+	RFO-1.3 &
+	L'utente può modificare la visualizzazione del \emph{Point Cloud} a piacimento e scegliere tra la visualizzazione in tempo reale del sensore di profondità e quella della ricostruzione salvata. &
+	UC1.2, UC1.3 \\
+\hline
+	RFO-1.4 &
+	Il sistema è in grafo di scartare la ricostruzione corrente ed iniziarne una nuova &
+	UC1.4\\
+\hline
+	RFD-1.5 &
+	Dopo aver scartato una ricostruzione il sistema è in grado di iniziare la successiva senza dover ripetere le operazioni di localizzazione. &
+	UC1.4\\
+\hline
+	RFO-1.6 &
+	L'utente può inviare i dati al \emph{Server}. &
+	UC1.5, UC2.3\\
+\hline
+	RFD-1.7 &
+	Nel caso in cui non sia disponibile la connessione internet mentre l'utente sta cercando di inviare la ricostruzione corrente al \emph{Server} deve essere mostrato un opportuno messaggio d'errore. &
+	UC1.5, UC5\\
+\hline
+	RFO-1.8 &
+	Il sistema può salvare i dati della ricostruzione corrente su disco nella cartella interna dell'applicazione, il formato deve essere \texttt{pcd}. &
+	UC1.6 \\
+\hline
+	RFO-1.9 &
+	Il sistema deve calcolare in tempo reale le principali statistiche riguardanti: posizione del dispositivo, ricostruzione corrente e nuvola di punti inquadrata. &
+	UC1.7\\
+\hline
+	RFO-1.10 &
+	Il sistema deve permettere operazioni di undo &
+	UC1.8\\
+\hline
+	RFO-2 &
+	Il sistema deve permettere operazioni sui \emph{file} \texttt{pcd} salvati su disco. &
+	UC2\\
+\hline
+	RFO-2.1 &
+	Il sistema deve essere in grado di fornire la lista di tutti i \emph{Point Cloud}  salvati. &
+	UC2.1\\
+\hline
+	RFO-2.2 &
+	Il sistema deve essere in grado di aprire un \emph{file} \texttt{pcd} e caricarlo come ricostruzione corrente &
+	UC2.2\\	
+\hline
+	RFO-2.3 &
+	Il sistema deve essere in grado di eliminare un \emph{Point Cloud} salvato. &
+	UC2.\\
+\hline
+	RFO-2 &
+	Il sistema deve essere in grado di permettere operazioni sui file di \emph{mesh} salvati su disco. &
+	UC3\\	
+\hline
+	RFO-3.1 &
+	Il sistema deve essere in grado di fornire la lista di tutti le \emph{mesh}  salvati. &
+	UC3.1\\
+\hline
+	RFO-3.2 &
+	Il sistema deve essere in grado di dare la possibilità di scaricare le \emph{mesh} elaborate dal \emph{Server}. &
+	UC3.2\\
+\hline
+	RFD-3.3 &
+	Nel caso in cui non sia disponibile la connessione internet mentre l'utente sta cercando di scaricare la lista di \emph{mesh} dal \emph{Server} deve essere mostrato un opportuno messaggio d'errore. &
+	UC3.2, UC5\\
+\hline
+	RFO-4 &
+	L'applicazione deve fornire una interfaccia che permetta all'utente di svolgere semplicemente tutte le operazioni riportate nei casi d'uso. &
+	UC0, interna \\
+\hline
+	RFO-4.1 &
+	L'interafaccia deve fornire un insieme di pulsanti per permette all'utente di impartire ordini al sistema. &
+	UC1.2 \newline UC1.3 \newline UC1.5 \newline UC1.6 \newline UC1.8 \newline UC1.11 \newline UC1.12 \newline UC2.2 \newline UC2.3 \newline UC2.4 \newline UC2.5 \newline UC3.2 \newline UC3.3 \newline UC3.4 \newline UC3.5  \\
+\hline
+	RFO-4.1.1 &
+	L'interfaccia deve fornire un pulsante per permettere la registrazione di un singolo \emph{Point Cloud}. &
+	UC1.1 \\
+\hline
+	RFO-4.1.2 &
+	L'interfaccia deve fornire un pulsante per permettere di passare con il \emph{render} dalla visione in prima alla visione in teza persona e viceversa.&
+	UC1.2 \\
+\hline
+	RFO-4.1.3 &
+	L'interfaccia deve fornire un interruttore per permettere di alternare tra la visualizzazione in tempo reale e quella dell'oggetto ricostruito. &
+	UC1.3 \\
+\hline
+	RFO-4.1.4 &
+	L'interfaccia deve fornire un pulsante per permettere il reset della ricostruzione. &
+	UC1.4 \\
+\hline
+	RFO-4.1.5 &
+	L'interfaccia deve fornire un pulsante per permettere l'invio dei dati al \emph{Server}. &
+	UC1.5 \\
+\hline
+	RFO-4.1.6 &
+	L'interfaccia deve fornire un pulsante per permettere il salvataggio dei dati su disco. &
+	UC1.6 \\
+\hline
+	RFO-4.1.7 &
+	L'interfaccia deve fornire un pulsante per permettere le operazioni di undo. &
+	UC1.8 \\
+\hline
+	RFO-4.1.8 &
+	L'interfaccia deve fornire un pulsante per permettere di passare alla visualizzazione dei file contenenti i e\emph{Point Cloud}. &
+	UC1.11 \\
+\hline
+	RFO-4.1.9 &
+	L'interfaccia deve fornire un pulsante per permettere di passare alla visualizzazione dei file contenenti le \emph{mesh}. &
+	UC1.12 \\
+\hline
+	RFO-4.1.10 &
+	L'interfaccia deve fornire un pulsante per permettere il caricamento di un \emph{Point Cloud} come ricostruzione attuale. &
+	UC2.2 \\
+\hline
+	RFO-4.1.11 &
+	L'interfaccia deve fornire un pulsante per permettere l'invio al \emph{Server} di un \emph{Point Cloud} dall'a\emph{activity} che lista i \emph{file} \texttt{pcd}.&
+	UC2.3 \\
+\hline
+	RFO-4.1.12 &
+	L'interfaccia deve fornire un pulsante per permettere l'eliminazione di un \emph{Point Cloud} salvato su disco. &
+	UC2.4 \\
+\hline
+	RFO-4.1.13 &
+	L'interfaccia deve fornire un pulsante per permettere il ritorno dalla lista dei \emph{Point Cloud} all'\emph{activity} principale. &
+	UC2.5 \\
+\hline
+	RFO-4.1.14 &
+	L'interfaccia deve fornire un pulsante per permettere di scaricare delle \emph{mesh} elaborate dal \emph{Server}. &
+	UC3.2 \\
+\hline
+	RFO-4.1.15 &
+	L'interfaccia deve fornire un pulsante per permettere di eliminare una \emph{mesh} salvata su disco. &
+	UC3.4 \\
+\hline
+	RFO-4.1.16 &
+	L'interfaccia deve fornire un pulsante per permettere il ritorno dalla lista delle \emph{mesh} all'\emph{activity} &
+	UC3.5 \\
+\hline
+	RFO-4.2 &
+	L'interfaccia deve fornire delle statistiche riguardanti il \emph{Point Cloud} in tempo reale e la ricostruzione corrente. &
+	UC1.7\\
+\hline
+	RFO-4.3 &
+	L'interfaccia deve fornire opportuni strumenti per visualizzare dati dei sensori e le varie ricostruzioni in maniera grafica. &
+	UC1.9 \newline UC1.10 \newline UC3.3\\
+\hline
+	RFO-4.3.1 &
+	L'interfaccia deve fornire la possibilità di visualizzare sullo schermo del dispositivo la \emph{preview} della fotocamera a colori. &
+	UC1.10\\
+\hline
+	RFO-4.3.2 &
+	L'interfaccia deve fornire la possibilità di visualizzare sullo schermo del dispositivo un \emph{render} di tipo \emph{OpenGl} in grado di mostrare \emph{Point Cloud}. &
+	UC1.9\\
+\hline
+	RFO-4.3.2.1 &
+	Il render deve permettere l'operazione di rotazione quando possibile tramite \emph{swipe} del dito. &
+	UC1.9\\
+\hline
+	RFO-4.3.2.2 &
+	Il render deve permettere l'operazione di zoom tramite \emph{pinch} delle dita. &
+	UC1.9\\	
+\hline
+	RFO-4.3.3 &
+	L'interfaccia deve fornire la possibilità di visualizzare sullo schermo del dispositivo un \emph{render} per le \emph{mesh} 3D. &
+	UC3.3\\
+\hline
+	RFO-4.3.3.1 &
+	Il render deve permettere l'operazione di rotazione quando possibile tramite \emph{swipe} del dito. &
+	UC3.3\\
+\hline
+	RFO-4.3.3.2 &
+	Il render deve permettere l'operazione di zoom tramite \emph{pinch} delle dita. &
+	UC3.3\\
+\hline
+\bottomrule
+\caption{Tabella del tracciamento dei requisti funzionali}
+\end{longtable}
+
+
+
+
+
+
+
+
+
+
