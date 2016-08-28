@@ -106,7 +106,12 @@ Considerando che idealmente gli scatti da riprendere potrebbero essere molti e s
 Inoltre c'è una grossa ridondanza di punti: è comune caso d'uso che una stessa zona venga inquadrata in più scatti, quindi tali \emph{Point Cloud} ruotati ed uniti presenterebbero molti punti con le stesse coordinate e semplicemente sovrapposti, quindi senza dare alcuna informazione aggiuntiva.\\
 \emph{Samba} risolve questo problema utilizzando un leggero \emph{voxeling}, ovvero suddividendo lo spazio in cubi o \emph{voxel} di lato prefissato e registrando quali sono i \emph{voxel} che contengono i punti della nuvola.
 Scegliendo una opportuna definizione, ovvero una opportuna dimensione dei \emph{voxel}, si può ottenere una ricostruzione comunque con un buon livello di dettaglio, ma priva di ridondanza dei punti e quindi meno pesante in termini di memoria.\\
-Dopo diversi test è emerso che definizioni più fine di un millimetro non portano a nessun effettivo miglioramento della qualità della ripresa, e quindi questo è stato scelto come definizione predefinita.
+Dopo diversi test è emerso che definizioni più fine di 10 millimetri non portano a nessun effettivo miglioramento della qualità della ripresa, e quindi questo è stato scelto come definizione predefinita.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{pointClouds/voxeling.png} 
+    \caption{Rappresentazione tramite \emph{Point Cloud} della stessa scalinata usando \emph{voxeling} a 10, 25, 50, 100 millimetri.}
+\end{figure}
 
 \subsection{Ulteriore incremento di Samba, il prototipo finale}
 \emph{Samba}, nella sua prima realizzazione, soddisfaceva completamente gli obiettivi fissati per quanto riguarda la \emph{business logic} tuttavia è risultato carente nell'interfacciarsi con l'utente.\\
