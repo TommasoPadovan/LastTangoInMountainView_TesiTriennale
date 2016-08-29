@@ -4,7 +4,7 @@
 % !TEX spellcheck = it-IT
 
 %**************************************************************
-\chapter{Processi e metodologie}
+\chapter{Processi e strumenti}
 \label{cap:processi-metodologie}
 %**************************************************************
 
@@ -12,4 +12,86 @@
 
 %**************************************************************
 \section{Processo sviluppo prodotto}
-xxxx
+In ambito aziendale si è scelto di provare, per questo progetto, un processo di sviluppo \emph{software} basato sulla filosofia \emph{Lean}.\\
+
+\subsection{Sviluppo software Lean}
+Lo sviluppo \emph{software} \emph{Lean} è caratterizzato da cinque eventi principali, chiamati \emph{milestone} descritti di seguito:\\
+
+
+\subsubsection{Kick-Off}
+Prima riunione ufficiale del team di progetto, momento iniziale del processo di sviluppo; possono partecipare, su invito del \emph{Lean Project Leader}, anche persone che non fanno parte del team di progetto ma che sono portatori di interessi verso l’iniziativa da sviluppare. Coincide con l’inizio della fase di \textbf{allestimento} e \textbf{avviamento} in cui viene determinata la natura e lo scopo del progetto.\\
+
+\subsubsection{Concept Preview}
+Momento in cui è disponibile un primo campione (\emph{concept}, \emph{hardware} e/o \emph{software}) del nuovo prodotto. Il \emph{concept} può essere incompleto e affetto da errori. Rappresenta il concetto principale che andrà a costituire il nuovo prodotto (es. dimensioni, user interface, usabilità). Il \emph{concept} è oggetto di riesame, con lo scopo di valutare se lo sviluppo della progettazione è in linea con gli obiettivi definiti dalla \emph{Value Proposition}. Condizione necessaria al raggiungimento della \emph{milestone} è avere eseguito tale riesame con esito positivo. Coincide con l’inizio della fase di sviluppo della progettazione fino al livello di dettaglio ritenuto opportuno e necessario per l’esecuzione del progetto.\\
+
+\subsubsection{Product Prototype}
+Momento in cui è disponibile il primo prototipo del nuovo prodotto, completo nelle sue funzioni (sviluppo finito) ma non ancora messo a punto mediante verifiche e correzioni, per garantirne funzionalità e prestazioni. Può essere dato in valutazione a clienti interni o a partner strategici. Condizione necessaria al raggiungimento della \emph{milestone} è aver eseguito un riesame generale della progettazione prima della realizzazione dei prototipi, con lo scopo di valutare se lo sviluppo della progettazione è in linea con gli obiettivi definiti dalla \emph{Value Proposition} e della \emph{Requirements Specification}. Coincide con il termine della fase di progettazione e l’inizio della fase di esecuzione, cioè l’insieme dei processi necessari a soddisfare i requisiti del progetto.\\
+
+\subsubsection{Product Design Freeze}
+Momento in cui viene definitivamente congelata la progettazione
+del nuovo prodotto; non sono più ammesse modifiche o aggiunte ai requisiti
+di prodotto: la \emph{R.S.} è completa e definitiva. I campioni prodotti possono essere
+dati in valutazione anche ai clienti finali. Il progetto del nuovo prodotto è stato
+verificato e validato, il processo produttivo è stato completamente definito ma non
+ancora validato. Condizione necessaria al raggiungimento della \emph{milestone} è aver
+eseguito un riesame generale della progettazione prima dell’implementazione delle
+modifiche da apportare al prodotto e alle attrezzature di produzione, conseguenti
+la fase di verifica, con lo scopo di valutare se lo sviluppo della progettazione è in
+linea con gli obiettivi definiti dalla \emph{Value Proposition} e della \emph{R.S.}. Coincide il
+termine della fase di esecuzione e l’inizio della fase di monitoraggio e controllo.
+Tale fase è formata dai processi attuati per osservare e misurare l’esecuzione del
+progetto in modo da identificarne per tempo i rischi e i potenziali problemi e intraprendere,
+quando necessarie, le azioni correttive volte a rimettere il progetto
+in linea con i propri obiettivi.\\
+
+\subsubsection{Start Of Production (SOP)}
+Momento a partire dal quale la produzione in serie
+del nuovo prodotto può iniziare; durante le pre-serie il prodotto realizzato dalla
+linea produttiva è stato verificato e validato e il processo produttivo e logistico è
+stato messo a punto, verificato e validato; i codici del nuovo prodotto sono stati
+attivati; il piano di lancio è stato definito e comunicato. Le \emph{Lesson Learned} sono
+state prodotte e condivise con i colleghi del Centro di Competenza. Coincide con la fase di completamento. Tale fase prevede l’accettazione formale del prodotto
+e l’esecuzione di tutte le attività documentali indirizzate a chiudere tutte
+le pendenze, inclusa l’archiviazione dei documenti e la redazione dei rapporti di
+chiusura.\\
+
+
+\subsection{Applicazione}
+Dato che il progetto di \emph{stage} ha durata temporale limitata è stato imposto come obiettivo quello di raggiungere solo la \emph{milestone} denominata \emph{Product Prototype}. Le fasi successive potranno essere svolte in futuro nel caso in cui l'azienda ritenga opportuno proseguire con il progetto.
+
+
+\section{Strumenti}
+L'azienda ha lasciato grande libertà riguardo agli strumenti da utilizzare per questo progetto, quindi essi sono stati fissati inizialmente e successivamente incrementati al crescere delle necessità.
+
+\subsection{Codice}
+Segue la lista degli strumenti utilizzati per la codifica.
+\begin{itemize}
+	\item \textbf{Java}: Il linguaggio preferito per l'applicazione lato \emph{tablet}. È stato scelto seguendo le \emph{Best Practice} dello sviluppo \emph{Android}.
+	\item \textbf{C++}: Il linguaggio preferito per l'applicazione lato \emph{Server}. È stato scelto perché tutti le più diffuse librerie per l'elaborazione dei \emph{Point Cloud} sono disponibili in questo linguaggio.
+	\item \textbf{PCD, Point Cloud Library}: Una delle librerie di maggior rilievo nel campo della \emph{Computer Vision}, mette a disposizione innumerevoli funzionalità per elaborazione ed ottimizzazione dei \emph{Point Cloud}.
+	\item \textbf{Tango API}: Le \emph{API} ufficiali per lo sviluppo di applicazioni \emph{Tango}.
+	\item \textbf{PHP}: Il linguaggio usato per ricevere ed inviare le richieste \emph{http} quando si necessita comunicazione tra \emph{Server} e dispositivo.
+\end{itemize}
+
+\subsection{IDE ed editor}
+Segue la lista degli embienti per la codifica utilizzati durante il progetto.
+\begin{itemize}
+	\item \textbf{Android Studio}: L'\emph{IDE} ufficiale per le applicazioni \emph{Android}.
+	\item \textbf{QT}: L'\emph{IDE} scelto per lo sviluppo del codice \emph{C++}.
+	\item \textbf{Sublime Text 2}: L'\emph{editor} di testo usato per scrivere gli \emph{script} \emph{php}.
+\end{itemize}
+
+\subsection{Framework}
+Segue la lista dei \emph{Framework} usati per il 
+
+
+
+
+
+
+
+
+
+
+
+
