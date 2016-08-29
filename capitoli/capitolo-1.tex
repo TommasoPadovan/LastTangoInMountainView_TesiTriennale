@@ -7,8 +7,8 @@
 \chapter{Introduzione}
 \label{cap:introduzione}
 %**************************************************************
-xxxx
-Introduzione al contesto applicativo.\\
+xxxx (ignorare fino ad 1.1)\\
+
 
 \noindent Esempio di utilizzo di un termine nel glossario \\
 \gls{api}. \\
@@ -98,7 +98,7 @@ Ciò è un limite fisico dei dispositivi, ed è nella pratica impossibile da eli
 La tecnologia \emph{Tango} però fornisce un altro meccanismo di localizzazione: l'\emph{Area Learning}. Le applicazioni ideate per questo tipo di dispositivi infatti hanno la possibilità di mantenere memoria degli spazi che visitano, e successivamente usare queste informazioni per localizzarsi.\\
 Il meccanismo è piuttosto simile a quello della memoria spaziale umana: una persona portata bendata all'interno di un edificio sconosciuto, una volta liberata, non avrà alcun mezzo per intuire dove si trovi; se invece la stessa persona fosse condotta all'interno della propria abitazione, alla prima sbirciata noterebbe immediatamente qualche particolare che gli farebbe immediatamente recuperare l'orientamento.\\
 Allo stesso modo il tablet è in grado memorizzare alcune \emph{features} all'interno dell'ambiente ed usarle come faro per la triangolazione. \\
-Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. Per rendere l'applicazione maggiormente responsiva e più vicina alle esigenze dell'utenza \emph{Samba} adotta un approccio detto \emph{Drift Correction}: inizialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere la creazione di una minimale memorizzazione, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto nonappena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più la qualità della registrazione.\\
+Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. Per rendere l'applicazione maggiormente responsiva e più vicina alle esigenze dell'utenza \emph{Samba} adotta un approccio detto \emph{Drift Correction}: inizialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere la creazione di una minimale memorizzazione, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto non appena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più la qualità della registrazione.\\
 
 \subsubsection{Dimensioni eccessive dei file, ridondanza dei punti sovrapposti}
 Data la grande mole di punti registrati dai sensori di profondità i \emph{file} contenenti le ricostruzioni generati da \emph{Cloude} sono di dimensione eccessiva, anche più di 10Mb una decina scatti.
@@ -142,7 +142,7 @@ Per questo si è pensato di sfruttare lo stesso meccanismo di \emph{rendering} p
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{varie/sambaRenderer.png} 
-    \caption{Le due modalità del render di \emph{Samba}: in alto la visulizzazione in tempo reale, in basso la visualizzazione della ricostruzione.}
+    \caption{Le due modalità del render di \emph{Samba}: in alto la visualizzazione in tempo reale, in basso la visualizzazione della ricostruzione.}
 \end{figure}
 
 
@@ -182,7 +182,7 @@ Per ottenere una buona riproduzione dell'oggetto l'applicativo applica diversi f
 	\item \textbf{sparse filter / filter radius}: vengono eliminati i punti isolati ed i punti ad una eccessiva distanza dal centro, i quali sono quasi sempre frutto di errori nelle misurazioni.
 	\item \textbf{filter ground}: viene eliminato il pavimento.
 	\item \textbf{voxel filter}: viene effettuata una ulteriore operazione di voxeling allo scopo di ridurre la mole di calcoli e regolarizzare il \emph{Point Cloud}.
-	\item \textbf{cluster exstractor}: si cerca di suddividere la ricostruzione nei vari oggetti da cui è composta, dopodiché si mantiene solamente l'oggetto (o \emph{cluster}) che si trova più al centro.
+	\item \textbf{cluster extractor}: si cerca di suddividere la ricostruzione nei vari oggetti da cui è composta, dopodiché si mantiene solamente l'oggetto (o \emph{cluster}) che si trova più al centro.
 	\item \textbf{meshing}: i punti rimanenti sono solamente quelli dell'oggetto in analisi. Essi vengono usati per generare la \emph{mesh}.
 \end{itemize}
 Al termine di questo processo si ottiene l'oggetto 3D, che può essere convertito nel formato preferito. L'immagine sottostante mostra il processo di elaborazione dell'immagine di una scatola rettangolare. Si possono osservare, da in alto a sinistra ad in basso a destra: la ricostruzione fornita dal \emph{tablet}, il \emph{Point Cloud} risultante da \emph{sparseFilter} e \emph{filterRadius}, l'output della operazione di rimozione del pavimento, il risultato del \emph{voxelFilter}, il \emph{cluster} estratto ed infine la \emph{mesh} dell'oggetto.
@@ -201,20 +201,20 @@ Il trucco è calcolare, per ogni triangolo che compone la \emph{mesh}, il volume
 %**************************************************************
 \section{Organizzazione del testo}
 xxxx
-\begin{description}
-
-    \item[{\hyperref[cap:processi-metodologie]{Il secondo capitolo}}] descrive ...
-    
-    \item[{\hyperref[cap:descrizione-stage]{Il terzo capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:analisi-requisiti]{Il quarto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:progettazione-codifica]{Il quinto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:verifica-validazione]{Il sesto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:conclusioni]{Nel settimo capitolo}}] descrive ...
-\end{description}
+%\begin{description}
+%
+%    \item[{\hyperref[cap:processi-metodologie]{Il secondo capitolo}}] descrive ...
+%    
+%    \item[{\hyperref[cap:descrizione-stage]{Il terzo capitolo}}] approfondisce ...
+%    
+%    \item[{\hyperref[cap:analisi-requisiti]{Il quarto capitolo}}] approfondisce ...
+%    
+%    \item[{\hyperref[cap:progettazione-codifica]{Il quinto capitolo}}] approfondisce ...
+%    
+%    \item[{\hyperref[cap:verifica-validazione]{Il sesto capitolo}}] approfondisce ...
+%    
+%    \item[{\hyperref[cap:conclusioni]{Nel settimo capitolo}}] descrive ...
+%\end{description}
 
 Riguardo la stesura del testo, relativamente al documento sono state adottate le seguenti convenzioni tipografiche:
 \begin{itemize}

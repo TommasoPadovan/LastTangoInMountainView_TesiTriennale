@@ -11,11 +11,11 @@ Al di là del formalismo informatico, lo scopo principale di questo progetto era
 I risultati ottenuti sono stati piuttosto soddisfacenti e con qualche raffinamento appare possibile inserire l'applicazione in un contesto produttivo.
 
 \section{Prove pratiche}
-Il prototipo prodotto è stato testato in numerori ambienti e su diversi oggetti. Nella quasi totalià dei casi i risultati sono stati più che sufficienti per quanto riguarda la qualità del \emph{Point Cloud} ricostruito.\\
+Il prototipo prodotto è stato testato in numerosi ambienti e su diversi oggetti. Nella quasi totalità dei casi i risultati sono stati più che sufficienti per quanto riguarda la qualità del \emph{Point Cloud} ricostruito.\\
 Per quanto riguarda invece il calcolo del volume i risultati non sono ancora totalmente sufficienti: il volume ottenuto è sempre dello stesso ordine di grandezza del volume reale, ma spesso è affetto da un errore relativo tra il 30 ed il 50\% ed un errore del genere non è affatto tollerabile. Tale divario però è facilmente appianabile migliorando la qualità delle elaborazioni dei \emph{Point Cloud} e delle \emph{mesh} lato \emph{Server}.
 
 \section{Sviluppi futuri}
-Il progetto è nato molto recentemente, dopo circa due mesi di sviluppo è stato prodotto un prototipo soddisfacente. Molti dei problemi riscostranti durante il percorso di \emph{stage} sono stati risolti, grazie ai prototipi e alle prove pratiche sono state molteplici anche le idee per rendere l'applicazione ancora più completa. Riporto qui solo alcune di queste.
+Il progetto è nato molto recentemente, dopo circa due mesi di sviluppo è stato prodotto un prototipo soddisfacente. Molti dei problemi riscontrati durante il percorso di \emph{stage} sono stati risolti, grazie ai prototipi e alle prove pratiche sono state molteplici anche le idee per rendere l'applicazione ancora più completa. Riporto qui solo alcune di queste.
 
 \subsection{ICP su tablet}
 Uno più gravi problemi delle ricostruzioni 3D effettuate tramite sovrapposizione di \emph{Point Cloud} è il \emph{ghosting}. Si tratta dello sdoppiamento di alcune "facce" dell'oggetto ricostruito.\\
@@ -25,9 +25,9 @@ Uno più gravi problemi delle ricostruzioni 3D effettuate tramite sovrapposizion
     \caption{Point Cloud che presenta problemi di \emph{ghosting} di una scatola rettangolare}
     \label{figure:pcloud_ghosting}
 \end{figure}
-Nell'esempio in figura \ref{figure:pcloud_ghosting} sono stati evidenziati in verde gli spigoli corretti di una scatola rettangolare, mentre con colore rosso quelli dovuti al \emph{ghosting}; si può chiaramente notare che le facce laterali appaiosno sdoppiate e ciò può portare a significativi errori nella ricostruzione dell'oggetto e soprattutto nel calcolo del volume.\\
+Nell'esempio in figura \ref{figure:pcloud_ghosting} sono stati evidenziati in verde gli spigoli corretti di una scatola rettangolare, mentre con colore rosso quelli dovuti al \emph{ghosting}; si può chiaramente notare che le facce laterali appaiono sdoppiate e ciò può portare a significativi errori nella ricostruzione dell'oggetto e soprattutto nel calcolo del volume.\\
 Questo fenomeno è dovuto ad errori di stima nella posizione del dispositivo, e per quanto si cerchi di ridurli essi rimarranno sempre. Si tratta di un altro limite fisico dei dispositivi \emph{Tango}, che in questo caso è aggirabile.\\
-\emph{ICP} o \emph{Iterative Closest Point} è un algoritmo che cerca di minimizzare le differenze tra due nuvole di punti. Applicando \emph{ICP} su due \emph{Point Cloud} che non si sovrappongono perfettamente permetterebbe di ottenere una matrice di trasformazione da appliccare ad uno dei due per farlo combaciare all'altro. L'algoritmo in questione ha molte implentazioni in \emph{C++}, tra cui una presente proprio all'interno della libreria \emph{PCD} utilizzata lato \emph{Server}. Questo fatto ha dato modo di testare la sua effettiva efficacia.\\
+\emph{ICP} o \emph{Iterative Closest Point} è un algoritmo che cerca di minimizzare le differenze tra due nuvole di punti. Applicando \emph{ICP} su due \emph{Point Cloud} che non si sovrappongono perfettamente permetterebbe di ottenere una matrice di trasformazione da applicare ad uno dei due per farlo combaciare all'altro. L'algoritmo in questione ha molte implementazioni in \emph{C++}, tra cui una presente proprio all'interno della libreria \emph{PCD} utilizzata lato \emph{Server}. Questo fatto ha dato modo di testare la sua effettiva efficacia.\\
 Il problema è che spedire ogni singola ripresa al \emph{Server} ed aspettare una risposta sembra una strada non percorribile: per una rilevazione intera servono più di 20 riprese, senza connessione internet il servizio non sarebbe disponibile etc.\\
 Per questo un possibile sviluppo futuro potrebbe essere quello di implementare \emph{ICP} lato \emph{tablet}. Ci sarebbe due vie percorribili: importare una delle tante implementazioni in \emph{C++} ed accedervi dal codice \emph{Java} mediate \emph{JNI} oppure implementare da capo l'algoritmo nativamente in \emph{Java}. Entrambe le ipotesi vanno attentamente valutate tenendo conto anche della potenza di calcolo e del consumo di batteria del dispositivo.
 
@@ -36,13 +36,13 @@ Per questo un possibile sviluppo futuro potrebbe essere quello di implementare \
 Tutto il progetto ne gioverebbe, specialmente per quanto riguarda le performance; inoltre si potrebbe pensare di importare parti della libreria \emph{PCD} in maniera da automatizzare alcuni processi.
 
 \subsection{Texture dei punti}
-Il prodotto fornisce delle buone ricostruzioni 3D per quanto riguarda la forma e le dimensioni dell'oggetto; ai fini ispettivi, di fatto, non c'è biosgno d'altro. Ciononostante le ricostruzioni visualizzate sia su \emph{tablet} che su \emph{computer} essendo formate da soli punti sono spesso di difficile comprensione da parte dell'utenza. Per rispondere a queste esigenza potrebbe essere opportuno pensare ad aggiungere ad ogni singolo punto una opportuna texture in maniera da rendere più immediato il riconoscimento dell'oggetto da parte dell'utente.\\
+Il prodotto fornisce delle buone ricostruzioni 3D per quanto riguarda la forma e le dimensioni dell'oggetto; ai fini ispettivi, di fatto, non c'è bisogno d'altro. Ciononostante le ricostruzioni visualizzate sia su \emph{tablet} che su \emph{computer} essendo formate da soli punti sono spesso di difficile comprensione da parte dell'utenza. Per rispondere a queste esigenza potrebbe essere opportuno pensare ad aggiungere ad ogni singolo punto una opportuna texture in maniera da rendere più immediato il riconoscimento dell'oggetto da parte dell'utente.\\
 Questo sviluppo darebbe un grosso valore aggiunto in quando migliora grandemente l'aspetto grafico del sistema e lo rende quindi anche più vendibile.\\
 Alcuni esempi di \emph{Point Cloud} \emph{texturizzati} sono già presenti in rete sotto licenza \emph{Open Source}, quindi è possibile pensare al riuso degli stessi.
 
 \subsection{Rimozione artefatti}
 Un altro problema che affligge le ricostruzioni 3D effettuate da \emph{Samba} è il rumore causato da forti fonti di luce o superfici riflettenti.\\
-In molte riprese infatti appaiono dei piani sospesi a mezz'aria che si sommmano li uni agli altri rendendo qualche volta la ricostruzione praticamente inutilizzabile. Lato \emph{Server} essi sono spesso eliminabili dalla libreria \emph{PCD}, ma lato \emph{tablet} rendono la visualizzazione dei \emph{Point Cloud} ricostruito ancora più caotica e difficilmente usabile.\\
+In molte riprese infatti appaiono dei piani sospesi a mezz'aria che si sommano li uni agli altri rendendo qualche volta la ricostruzione praticamente inutilizzabile. Lato \emph{Server} essi sono spesso eliminabili dalla libreria \emph{PCD}, ma lato \emph{tablet} rendono la visualizzazione dei \emph{Point Cloud} ricostruito ancora più caotica e difficilmente usabile.\\
 Un possibile sviluppo è quindi quello di usare le caratteristiche stesse di questi artefatti (come essere isolati, sempre perfettamente planari etc) per filtrarli già durante la ripresa del singolo \emph{Point Cloud} lato \emph{tablet}. In figura \ref{figure:pcloud_artifacts} sono stati evidenziati in rosso alcuni degli artefatti.
 \begin{figure}[!h] 
     \centering 
@@ -52,7 +52,7 @@ Un possibile sviluppo è quindi quello di usare le caratteristiche stesse di que
 \end{figure}
 
 \subsection{Controllo di forma}
-Oltre alla creazione del modello 3D e del calcolo del volume potrebbe rivelarsi molto utile per gli ispettori avere uno strumento automatico per confrontare la forma dell'oggetto ispezionato con un modello "pefetto" del bene stesso. Ad esempio potrebbe essere usato per confrontare componenti meccaniche con i loro modelli \emph{CAD} al fine di individuare eventuali deformazioni subite durante il trasporto.
+Oltre alla creazione del modello 3D e del calcolo del volume potrebbe rivelarsi molto utile per gli ispettori avere uno strumento automatico per confrontare la forma dell'oggetto ispezionato con un modello "perfetto" del bene stesso. Ad esempio potrebbe essere usato per confrontare componenti meccaniche con i loro modelli \emph{CAD} al fine di individuare eventuali deformazioni subite durante il trasporto.
 
 \subsection{Integrazione con l'applicazione Vic}
 L'azienda fornisce ai suoi dipendenti ispettori una applicazione che permette di automatizzare diverse mansioni. Tra le varie funzioni che mette a disposizione c'è quella di avviare una nuova ispezione o \emph{job} permettendo all'utente di compilare diversi \emph{form} per fornire così in tempo reale un rapporto dettagliato e standardizzato del lavoro svolto. In questo ambito una buona integrazione delle tecnologie \emph{Tango} potrebbe fornire molto valore aggiunto.
@@ -80,7 +80,7 @@ Apre però anche a nuovi problemi:
 Il prototipo prodotto ha un consumo della batteria piuttosto elevato ed a volte porta al surriscaldamento del dispositivo.
 Ciò secondo una prima analisi è dovuto ai seguenti fattori:
 \begin{itemize}
-	\item Utilizzo combinato dei quattro sensori principali del \emph{device}: fotocamera a colori, fotocamera \emph{Fish-eye}\footnote{Fotocamera \emph{Fish-eye}: un obbiettivo grandangolare che abbraccia un angolo di campo di circa 180 gradi, in particolare quello in dotazione nel dispositivo usato è in bianco e nero.}, sensore \emph{IR} ed accellerometro/giroscopio. Questi sensori sono tutti necessari per il \emph{Motion Tracking} e la cattura dei \emph{Point Cloud}.
+	\item Utilizzo combinato dei quattro sensori principali del \emph{device}: fotocamera a colori, fotocamera \emph{Fish-eye}\footnote{Fotocamera \emph{Fish-eye}: un obbiettivo grandangolare che abbraccia un angolo di campo di circa 180 gradi, in particolare quello in dotazione nel dispositivo usato è in bianco e nero.}, sensore \emph{IR} ed accelerometro/giroscopio. Questi sensori sono tutti necessari per il \emph{Motion Tracking} e la cattura dei \emph{Point Cloud}.
 	\item Grande mole di dati da elaborare: un singolo \emph{Point Cloud} può contare anche 90 000 punti, essi devono essere elaborati e renderizzati in tempo reale.	
 	\item Necessità di pesanti elaborazioni parallele: per permettere all'utente una interfaccia fluida e non rallentare i calcoli è necessario usare molti processi paralleli. Ogni scatto registrato è elaborato su di un proprio \emph{Thread} ed è presente un servizio che ottimizza ad intervalli regolari la ricostruzione corrente (indispensabile per tenere sotto controllo la complessità delle strutture dati).
 	\item \emph{Rendering real-time}: come discusso in sezione \ref{cap:frame_preview} è un fondamentale requisito di usabilità avere una preview dei dati catturati dal \emph{depth sensor}. Ciò implica l'utilizzo di un \emph{render 3D} \emph{OpenGL} che richiede una grande quantità di risorse.
@@ -93,8 +93,8 @@ Risolvere queste criticità era oltre gli obiettivi dello \emph{stage}, ma è co
 	\item Gestire la priorità del servizio di ottimizzazione: è trasparente all'utente e non deve necessariamente essere performante. Quindi esso può avere una minore priorità nell'utilizzo della \emph{CPU} cercando di ridurre i \emph{burst} di dati.
 	\item Il \emph{render} non ha lo scopo di rappresentare tutti i punti salvati, ma di fornire all'utente una idea di quello che "vede" il sensore di profondità. Si può pensare quindi di approssimare parti della nuvola di punti a figure geometriche semplici, ad esempio il pavimento può essere approssimato ad un piano. Ciò ridurrebbe il carico di lavoro per processore e scheda grafica.
 \end{itemize}
-Comunque va tenuto a mente che il dispositivo è un \emph{HardWare} sperimentale che non è pensato per utilizzo su larga scala ma solo per lo sviluppo: comportamento instabile del dispositivo usando alcuni tipi di applicazioni è largamente documentato all'interno della comunità. xxxx\\
-Durante il tirocinio sono stati sperimentati questo genere di problemi anche con applicazioni rilasciate dalla \emph{Google} stessa. xxxx
+Comunque va tenuto a mente che il dispositivo è un \emph{HardWare} sperimentale che non è pensato per utilizzo su larga scala ma solo per lo sviluppo: comportamento instabile del dispositivo usando alcuni tipi di applicazioni è largamente documentato all'interno della comunità. xxxx (documentare)\\
+Durante il tirocinio sono stati sperimentati questo genere di problemi anche con applicazioni rilasciate dalla \emph{Google} stessa. xxxx (documentare)
 
 \subsection{Preview della fotocamera}
 Le \emph{API} forniscono degli strumenti per automatizzare la \emph{preview} della fotocamera a colori. Essi tuttavia si sono rivelati estremamente pesanti come carico computazionale e se combinati al resto dell'applicazione prodotta possono portare a rallentamenti imprevisti.\\
@@ -104,23 +104,23 @@ Un \emph{bug} noto è che alla ripresa della attività, qualche volta la \emph{p
 
 %**************************************************************
 \section{Consuntivo finale}
-
+xxxx
 %**************************************************************
 \section{Raggiungimento degli obiettivi}
-
+xxxx
 %**************************************************************
 \section{Conoscenze acquisite}
-Dal punto di vista formativo l’attività di \emph{stage} è stata estremamente positiva. Ha arricchito il mio bagaglio personale di competenze professionali.\\
+Dal punto di vista formativo l'attività di \emph{stage} è stata estremamente positiva. Ha arricchito il mio bagaglio personale di competenze professionali.\\
 
 La richiesta di app \emph{mobile} è in continuo aumento. Per questo l'apprendimento della progettazione e sviluppo delle applicazioni mobili \emph{Android} è certamente una pietra miliare in campo \emph{IT} in questi anni.\\
 
 L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da \emph{Lenovo} per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{HardWare}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
 
-In ambito aziendale si usa \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza cgià maturata in ambito accademicon con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca compessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.
+In ambito aziendale si usa \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca compessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.
 
 
 %**************************************************************
-\section{Valutazione personale}
+%\section{Valutazione personale}
 
 
 
