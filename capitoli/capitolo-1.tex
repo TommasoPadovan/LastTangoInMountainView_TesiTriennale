@@ -23,8 +23,8 @@ citazione\footcite{womak:lean-thinking} \\
 \section{L'azienda}
 
 VIC è stata fondata da Alessio Bisutti che, dopo aver sviluppato una lunga esperienza nel campo ispettivo, ha deciso di costituire una società in grado di offrire ai propri clienti un servizio professionale, chiaro ed affidabile, appoggiandosi sulle nuove tecnologie.\\
-VIC iniziò a Venezia 7 anni fa come piccola società di ispezione locale ed ora il gruppo VIC è uno dei più grandi attori del mercato globale.\\
-Fin dall'inizio, l'obiettivo principale di VIC è stata la riduzione del tempo tra ispezione e reporting al cliente. Ora l'obiettivo è raggiunto, perché VIC sta fornendo ai suoi clienti tutti i risultati e le informazioni importanti in tempo reale, senza alcun ritardo, grazie agli investimenti fatti nel campo della tecnologia e delle applicazioni mobile.\\
+Si occupa di controlli per grandi ordini, sia di materie prime che di semi-lavorati, di cui individua e riporta eventuali danni, carenze nella spedizione e non conformità con quanto ordinato.\\
+VIC iniziò a Venezia 7 anni fa come piccola società di ispezione locale. Fin dall'inizio, l'obiettivo principale di VIC è stata la riduzione del tempo tra ispezione e reporting al cliente. Ora l'obiettivo è raggiunto, perché VIC sta fornendo ai suoi clienti tutti i risultati e le informazioni importanti in tempo reale, senza alcun ritardo, grazie agli investimenti fatti nel campo della tecnologia e delle applicazioni mobili.\\
 VIC è la prima ed unica azienda in campo ispettivo ad offrire un'ampia gamma di servizi tecnologici a completa disposizione dei propri clienti. 
 
 %**************************************************************
@@ -35,20 +35,21 @@ Gli ispettori possono scattare molte fotografie, prendere appunti e sfruttare la
 Da qui nasce l'idea di fornire agli ispettori uno strumento informatico in grado di effettuare queste stime. Grazie alla ricostruzione computerizzata resa disponibile dai \emph{Tango device} sarà possibile non solo visualizzare su uno schermo il modello 3D del soggetto della ispezione, ma anche ottenere ulteriori vantaggi quali:
 \begin{itemize}
 	\item Avere una stima del volume e quindi del peso della materia prima.
-	\item Confrontare l'oggetto con un modello idea, permettendo così un rapido controllo eventuali di danni o deformazioni.
+	\item Confrontare l'oggetto con un modello ideale, permettendo così un rapido controllo eventuali di danni o deformazioni.
 \end{itemize}
-Allo stato attuale sono rese disponibili solamente le funzionalità di ricostruzione dell'oggetto e calcolo (approssimato) del volume.\\
-Alcune operazioni sarebbero troppo pesanti per le potenzialità del tablet, quindi è stato realizzato un \emph{backend server} per tutte l'elaborazione delle ricostruzioni, mentre la realizzazione delle stesse è affidata all'applicativo per tablet.
+Con il prototipo realizzato durante lo \emph{stage} sono rese disponibili solamente le funzionalità di ricostruzione dell'oggetto e calcolo (approssimato) del volume.\\
+Alcune operazioni sarebbero troppo pesanti per le potenzialità del tablet, quindi è stato realizzato un \emph{backend server} per tutte le elaborazioni delle ricostruzioni, mentre la ripresa delle stesse è affidata all'applicativo per tablet.
 
 \section{Il Prodotto - lato dispositivo}
 L'applicazione prodotta risponde, in maniera minimale, alle esigenze citate nel punto precedente.\\
 La sua realizzazione presenta molti punti critici e rischi piuttosto difficili da prevedere. Per questo sono stati realizzati molti prototipi, al fine di escludere vie non percorribili e trovare una soluzione soddisfacente.\\
 Lo scopo principale della applicazione lato tablet è quello di rilevare ed elaborare un corretto \emph{Point Cloud} dell'oggetto che si vuole ispezionare.\\
-Un \emph{Point Cloud} non è altro che una descrizione algebrica di un oggetto tridimensionale ottenuta tramite un insieme, il più possibile fitto, di punti che lo compongono. I dispositivi Tango infatti, grazie al sensore di profondità, cercano di rilevare le triplette di coordinate del maggior numero di punti possibile. Sfruttando questi dati è possibile posizionare dei punti nello spazio in maniera da fornire all'utente una rappresentazione comprensibile dell'oggetto.
-\begin{figure}[!h] 
+Un \emph{Point Cloud} non è altro che una descrizione algebrica di un oggetto tridimensionale ottenuta tramite un insieme, il più possibile fitto, di punti che lo compongono. I dispositivi Tango infatti, grazie al sensore di profondità, cercano di rilevare le triplette di coordinate del maggior numero di punti possibile. Sfruttando questi dati è possibile posizionare dei punti nello spazio in maniera da fornire all'utente una rappresentazione comprensibile dell'oggetto come quella in figura~\ref{figure:bidone_conico}.
+\begin{figure}[H] 
     \centering 
-    \includegraphics[width=1.0\columnwidth]{pointClouds/bidoneConico.png} 
+    \includegraphics[width=1.0\columnwidth]{pointClouds/bidoneConico.png}
     \caption{Point Cloud di un bidone Conico}
+    \label{figure:bidone_conico} 
 \end{figure}
 
 
@@ -59,20 +60,23 @@ Nella sua semplicità ha dato modo allo studente di testare la stabilità delle 
 \subsection{Secondo prototipo: Cloude}
 \subsubsection{Affrontare la discrepanza tra coordinate assolute e coordinate relative}
 Un solo \emph{Point Cloud} non è sufficiente a ricostruire un oggetto. Ovviamente il dispositivo, registrando la nuvola di punti inquadrata in un determinato istante, riesce a rilevare solamente i punti che "riesce a vedere": i punti presenti nella parte posteriore dell'oggetto scansionato non possono essere "visti" e conseguentemente nemmeno misurati. Se si vuole avere una ricostruzione completa e non solamente di una facciata è necessario prendere più rilevazioni ed integrarle.\\
-Le seguenti immagini mostrano il \emph{Point Cloud} che descrive la parte anteriore di una scatola rettangolare; dato che la ripresa è stata effettuata da di fronte ed in alto solo le facce superiore ed anteriore sono state memorizzate, mentre delle altre non si hanno dati. I contorni sono stati evidenziati successivamente per permettere una migliore comprensione della forma.
-\begin{figure}[!h] 
+Le immagini in figura \ref{figure:singolo_pointCloud} mostrano il \emph{Point Cloud} che descrive la parte anteriore di una scatola rettangolare; dato che la ripresa è stata effettuata da di fronte ed in alto solo le facce superiore ed anteriore sono state memorizzate, mentre delle altre non si hanno dati. I contorni sono stati evidenziati successivamente per permettere una migliore comprensione della forma.
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{pointClouds/singoloShot.png} 
     \caption{Un singolo \emph{Point Cloud}}
+    \label{figure:singolo_pointCloud}
 \end{figure}
 \subsubsection{Approccio}
-Questo prototipo, denominato \emph{Cloude}, è stato realizzato allo scopo di rispondere a questa esigenza. L'idea che ne sta a fondamento è la seguente:
+Il principale scopo di questo prototipo, denominato \emph{Cloude}, è esplorare una via che porti alla sovrapposizione di diversi \emph{Point Cloud} parziali in una unica nuvola di punti che rappresenti l'oggetto nella sua totalità.\\
+L'approccio che ha portato alla nascita di questo prototipo è il seguente:
 \begin{itemize}
-	\item Permettere all'utente di scattare alcune foto all'oggetto, quindi di rilevare diversi \emph{Point Cloud}.
-	\item Tenere costantemente traccia della posizione del dispositivo, in particolare delle posizioni nei momenti in cui vengono scattate le foto.
-	\item Usare la posizione relativa al \emph{Point Cloud} per traslare e ruotare lo stesso punto a punto, riducendo così le coordinate a dei valori assoluti.
-	\item Ora le nuvole di punti registrate sono sovrapponibili le une con le altre e forniscono una prima ricostruzione dell'oggetto.
+	\item Permettere all'utente di scattare alcune "foto" all'oggetto, quindi di rilevare diversi \emph{Point Cloud}, questi ultimi però sono tutti parziali, ovvero rappresentano solo una facciata.
+	\item Associare ad ogni cattura di un \emph{Point Cloud} parziale la posizione e la rotazione del dispositivo.
+	\item Usare la posizione relativa al \emph{Point Cloud} per traslare e ruotare lo stesso punto a punto, trasformando così le coordinate da relative ad assolute.
+	\item Le nuvole di punti risultanti sono tutte scritte in coordinate relative allo stesso sistema fissato di assi cartesiani, e sono quindi sovrapponibili le une con le altre.
 \end{itemize}
+La sovrapposizione di tutti i \emph{Point Cloud} fornisce una ricostruzione coerente dell'oggetto ripreso che è il prodotto finale di \emph{Cloude}.
 
 \subsection{Terzo prototipo: Samba}
 Il prototipo precedente generava delle ricostruzioni riconoscibili, ma piuttosto imprecise.\\
@@ -83,8 +87,8 @@ In \emph{Samba} è stato cambiato radicalmente approccio:
 \begin{itemize}
 	\item Ad ogni \emph{Point Cloud} viene associata una matrice di trasformazione e non la posizione stessa.
 	\item In questo modo è sufficiente moltiplicare ogni punto (vettore) per la matrice, che viene calcolata una sola volta per ogni \emph{Point Cloud}. 
-	\item Si è ottenuta così una complessità di \texttt{O(n)} sul numero dei punti da trasformare riducendo i tempi di elaborazione da 1,5-2s a circa 200ms (sullo stesso dispositivo).
 \end{itemize}
+Si sono così ridotti i tempi di elaborazione da 1,5-2s a circa 200ms (sullo stesso dispositivo).
 \subsubsection{Bassa qualità delle ricostruzioni}
 Nelle ricostruzioni generate da \emph{Cloude} gli oggetti appaiono deformati, spesso i vari \emph{Point Cloud} non si sovrappongono correttamente generando fenomeni di \emph{ghosting}, talvolta rendendo addirittura irriconoscibile l'oggetto.\\
 Questo è dovuto ad una scorretta stima della posizione del dispositivo, che induce il calcolo di una erronea matrice di trasformazione, e quindi ad un errato posizionamento delle nuvole di punti all'interno dello spazio.\\
@@ -96,31 +100,31 @@ Il fenomeno in questione è detto \emph{"drifting"}: i \emph{device Tango}, esat
 \end{figure}
 Ciò è un limite fisico dei dispositivi, ed è nella pratica impossibile da eliminare, in quanto sarebbe necessario azzerare completamente gli errori relativi.\\
 La tecnologia \emph{Tango} però fornisce un altro meccanismo di localizzazione: l'\emph{Area Learning}. Le applicazioni ideate per questo tipo di dispositivi infatti hanno la possibilità di mantenere memoria degli spazi che visitano, e successivamente usare queste informazioni per localizzarsi.\\
-Il meccanismo è piuttosto simile a quello della memoria spaziale umana: una persona portata bendata all'interno di un edificio sconosciuto, una volta liberata, non avrà alcun mezzo per intuire dove si trovi; se invece la stessa persona fosse condotta all'interno della propria abitazione, alla prima sbirciata noterebbe immediatamente qualche particolare che gli farebbe immediatamente recuperare l'orientamento.\\
-Allo stesso modo il tablet è in grado memorizzare alcune \emph{features} all'interno dell'ambiente ed usarle come faro per la triangolazione. \\
-Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. Per rendere l'applicazione maggiormente responsiva e più vicina alle esigenze dell'utenza \emph{Samba} adotta un approccio detto \emph{Drift Correction}: inizialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere la creazione di una minimale memorizzazione, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto non appena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più la qualità della registrazione.\\
+Il meccanismo è piuttosto simile a quello della memoria spaziale umana: una persona portata bendata all'interno di un edificio sconosciuto, una volta liberata, non avrà alcun mezzo per intuire dove si trovi; se invece la stessa persona fosse condotta all'interno della propria abitazione, alla prima sbirciata noterebbe immediatamente qualche particolare che le farebbe immediatamente recuperare l'orientamento.\\
+Allo stesso modo il \emph{tablet} è in grado memorizzare alcune \emph{features} all'interno dell'ambiente ed usarle come faro per la triangolazione. \\
+Memorizzare completamente un ambiente tuttavia è una operazione che richiede parecchio tempo e costringe l'utente a muoversi per diversi minuti inquadrando tutti i dettagli del luogo dove si trova. \emph{Samba}, per rendere l'applicazione maggiormente responsiva e più vicina alle esigenze dell'utenza, adotta un approccio ibrido detto \emph{Drift Correction}: inizialmente è richiesto all'utente di inquadrare per una ventina di secondi l'ambiente, in maniera da permettere al \emph{tablet} di memorizzare sommariamente l'ambiente, successivamente il \emph{Motion Tracking} è usato per piccoli spostamenti ma viene corretto non appena venga inquadrata qualcuna delle (poche) \emph{features} memorizzate. Trasparentemente all'utente, in background, il processo di \emph{Area Learning} continua, memorizzando sempre nuovi dettagli e conseguentemente aumentando sempre più il livello di conoscenza della stanza in cui ci si trova.\\
 
 \subsubsection{Dimensioni eccessive dei file, ridondanza dei punti sovrapposti}
 Data la grande mole di punti registrati dai sensori di profondità i \emph{file} contenenti le ricostruzioni generati da \emph{Cloude} sono di dimensione eccessiva, anche più di 10Mb una decina scatti.
-Considerando che idealmente gli scatti da riprendere potrebbero essere molti e spesso dovranno essere inviati al \emph{Server} tramite connessione a consumo il peso di questi \emph{file} non è da trascurare.\\
+Considerando che idealmente gli scatti da riprendere potrebbero essere molti e spesso dovranno essere inviati al \emph{Server} tramite connessione a consumo; la dimensione di questi \emph{file}, quindi, deve essere tenuta cotto controllo.\\
 Inoltre c'è una grossa ridondanza di punti: è comune caso d'uso che una stessa zona venga inquadrata in più scatti, quindi tali \emph{Point Cloud} ruotati ed uniti presenterebbero molti punti con le stesse coordinate e semplicemente sovrapposti, quindi senza dare alcuna informazione aggiuntiva.\\
 \emph{Samba} risolve questo problema utilizzando un leggero \emph{voxeling}, ovvero suddividendo lo spazio in cubi o \emph{voxel} di lato prefissato e registrando quali sono i \emph{voxel} che contengono i punti della nuvola.
 Scegliendo una opportuna definizione, ovvero una opportuna dimensione dei \emph{voxel}, si può ottenere una ricostruzione comunque con un buon livello di dettaglio, ma priva di ridondanza dei punti e quindi meno pesante in termini di memoria.\\
-Dopo diversi test è emerso che definizioni più fine di 10 millimetri non portano a nessun effettivo miglioramento della qualità della ripresa, e quindi questo è stato scelto come definizione predefinita.
+Dopo diverse prove sperimentali è stata scelta una dimensione dei \emph{voxel} pari a 10 millimetri: una definizione più grossolana porterebbe a perdere troppa informazione, mentre \emph{voxel} più piccoli non portano alcun effettivo miglioramento nella qualità dell'immagine.
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.9\columnwidth]{pointClouds/voxeling.png} 
     \caption{Rappresentazione tramite \emph{Point Cloud} della stessa scalinata usando \emph{voxeling} a 10, 25, 50, 100 millimetri.}
 \end{figure}
 
-\subsection{Ulteriore incremento di Samba, il prototipo finale}
-\emph{Samba}, nella sua prima realizzazione, soddisfaceva completamente gli obiettivi fissati per quanto riguarda la \emph{business logic} tuttavia è risultato carente nell'interfacciarsi con l'utente.\\
-Quindi è stato pianificato un ulteriore ciclo di raffinamento che ha portato questo prototipo allo stato attuale. Segue una breve lista delle principali migliorie.
+\subsection{Perfezionamento di Samba, il prototipo finale}
+\emph{Samba}, nella sua prima realizzazione, soddisfaceva completamente gli obiettivi fissati per quanto riguarda rilevazione dei punti e ricostruzione degli oggetti, tuttavia è risultato carente nell'interfacciarsi con l'utente.\\
+Quindi è stato pianificato un ulteriore ciclo di raffinamento che ha portato al prototipo finale. Segue una breve lista delle principali migliorie.
 
 \subsubsection{Preview dell'inquadratura}
 \label{cap:frame_preview}
-La sola preview della fotocamera a colori si è rivelata non sufficiente. Oltre a non fornire una chiara idea dei punti che verranno registrati non da la possibilità all'utente di controllare se la foto che sta per scattare sia "buona" oppure no.\\
-Il sensore di profondità sfrutta la tecnologia \emph{infrared} e per questo è soggetto a tutti i limiti fisici di quest'ultima; sono emerse, infatti, grosse difficoltà nel misurare i punti
+Inizialmente l'interfaccia mostrava la sola \emph{preview} della fotocamera a colori, ma essa si è rivelata non sufficiente per far comprendere correttamente all'utente ciò che verrà ricostruito. Oltre a non fornire una chiara idea dei punti che verranno registrati non da la possibilità all'utente di controllare se la ripresa che sta per registrare sia "buona" oppure no.\\
+I \emph{Point Cloud} vengono ricostruiti solamente con i dati del sensore di profondità, il quale sfrutta la tecnologia \emph{infrared} e per questo è soggetto a tutti i limiti fisici di quest'ultima; sono emerse, infatti, grosse difficoltà nel misurare i punti
 \begin{itemize}
 	\item di una superficie molto scura.
 	\item di una superficie riflettente o particolarmente lucida.
@@ -128,8 +132,8 @@ Il sensore di profondità sfrutta la tecnologia \emph{infrared} e per questo è 
 \end{itemize}
 A volte il problema è insormontabile e la ricostruzione non potrà avvenire con successo, altre è sufficiente trovare una buona posizione per permettere al sensore di effettuare le misurazioni. Questo rende necessario mostrare sullo schermo non solo quello che "vede" la fotocamera, ma anche quello che "vede" il dispositivo \emph{infrared}.\\
 A questo scopo è stata parzialmente riusata una applicazione di prova fornita sotto licenza \emph{Open Source} dalla \emph{Google}\footcite{GitHub: https://github.com/googlesamples/tango-examples-java} e che utilizza la libreria grafica \emph{Rajawali}\footcite{GitHub: https://github.com/Rajawali/Rajawali}.\\
-Il \emph{render} in questione è moto semplice ma efficace ed aumenta il valore aggiunto dell'applicazione dandole un aspetto gradevole e permettendo all'utente di avere aggiornamenti in tempo reale sul \emph{Point Cloud} inquadrato.
-\begin{figure}[!h] 
+Il \emph{render} in questione è molto semplice ma efficace ed aumenta il valore aggiunto dell'applicazione dandole un aspetto gradevole e permettendo all'utente di avere aggiornamenti in tempo reale sul \emph{Point Cloud} inquadrato.
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{varie/rajawaliRenderer.jpg} 
     \caption{Il render di Java Point Cloud Example mentre viene inquadrata una cassettiera}
@@ -137,9 +141,9 @@ Il \emph{render} in questione è moto semplice ma efficace ed aumenta il valore 
 
 
 \subsubsection{Visualizzazione su tablet del \emph{Point Cloud} ricostruito}
-Con il \emph{render} descritto nel punto precedente è possibile visualizzare ciò che "vede" il sensore di profondità in tempo reale. Questo tuttavia non è sufficiente: mano a mano che si effettua la ripresa, in background viene calcolata la ricostruzione dell'oggetto in analisi, non poterlo visualizzare sul \emph{tablet}, ma solo lato \emph{server} appare quantomeno frustrante e soprattutto non da la possibilità all'utente di avere una idea dello stato in cui è la ricostruzione. \\
+Con il \emph{render} descritto nel punto precedente è possibile rappresentare ciò che "vede" il sensore di profondità in tempo reale. Questo tuttavia è diventato presto non più sufficiente: mano a mano che si effettua la ripresa, in background viene calcolata la ricostruzione dell'oggetto in analisi, non poterlo visualizzare sul \emph{tablet}, ma solo lato \emph{server} appare quantomeno frustrante e soprattutto non da la possibilità all'utente di avere una idea dello stato in cui è la ricostruzione. \\
 Per questo si è pensato di sfruttare lo stesso meccanismo di \emph{rendering} per far visualizzare all'utente la ricostruzione che sta effettuando. É quindi stata aggiunta la possibilità di alternare tra la visualizzazione in tempo reale e la visualizzazione dell'intera ricostruzione generata.\\
-\begin{figure}[!h] 
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{varie/sambaRenderer.png} 
     \caption{Le due modalità del render di \emph{Samba}: in alto la visualizzazione in tempo reale, in basso la visualizzazione della ricostruzione.}
@@ -151,23 +155,77 @@ Nonostante gli sforzi per mantenere una alta qualità delle riprese qualcuno dei
 Importante miglioria effettuata in questa fase è stata l'inserimento della possibilità di annullare un certo numero di operazioni; in questo modo le riprese che contengono dei difetti possono essere scartate e ripetute.
 
 \subsubsection{Istruzioni per l'utente}
-Questa applicazione, come tutte le applicazioni \emph{Tango}, introduce nuove azioni che l'utente deve compiere per mettere il dispositivo nella condizione di poter operare al meglio; ed è compito degli applicativi istruire l'utente sul comportamento da tenere.\\
-Ad esempio, durante l'avvio dell'\emph{app}, l'utente deve avere cura di mantenere il \emph{tablet} in posizione verticale ed il più possibile fermo. Questa, come la maggior parte delle indicazioni, possono essere notificate all'utente tramite un \emph{framework} messo a disposizione dal produttore in grado di integrare segnali e notifiche all'interno del ciclo di vita dell'applicazione stessa.\\
-Fanno eccezione le istruzioni che devono essere date all'utente durante la fase di localizzazione. Le \emph{API Tango} non forniscono alcun aiuto per stabilire se il dispositivo si sia orientato o meno. È stato quindi necessario studiare delle euristiche capaci di intuire se il dispositivo "si senta o meno a proprio agio".\\
-L'idea sta nello sfruttare il fatto che i dispositivi \emph{Tango}, una volta imparato un ambiente, fissano l'origine $O$ del loro sistema di riferimento (per quel particolare ambiente) in un punto arbitrario dello stesso. Alla luce di questo è sufficiente richiedere, durante la fase di localizzazione, la posizione della suddetta origine rispetto ad un punto speciale detto \emph{start-of-service point} che chiameremo $S$, ovvero il punto in cui era il dispositivo al momento dell'avvio dell'applicazione.\\
-\begin{figure}[!h] 
+\emph{Samba}, come tutte le applicazioni \emph{Tango}, introduce nuove azioni che l'utente deve compiere per mettere il dispositivo nella condizione di operare al meglio; ed è compito degli applicativi istruire l'utente sul comportamento da tenere.\\
+Ad esempio, durante l'avvio dell'\emph{app}, l'utente deve avere cura di mantenere il \emph{tablet} in posizione verticale ed il più possibile fermo. Questa, come la maggior parte delle indicazioni, possono essere notificate all'utente tramite un \emph{framework}, \emph{TangoUx}, messo a disposizione dal produttore in grado di integrare segnali e notifiche all'interno del ciclo di vita dell'applicazione stessa.\\
+\begin{figure}[H] 
     \centering 
-    \includegraphics[width=1.0\columnwidth]{grafici/fluttuazioneCoordDriftCorrection.png} 
-    \caption{Grafico della coordinate di $S$ rispetto ad $O$ durante la fase di inizializzazione della \emph{Drift Correction}}
+    \includegraphics[width=0.9\columnwidth]{varie/tangoUx.png} 
+    \caption{Una notifica \emph{full-screen} di \emph{TangoUx}}
+    \label{figure:grafico_variazioni_pose}
 \end{figure}
-\\
-Il grafico in figura rappresenta le coordinate $x$, $y$ e $z$ della distanza con segno tra $O$ ed $S$ nel primo minuto circa di attività dell'applicazione. Esso può essere diviso in tre fasi:
+Fanno eccezione le istruzioni che devono essere date all'utente durante la fase di localizzazione. Le \emph{API Tango} non forniscono alcun aiuto per stabilire se il dispositivo si sia orientato o meno. È stato quindi necessario studiare delle euristiche capaci di intuire se il dispositivo "si senta o meno a proprio agio".\\
+
+Per comprendere la soluzione è necessario prima capire alcuni fatti riguardanti il modo in cui i dispositivi \emph{Tango} attuano l'\emph{Area Learning}.\\
+
+\newtheorem{pose}{def}
+\begin{pose}
+	Una \emph{posizione} (o \emph{Pose}) $P$ è una tripletta di valori $x_{P}$, $y_{P}$ e $z_{P}$ che rappresenta la distanza con segno tra due \emph{Frame Of Reference}.\\
+\end{pose}
+
+\begin{pose}
+	I \emph{Frame Of Reference} sono dei punti speciali nello spazio, usati da \emph{Tango} come riferimento. Sono di seguito elencati:
+	\begin{itemize}
+		\item \texttt{COORDINATE\_FRAME\_DEVICE}: è la posizione attuale del dispositivo. Ovviamente non è un punto fisso, ma cambia nel tempo a seconda di come si muove il dispositivo. Si chiami questo punto $D$.
+		\item \texttt{COORDINATE\_FRAME\_START\_OF\_SERVICE}: è il punto in cui si trovava il dispositivo quando è stata avviata l'applicazione, è calcolato ad ogni avvio e rimane costante fino a quando l'applicazione rimarrà attiva. Si chiami questo punto $S$.
+		\item \texttt{COORDINATE\_FRAME\_AREA\_LREARNING}: durante il processo di \emph{Area Learning}, il sistema \emph{Tango} fissa nell'ambiente un sistema di assi cartesiani proprio dell'ambiente. Questo punto, $P$, ne è l'origine. \textit{Idealmente} dovrebbe essere costante.
+	\end{itemize}
+\end{pose}
+Ad esempio considerando la distanza tra il \emph{frame} del dispositivo e l'origine del sistema di assi cartesiani fissati da \emph{Tango} durante l'apprendimento dell'ambiente si avrà:
+
+$$P_{O \rightarrow D} = D - O$$
+
+quindi
+
+$$
+	P_{O \rightarrow D} =
+	\begin{pmatrix} x_{D} \\ y_{D} \\ z_{D} \end{pmatrix} -
+	\begin{pmatrix} x_{O} \\ y_{O} \\ z_{O} \end{pmatrix} =
+	\begin{pmatrix}
+		x_{D} - x_{O} \\
+	 	y_{D} - y_{O} \\
+	 	z_{D} - z_{O}
+	\end{pmatrix}
+$$
+
+Questa \emph{Pose} $P_{O \rightarrow D}$ può quindi essere usata per tracciare i movimenti del \emph{tablet} rispetto all'origine degli assi del piano cartesiano fissato al termine dell'\emph{Area Learning}.\\
+
+Quindi è solamente necessario stabilire \textbf{quando} $O$ sarà correttamente identificato. Per farlo si prenda in considerazione la \emph{Pose} $P_{S \rightarrow O}$, ovvero la distanza con segno tra il punto in cui è stata avviata l'applicazione $S$ ed $O$.\\
+$S$ come detto è costante, mentre $O$ varierà fino a quando non verrà localizzato; inizialmente si avrà $O = S$ in quanto non si ha alcuna informazione utile per determinare $O$.\\
+Nel grafico in figura~\ref{figure:grafico_variazioni_pose} sono rappresentate le coordinate $x$, $y$ e $z$ di $P_{S \rightarrow O}$ per le prime 9000 stime di posizione, ciò copre un lasso temporale di circa un minuto e mezzo a partire dall'avvio dell'applicazione.
+Il variare di questo genere di \emph{Pose} è stato diviso in tre fasi:
 \begin{itemize}
-	\item Inizialmente la distanza molto è vicina a zero. Prima che avvenga la localizzazione il sistema \emph{Tango} non ha altra scelta che posizionare $O$ nelle stesse coordinate di $S$.
+	\item Inizialmente la distanza è molto prossima a zero. Prima che avvenga la localizzazione il sistema \emph{Tango} non ha altra scelta che posizionare $O$ nelle stesse coordinate di $S$.
 	\item Successivamente avverrà un brusco cambiamento nella distanza tra questi due punti perché tutto d'un tratto il sistema riconoscerà qualche \emph{feature} e sposterà immediatamente l'origine degli assi. Questa fase non è  ancora stabile in quanto l'ambiente è ancora in fase di riconoscimento e l'origine $O$ verrà traslata spesso.
 	\item Una volta riconosciuto correttamente l'ambiente (nella seconda metà del grafico) si può notare che tutte le coordinate si stabilizzano ad una distanza quasi fissa. Da questo momento in avanti si avrà una buona localizzazione e l'utente potrà iniziare la rilevazione.
 \end{itemize}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{grafici/fluttuazioneCoordDriftCorrection.png} 
+    \caption{Grafico della coordinate di $S$ rispetto ad $O$ durante la fase di inizializzazione della \emph{Drift Correction}}
+    \label{figure:grafico_variazioni_pose}
+\end{figure}
 La distanza tra $O$ ed $S$ dovrebbe essere idealmente costante. Si è notato sperimentalmente, però, che non è così: a causa di limiti fisici del dispositivo essa continuerà a fluttuare entro un paio di centimetri di raggio. Ciò a volte può creare qualche piccolo errore nella ricostruzione, ma per oggetti piuttosto grandi esso è trascurabile.
+
+%L'idea sta nello sfruttare il fatto che i dispositivi \emph{Tango}, una volta imparato un ambiente, fissano l'origine $O$ del loro sistema di riferimento (per quel particolare ambiente) in un punto arbitrario dello stesso. Alla luce di questo è sufficiente richiedere, durante la fase di localizzazione, la posizione della suddetta origine rispetto ad un punto speciale detto \emph{start-of-service point} che chiameremo $S$, ovvero il punto in cui era il dispositivo al momento dell'avvio dell'applicazione.\\
+
+
+%Il grafico in figura~\ref{figure:grafico_variazioni_pose} rappresenta le coordinate $x$, $y$ e $z$ della distanza con segno tra $O$ ed $S$ nel primo minuto circa di attività dell'applicazione. Esso può essere diviso in tre fasi:
+%\begin{itemize}
+%	\item Inizialmente la distanza è molto vicina a zero. Prima che avvenga la localizzazione il sistema \emph{Tango} non ha altra scelta che posizionare $O$ nelle stesse coordinate di $S$.
+%	\item Successivamente avverrà un brusco cambiamento nella distanza tra questi due punti perché tutto d'un tratto il sistema riconoscerà qualche \emph{feature} e sposterà immediatamente l'origine degli assi. Questa fase non è  ancora stabile in quanto l'ambiente è ancora in fase di riconoscimento e l'origine $O$ verrà traslata spesso.
+%	\item Una volta riconosciuto correttamente l'ambiente (nella seconda metà del grafico) si può notare che tutte le coordinate si stabilizzano ad una distanza quasi fissa. Da questo momento in avanti si avrà una buona localizzazione e l'utente potrà iniziare la rilevazione.
+%\end{itemize}
+%La distanza tra $O$ ed $S$ dovrebbe essere idealmente costante. Si è notato sperimentalmente, però, che non è così: a causa di limiti fisici del dispositivo essa continuerà a fluttuare entro un paio di centimetri di raggio. Ciò a volte può creare qualche piccolo errore nella ricostruzione, ma per oggetti piuttosto grandi esso è trascurabile.
 
 
 \section{Il Prodotto - lato server}
