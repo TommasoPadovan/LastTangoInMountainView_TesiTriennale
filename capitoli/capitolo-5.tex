@@ -95,6 +95,10 @@ Viene implementate dalle \emph{activity} che vogliono interagire con il ciclo di
 \begin{itemize}
 	\item Samba.activity.tangoActivity.TangoActivity
 \end{itemize}
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+ \item \texttt{Samba.clouds.utils.poseSanity.PosePrecision}: relazione uscente, dipendenza, utilizzo come parametro di uno o più metodi.
+\end{itemize}
 
 \subsection{Samba.activity.tangoActivity.TangoActivity}
 \subsubsection{Descrizione}
@@ -136,6 +140,7 @@ Attività principale dell'applicazione prodotta: fornisce un \emph{render} dei p
 	\item \texttt{Samba.tango.TangoManager}: relazione uscente, composizione.
 	\item \texttt{Samba.tango.RajawaliRendererManager}: relazione uscente, composizione.
 	\item \texttt{Samba.tango.RGBBoxManager}: relazione uscente, composizione.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
 \end{itemize}
 \subsubsection{Classi estese}
 \begin{itemize}
@@ -150,6 +155,7 @@ Viene usata quando l'utente richiede di visualizzare la lista dei \emph{file pcd
 \subsubsection{Relazioni con altre classi}
 \begin{itemize}
 	\item \texttt{Samba.activity.tangoActivity.PointCloudActivity}: relazione uscente, dipendenza, utilizzo della classe per costruire un \emph{Intent}.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
 \end{itemize}
 \subsubsection{Classi estese}
 \begin{itemize}
@@ -278,6 +284,7 @@ Questa classe permette di integrare i servizi \emph{Tango} all'interno del ciclo
 	\item \texttt{Samba.tango.RajawaliRendererManager.RajawaliRendererUpdater}: relazione entrante, dipendenza.
 	\item \texttt{Samba.tango.CloudRecorder}: relazione uscente, dipendenza.
 	\item \texttt{Samba.clouds.utils.poseSanity.PoseSanityChecker}: relazione uscente, composizione.
+	\item \texttt{Samba.clouds.utils.poseSanity.PoseDriftCorrectionStatus}: relazione uscente, dipendenza.
 \end{itemize}
 
 \subsection{Samba.tango.CloudRecorder}
@@ -291,6 +298,8 @@ Viene usata per effettuare il \emph{rendering} del \emph{Point Cloud} della rico
 	\item \texttt{Samba.activity.tangoActivity.TangoActivity}: relazione uscente, dipendenza, utilizzo come parametro di uno o più metodi.
 	\item \texttt{Samba.tango.TangoManager}: relazione entrante, dipendenza.
 	\item \textbf{Samba.sharedState.ReconstructionCache}: relazione uscente, composizione.
+	\item \texttt{Samba.clouds.utils.SambaRawData}: relazione uscente, dipendenza.
+	\item \texttt{Samba.utils.encoding.EcnodeStrategy}: relazione uscente, composizione.
 \end{itemize}
 
 
@@ -321,6 +330,11 @@ Questo \emph{singleton} mantiene tutte le informazioni condivise tra i vari serv
 	\item \texttt{Samba.tango.CloudRecorder}: relazione entrante, composizione.
 	\item \texttt{Samba.utils.services.MergingService}: relazione entrante, composizione.
 	\item \texttt{Samba.utils.services.VoxelService}: relazione entrante, composizione.	
+	\item \texttt{Samba.clouds.reconstruction.UndoableReconstruction}: relazione uscente, dipendenza, controllo di tipo.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+	\item \texttt{Samba.clouds.utils.SambaRawData}: relazione uscente, composizione.
+	\item \texttt{Samba.utils.sending.ReconstructionSender}: relazione uscente, composizione.
+	\item \texttt{Samba.utils.sending.ArrListSender}: relazione uscente, composizione.	
 \end{itemize}
 
 \subsection{Samba.sharedState.ReconstructionManager}
@@ -354,7 +368,7 @@ Questo \emph{package} contiene tutte le strutture dati usate per rappresentare i
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{st/Samba_clouds_reconstruction.png} 
-    \caption{Componente Samba.}
+    \caption{Componente Samba.reconstruction}
 \end{figure}
 \subsubsection{Descrizione}
 Per motivi di ottimizzazione si è cercato di lasciare il più possibile aperte le possibilità di modifica della rappresentazione interna dei \emph{Point Cloud} ricostruiti. Questo \emph{package} contiene tutte le classi che rappresenta un \emph{Point Cloud} ricostruito.
@@ -370,42 +384,434 @@ Per motivi di ottimizzazione si è cercato di lasciare il più possibile aperte 
 	\item Samba.clouds.UndoablePCloudReconstruction
 \end{itemize}
 
+\subsection{Samba.clouds.reconstruction.PCloudObject}
+\subsubsection{Descrizione}
+Rappresenta un generico oggetto 3D rappresentato tramite \emph{Point Cloud}.
+\subsubsection{Utilizzo}
+È utilizzato come interfaccia alla base della gerarchia dei possibili \emph{Point Cloud}.
+\subsubsection{Estesa da}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.PCloud3DReconstruction
+\end{itemize}
+
+\subsection{Samba.clouds.reconstruction.PCloud3DReconstruction}
+\subsubsection{Descrizione}
+Interfaccia che rappresenta un generico \emph{Point Cloud} in grado di essere sovrapposto ad altre nuvole di punti per creare un oggetto tridimensionale completo.
+\subsubsection{Utilizzo}
+È usata come interfaccia alla base della gerarchia delle possibili ricostruzioni 3D.
+\subsubsection{Interfacce estese}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.PCloudObject
+\end{itemize}
+\subsubsection{Implementata da}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction
+\end{itemize}
+
+\subsection{Samba.clouds.reconstruction.UndoableReconstruction}
+\subsubsection{Descrizione}
+Interfaccia che espone i metodi necessari per permettere ad una ricostruzione di effettuare operazioni di \emph{undo}. Una \emph{UndoableReconstruction} \textbf{non} è una \emph{PCloud3DReconstrucion}. 
+\subsubsection{Utilizzo}
+È implementata dalle classi che rappresentano una ricostruzione 3D e che necessitano operazioni di \emph{undo}.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, dipendenza, controllo di tipo.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+\end{itemize}
+\subsubsection{Implementata da}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.UndoablePCloudReconstruction
+\end{itemize}
 
 
-\ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\ \ \\
+\subsection{Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction}
+\subsubsection{Descrizione}
+Classe astratta che rappresenta un generico \emph{Point Cloud} in grado di essere sovrapposto ad altre nuvole di punti per creare un oggetto tridimensionale completo ed che può essere inoltre serializzato per salvarlo su disco o inviarlo ad un \emph{Server}.
+\subsubsection{Utilizzo}
+È usata come classe astratta base della gerarchia delle possibili ricostruzioni 3D.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.utils.encoding.EncodeStrategy}: relazione uscente, composizione.
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, composizione.
+	\item \texttt{Samba.utils.sending.ReconstructionSender}: relazione entrante, composizione.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+	\item \texttt{Samba.utils.encoding.EcnodeStrategy}: relazione uscente, composizione.
+\end{itemize}
+\subsubsection{Interfacce implementate}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.PCloud3DReconstruction
+\end{itemize}
+\subsubsection{Estesa da}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.OverimposedPCloudReconstruction
+	\item Samba.clouds.reconstruction.UndoablePCloudReconstruction
+\end{itemize}
+
+\subsection{Samba.clouds.reconstruction.OverimposedPCloudReconstruction}
+\subsubsection{Descrizione}
+Rappresenta una ricostruzione 3D in cui i \emph{Point Cloud} sono semplicemente sovrapposti senza alcuna ulteriore ottimizzazione.
+\subsubsection{Utilizzo}
+Attualmente non è usata in favore di \emph{UndoablePCloudReconstruction} (vedi \ref{class:UndoablePCloudReconstruction}).
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.Vector4}: relazione uscente, dipendenza.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction
+\end{itemize}
+
+\subsection{Samba.clouds.reconstruction.UndoablePCloudReconstruction}
+\label{class:UndoablePCloudReconstruction}
+\subsubsection{Descrizione}
+Rappresenta una ricostruzione 3D in cui i \emph{Point Cloud} sono semplicemente sovrapposti ma con la possibilità di annullare un certo numero di operazioni.
+\subsubsection{Utilizzo}
+È usata come tipo preferito per contenere i dati dell'oggetto ricostruito, una volta elaborati, ma non ancora \emph{voxellati}.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.Vector4}: relazione uscente, dipendenza.
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+\end{itemize}
+\subsubsection{Interfacce implementate}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.UndoableReconstruction
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction
+\end{itemize}
 
 
+\subsection{Samba.clouds.utils}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/Samba_clouds_utils.png} 
+    \caption{Componente Samba.clouds.utils}
+\end{figure}
+\subsubsection{Descrizione}
+Contiene tutte le strutture dati di utilità usate per rappresentazione interna, come punti, \emph{Point Cloud} uniti alla propria matrice associata etc.
+\subsubsection{Package figli}
+\begin{itemize}
+	\item Samba.clouds.utils.poseSanity
+\end{itemize}
+\subsubsection{Classi}
+\begin{itemize}
+	\item Samba.clouds.utils.Vector4
+	\item Samba.clouds.utils.SambaPoint
+	\item Samba.clouds.utils.SambaRawData
+\end{itemize}
+
+\subsection{Samba.clouds.utils.poseSanity}
+\subsubsection{Descrizione}
+Questo \emph{package} contiene le classi necessarie per effettuare il \emph{sanity check} della fase di localizzazione.
+\subsubsection{Classi}
+\begin{itemize}
+	\item Samba.clouds.utils.poseSanity.PoseSanityChecker
+	\item Samba.clouds.utils.poseSanity.FIFOPoseCache
+\end{itemize}
+\subsubsection{Enumerazioni}
+\begin{itemize}
+	\item Samba.clouds.utils.poseSanity.PoseDriftCorrectionStatus
+	\item Samba.clouds.utils.poseSanity.PosePrecision
+\end{itemize}
+
+\subsection{Samba.clouds.utils.poseSanity.PoseSanityChecker}
+\label{class:PoseSanityChecker}
+\subsubsection{Descrizione}
+Questa classe fornisce un \emph{sanity check} della fase di localizzazione.
+\subsubsection{Utilizzo}
+È utilizzata durante la fase di localizzazione per tenere traccia dello stato della stessa. Inoltre è usata per fornire una stima di quanto la localizzazione stessa sia avvenuta in maniera precisa.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.poseSanity.FIFOPoseCache}: relazione uscente, composizione.
+	\item \texttt{Samba.clouds.utils.poseSanity.PoseDriftCorrectionStatus}: relazione uscente, composizione.
+	\item \texttt{Samba.clouds.utils.poseSanity.PosePrecision}: relazione uscente, composizione.
+	\item \texttt{Samba.tango.TangoManager}: relazione entrante, composizione.
+\end{itemize}
+
+\subsection{Samba.clouds.utils.poseSanity.FIFOPoseCache}
+\subsubsection{Descrizione}
+Fornisce una cosa \emph{FIFO} in grado di tenere in memoria le ultime $n$ posizioni rilevate e usarle per dei calcoli statistici in maniera efficiente.
+\subsubsection{Utilizzo}
+È usata come classe di utilità per \texttt{PoseSanityChecker} (\ref{class:PoseSanityChecker}).
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.poseSanity.PoseSanityChecker}: relazione entrante, composizione.
+\end{itemize}
+
+\subsection{Samba.clouds.utils.poseSanity.PoseDriftCorrectionStatus}
+\subsubsection{Descrizione}
+Enumerazione che rappresenta i possibili stati della \emph{Drift Correction}, quelli discussi in \ref{cap:istruzioni-per-utente} alla voce "Istruzioni per l'utente".
+\subsubsection{Valori}
+\begin{itemize}
+	\item \texttt{SAME\_AS\_START\_OF\_SERVICE}
+	\item \texttt{INITIALIZING}
+	\item \texttt{LOCALIZED}		
+\end{itemize}
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.poseSanity.poseSanityChecker}: relazione entrante, composizione.
+	\item \texttt{Samba.tango.TangoManager}: relazione entrante, dipendenza.
+\end{itemize}
 
 
-%\subsection{Samba.sharedState.}
-%\subsubsection{Descrizione}
-%\subsubsection{Utilizzo}
-%\subsubsection{Relazioni con altre classi}
-%\begin{itemize}
-%	\item \texttt{Samba.}:
-%\end{itemize}
-%\subsubsection{Classi estese}
-%\begin{itemize}
-%	\item Samba.
-%\end{itemize}
-%
-%
-%\subsection{}
-%\begin{figure}[!h] 
-%    \centering 
-%    \includegraphics[width=1.0\columnwidth]{st/Samba.png} 
-%    \caption{Componente Samba.}
-%\end{figure}
-%\subsubsection{Descrizione}
-%\subsubsection{Package figli}
-%\begin{itemize}
-%	\item Samba.
-%\end{itemize}
-%\subsubsection{Classi}
-%\begin{itemize}
-%	\item Samba.
-%\end{itemize}
+\subsection{Samba.clouds.utils.poseSanity.PosePrecision}
+\subsubsection{Descrizione}
+Enumerazione che rappresenta i possibili livelli di precisione a cui è avvenuta la localizzazione.
+\subsubsection{Valori}
+\begin{itemize}
+	\item \texttt{HIGH\_PRECISION}
+	\item \texttt{MEDIUM\_PRECISION}
+	\item \texttt{LOW\_PRECISION}		
+\end{itemize}
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.poseSanity.poseSanityChecker}: relazione entrante, composizione.
+	\item \texttt{Samba.activity.tangoActivity.OnTangoUiUpdateListener}: relazione entrante, dipendenza, utilizzo come parametro di uno o più metodi.
+\end{itemize}
 
+\subsection{Samba.clouds.utils.Vector4}
+\subsubsection{Descrizione}
+Classe che rappresenta un vettore di quattro dimensioni. Offre i metodi necessari per i calcoli del sistema.
+\subsubsection{Utilizzo}
+È usato per adattare l'interfaccia di un vettore a tre dimensioni quando è necessario moltiplicarlo per una matrice di trasformazione di un \emph{Point Cloud} (che ha quattro dimensioni).
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza, utilizzo come parametro di uno o più metodi.
+	\item \texttt{Samba.cloud.reconstruction.OverimposedPCloudReconstruction}: relazione entrante, dipendenza.
+	\item \texttt{Samba.cloud.reconstruction.UndoablePCloudReconstruction}: relazione entrante, dipendenza.	
+\end{itemize}
+
+\subsection{Samba.clouds.utils.SambaPoint}
+\subsubsection{Descrizione}
+Questa classe rappresenta un punto all'interno di un \emph{PointCloud}. È un \emph{wrapper} di \texttt{Vector3} della libreria \emph{Rajawali}. Espone quindi le stesse funzionalità ma ne aggiunge altre di indispensabili, come essere confrontabile ed essere \emph{parcellabile}. È stato scelto di creare questo \emph{wrapper} proprio perché \texttt{Vector3} non forniva queste caratteristiche.
+\subsubsection{Utilizzo}
+È utilizzata ovunque sia richiesto il concetto di \emph{punto} all'interno del sistema.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.Vector4}: relazione entrante, dipendenza.
+	\item \texttt{Samba.activity.ObjectChooseActivity}: relazione entrante, dipendenza.
+	\item \texttt{Samba.activity.tangoActivity.PointCloudActivity}:	relazione entrante, dipendenza.
+	\item \texttt{Samba.clouds.reconstruction.UndoableReconstruction}: relazione entrante, dipendenza.
+	\item \texttt{Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction}: relazione entrante, dipendenza.
+	\item \texttt{Samba.clouds.reconstruction.OverimposedPCloudReconstruction}: relazione entrante, dipendenza.
+	\item \texttt{Samba.clouds.reconstruction.UndoablePCloudReconstruction}: relazione entrante, dipendenza.
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.encoding.EncodeStrategy}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.encoding.XyzEncoder}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.encoding.PcdEncoder}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.sending.ArrListSender}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.sending.InternalStorageSender}: relazione entrante, dipendenza.
+	\item \texttt{Samba.utils.services.VoxelService}: relazione entrante, dipendenza.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item org.rajawali3d.math.vector.Vector3
+\end{itemize}
+
+\subsection{Samba.clouds.utils.SambaRawData}
+\subsubsection{Descrizione}
+Classe che permette di impacchettare assieme un \texttt{TangoXyzIjData} (dati del sensore di profondità \emph{Tango}) e la sua matrice di rotazione.
+\subsubsection{Utilizzo}
+È usata ovunque ci sia bisogno di mantenere dei dati "grezzi" prima di effettuare rotazione e traslazione.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, composizione.
+	\item \texttt{Samba.tango.CloudRecorder}: relazione entrante, dipendenza, utilizzo come parametro di uno o più metodi.
+	\item \texttt{Samba.utils.services.MergingService}: relazione entrante, dipendenza, utilizzo interno ad un metodo.	
+\end{itemize}
+
+
+\subsection{Samba.utils}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{st/Samba_utils.png} 
+    \caption{Componente Samba.utils}
+\end{figure}
+\subsubsection{Descrizione}
+Questo \emph{package} contiene classi di utilità generale.
+\subsubsection{Package figli}
+\begin{itemize}
+	\item Samba.utils.encoding
+	\item Samba.utils.sending
+	\item Samba.utils.services
+\end{itemize}
+
+
+\subsection{Samba.utils.encoding}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/Samba_utils_encoding.png} 
+    \caption{Componente Samba.utils.encoding}
+\end{figure}
+\subsubsection{Descrizione}
+Questo \emph{package} contiene le classi necessarie serializzare e deserializzare i \emph{Point Cloud}.
+\subsubsection{Interfacce}
+\begin{itemize}
+	\item Samba.utils.encoding.EncodeStrategy
+\end{itemize}
+\subsubsection{Classi}
+\begin{itemize}
+	\item Samba.utils.encoding.PcdEncoder
+	\item Samba.utils.encoding.XyzEncoder
+\end{itemize}
+
+\subsection{Samba.utils.encoding.EcnodeStrategy}
+\subsubsection{Descrizione}
+Interfaccia che rappresenta la strategia con cui effettuare l'\emph{encoding} di un \emph{Point Cloud}.
+\subsubsection{Utilizzo}
+È usata come componente \emph{Strategy} di uno \emph{Strategy Pattern}.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.activity.ObjectChooseActivity}: relazione entrante, composizione.
+	\item \texttt{Samba.clouds.reconstruction.SerializzablePCloud3DReconstruction}: relazione entrante, composizione.
+	\item \texttt{Samba.utils.sending.ArrListSender}: relazione entrante, composizione.
+	\item \texttt{Samba.utils.sending.ReconstructionSender}: relazione entrante, composizione.	
+\end{itemize}
+\subsubsection{Implementata da}
+\begin{itemize}
+	\item Samba.utils.encoding.PcdEncoder
+	\item Samba.utils.encoding.XyzEncoder
+\end{itemize}
+
+\subsection{Samba.utils.encoding.PcdEncoder}
+\subsubsection{Descrizione}
+Implementazione della strategia di \emph{encoding} che serializza i \emph{Point Cloud} in formato \emph{pcd}.
+\subsubsection{Utilizzo}
+È il formato preferito dal sistema per salvare e spedire i \emph{file}.
+\subsubsection{Interfacce implementate}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.EcnodeStrategy
+\end{itemize}
+
+\subsection{Samba.utils.encoding.PcdEncoder}
+\subsubsection{Descrizione}
+Implementazione della strategia di \emph{encoding} che serializza i \emph{Point Cloud} in formato \emph{xyz}.
+\subsubsection{Utilizzo}
+È un formato non utilizzato nel sistema.
+\subsubsection{Interfacce implementate}
+\begin{itemize}
+	\item Samba.clouds.reconstruction.EcnodeStrategy
+\end{itemize}
+
+
+\subsection{Samba.utils.sending}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/Samba_utils_sending.png} 
+    \caption{Componente Samba.utils.sending}
+\end{figure}
+\subsubsection{Descrizione}
+Questo \emph{package} contiene delle \emph{AsyncTask} che hanno il compito di spedire un \emph{Point Cloud} serializzato ad un \emph{Server} oppure di salvarlo su disco.
+\subsubsection{Classi}
+\begin{itemize}
+	\item Samba.utils.sending.AbsSender
+	\item Samba.utils.sending.ArrListSender
+	\item Samba.utils.sending.ReconstructionSender
+	\item Samba.utils.sending.InternalStorageSender
+\end{itemize}
+
+\subsection{Samba.utils.sending.AbsSender}
+\subsubsection{Descrizione}
+Classe astratta per inviare un \emph{Point Cloud} tramite \emph{http} in un \emph{thread} separato dal resto dell'applicazione.
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item android.os.AsyncTask
+\end{itemize}
+\subsubsection{Estesa da}
+\begin{itemize}
+	\item Samba.utils.sending.ArrListSender
+	\item Samba.utils.sending.ReconstructionSender
+\end{itemize}
+
+\subsection{Samba.utils.sending.ArrListSender}
+\subsubsection{Descrizione}
+Classe in grado di inviare liste di \texttt{SambaPoint}.
+\subsubsection{Utilizzo}
+È usata per inviare liste di \texttt{SambaPoint}.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+	\item \texttt{Samba.utils.encoding.EncodeStrategy}: relazione uscente, composizione.
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, composizione.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item Samba.utils.sending.AbsSender
+\end{itemize}
+
+\subsection{Samba.utils.sending.ReconstructionSender}
+\subsubsection{Descrizione}
+Classe in grado di inviare ricostruzioni 3D.
+\subsubsection{Utilizzo}
+È usata per inviare ricostruzioni 3D.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+	\item \texttt{Samba.utils.encoding.EncodeStrategy}: relazione uscente, composizione.
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, composizione.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item Samba.utils.sending.AbsSender
+\end{itemize}
+
+\subsection{Samba.utils.sending.InternalStorageSender}
+\subsubsection{Descrizione}
+Classe in grado di salvare su disco \emph{Point Cloud} serializzati.
+\subsubsection{Utilizzo}
+È usata per salvare su disco \emph{Point Cloud} serializzati.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza.
+	\item \texttt{Samba.utils.encoding.EncodeStrategy}: relazione uscente, composizione.
+	\item \texttt{Samba.sharedState.ReconstructionCache}: relazione entrante, composizione.
+\end{itemize}
+
+\subsection{Samba.utils.services}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/Samba_utils_services.png} 
+    \caption{Componente Samba.utils.services}
+\end{figure}
+\subsubsection{Descrizione}
+Questo \emph{package} contiene i servizi asincroni che servono ad effettuare operazioni sui dati raccolti dai sensori \emph{Tango}.
+\subsubsection{Classi}
+\begin{itemize}
+	\item Samba.utils.services.MergingService
+	\item Samba.utils.services.VoxelService
+\end{itemize}
+
+\subsection{Samba.utils.services.MergingService}
+\subsubsection{Descrizione}
+Servizio in grado di sovrapporre ad una ricostruzione data un \emph{Point Cloud} a patto che assieme a quest'ultimo venga fornita anche la sua matrice di trasformazione.
+\subsubsection{Utilizzo}
+È usato per ricostruire in \emph{backgroud} l'oggetto inquadrato dall'utente.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaRawData}: relazione uscente, dipendenza, utilizzo interno ad un metodo.
+	\item \texttt{Samba.utils.services.VoxelService}: relazione uscente, dipendenza.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item android.app.IntentService
+\end{itemize}
+
+\subsection{Samba.utils.services.VoxelService}
+\subsubsection{Descrizione}
+Servizio in grado di ottimizzare una ricostruzione 3D eliminando i punti ridondanti.
+\subsubsection{Utilizzo}
+È usato in \emph{backgroud} ottimizzare ed eliminare i punti ridondanti da una ricostruzione 3D.
+\subsubsection{Relazioni con altre classi}
+\begin{itemize}
+	\item \texttt{Samba.clouds.utils.SambaPoint}: relazione uscente, dipendenza, utilizzo interno ad un metodo.
+	\item \texttt{Samba.utils.services.MergingService}: relazione entrante, dipendenza.
+\end{itemize}
+\subsubsection{Classi estese}
+\begin{itemize}
+	\item android.app.IntentService
+\end{itemize}
 
 
 %**************************************************************
