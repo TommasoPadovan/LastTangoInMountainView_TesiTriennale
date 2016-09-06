@@ -8,12 +8,11 @@
 \label{cap:progettazione-codifica}
 %**************************************************************
 
-\intro{In questo capitolo verrà descritta la progettazione dell'ultimo prototipo}\\
+\intro{In questo capitolo verrà descritta la progettazione dell'ultimo prototipo prodotto.}\\
 
 
 \section{Metodo e formalismo di specifica}
 Nell'esposizione dell'architettura del prodotto si procederà con un approccio di tipo top-down.  Si descriverà quindi l'architettura iniziando dal generale ed andando al particolare; descrivendo prima i componenti, per poi descrivere nel dettaglio le singole classi.\\
-
 Per ogni componente saranno descritti brevemente il tipo, l'obiettivo e la funzione e saranno specificati
 eventuali figli, classi ed interazioni con altri componenti. Ogni classe sarà dotata di una breve descrizione e
 ne saranno specificate le responsabilità, le classi ereditate, le sottoclassi e le relazioni con altre classi.\\
@@ -24,21 +23,34 @@ Tutti i diagrammi usano la convenzione di colori descritta nella legenda in figu
 Si noti in particolare che le classi e componenti di colore arancio rappresentano classi di librerie esterne al sistema, ma vengono talora rappresentate comunque per maggiore chiarezza.
 \begin{figure}[H] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{varie/Legenda.png} 
+    \includegraphics[width=1.0\columnwidth]{varie/Legenda.png} 
     \caption{Legenda}\label{fig:legenda}
 \end{figure}
 
 
 \section{Architettura generale}
-
+L'architettura generale è di tipo \emph{Client-Server}, la comunicazione avviene tramite semplici richieste \emph{http} e alcune notifiche vengono inviate tramite \emph{FireBase}.\\
+Questo documento tuttavia esporrà solamente la parte di progettazione riguardante l'applicativo lato \emph{client}.\\
+L'architettura generale della applicazione \emph{Android} è di tipo \emph{MVP} ovvero \emph{Model View Presenter}. Questo genere di architettura è stato scelto alla luce delle \emph{Android Best Practices}.\\
+Il \emph{Model} contiene tutta la \emph{business logic} dell'applicazione.\\
+Il \emph{Presenter} si occupa sia di osservare il modello che di aggiornare/osservare la vista. Nel caso specifico il \emph{Presenter} è composto dall'insieme delle \emph{activity} necessarie al sistema.\\
+La \emph{View} è composta da \emph{file} \emph{xml} che rappresentano \emph{template} di visualizzazione e sono completamente passivi. Per questo non verranno trattati nella sezione \ref{cap:componenti-classi}.\\
+Il diagramma in figura \ref{fig:arc_generale} rappresenta informalmente la struttura generale del sistema e non rispecchia la reale nomenclatura e struttura del \emph{package}.
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{st/arc_gen_MVP.png} 
+    \caption{Architettura generale del sistema}\label{fig:arc_generale}
+\end{figure}
 
 
 
 %**************************************************************
-\section{Componenti e classi}
+\section{Componenti e classi}\label{cap:componenti-classi}
+La volontà di realizzare un prototipo ha avuto molto peso anche nella fase di progettazione. Per questo semplicità e rapidità di sviluppo sono stati obiettivi prioritari, anche sacrificando parzialmente riuso e testabilità. Ciò è stato ritenuto accettabile in quanto il prodotto non ha lo scopo di essere incrementato fino a divenire un prodotto finito, ma solo quello di essere premessa sperimentale/prototipale per un progetto futuro.\\
+Di seguito viene riportata la lista delle componenti del sistema.
 
 \subsection{Samba}
-\begin{figure}[!h] 
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=0.9\columnwidth]{st/Samba.png} 
     \caption{Componente Samba}\label{fig:comp-Samba}
@@ -56,7 +68,7 @@ Si noti in particolare che le classi e componenti di colore arancio rappresentan
 \end{itemize}
 
 \subsection{Samba.activity}
-\begin{figure}[!h] 
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{st/Samba_activity.png} 
     \caption{Componente Samba.activity}

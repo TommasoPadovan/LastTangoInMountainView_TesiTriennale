@@ -179,7 +179,7 @@ Per comprendere la soluzione è necessario prima capire alcuni fatti riguardanti
 	\begin{itemize}
 		\item \texttt{COORDINATE\_FRAME\_DEVICE}: è la posizione attuale del dispositivo. Ovviamente non è un punto fisso, ma cambia nel tempo a seconda di come si muove il dispositivo. Si chiami questo punto $D$.
 		\item \texttt{COORDINATE\_FRAME\_START\_OF\_SERVICE}: è il punto in cui si trovava il dispositivo quando è stata avviata l'applicazione, è calcolato ad ogni avvio e rimane costante fino a quando l'applicazione rimarrà attiva. Si chiami questo punto $S$.
-		\item \texttt{COORDINATE\_FRAME\_AREA\_LREARNING}: durante il processo di \emph{Area Learning}, il sistema \emph{Tango} fissa nell'ambiente un sistema di assi cartesiani proprio dell'ambiente. Questo punto, $P$, ne è l'origine. \textit{Idealmente} dovrebbe essere costante.
+		\item \texttt{COORDINATE\_FRAME\_AREA\_LREARNING}: durante il processo di \emph{Area Learning}, il sistema \emph{Tango} fissa nell'ambiente un sistema di assi cartesiani proprio dell'ambiente. Questo punto, $O$, ne è l'origine. \textit{Idealmente} dovrebbe essere costante.
 	\end{itemize}
 \end{pose}
 Ad esempio considerando la distanza tra il \emph{frame} del dispositivo e l'origine del sistema di assi cartesiani fissati da \emph{Tango} durante l'apprendimento dell'ambiente si avrà:
@@ -256,6 +256,11 @@ Al termine di questo processo si ottiene l'oggetto 3D, che può essere convertit
 Una volta ottenuta la \emph{mesh} il calcolo del volume è piuttosto immediato. A questo fine è stato sfruttato il risultato di una pubblicazione di \emph{Cha Zhang} e \emph{Tsuhan Chen} dal titolo \emph{EFFICIENT FEATURE EXTRACTION FOR 2D/3D OBJECTS
 IN MESH REPRESENTATION}\footcite{site: http://research.microsoft.com/en-us/um/people/chazhang/publications/icip01_ChaZhang.pdf}.
 Il trucco è calcolare, per ogni triangolo che compone la \emph{mesh}, il volume con segno del tetraedro che ha il triangolo stesso come base e il quarto vertice in un punto fissato, scelto internamente alla \emph{mesh}, per evitare eventuali problemi di instabilità numerica. Il segno del volume è dato dalla direzione della normale al piano del triangolo. Questi volumi, sommati tra loro, restituiscono il volume convesso della \emph{mesh}.
+
+
+\section{Lavoro svolto}
+Allo studente è stato richiesto di focalizzarsi sullo sviluppo dell'applicazione \emph{mobile}, lasciando la realizzazione dell'applicazione lato server ad un altro tirocinante.\\
+Il focus del tirocinio si è quindi quasi completamente concentrato sulla progettazione e lo sviluppo di una applicazione in grado di riconoscere e ricostruire oggetti nell'ambiente.
 
 
 %**************************************************************
