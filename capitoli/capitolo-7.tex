@@ -44,7 +44,7 @@ Alcuni esempi di \emph{Point Cloud} \emph{texturizzati} sono già presenti in re
 Un altro problema che affligge le ricostruzioni 3D effettuate da \emph{Samba} è il rumore causato da forti fonti di luce o superfici riflettenti.\\
 In molte riprese infatti appaiono dei piani sospesi a mezz'aria che si sommano li uni agli altri rendendo qualche volta la ricostruzione praticamente inutilizzabile. Lato \emph{Server} essi sono spesso eliminabili dalla libreria \emph{PCD}, ma lato \emph{tablet} rendono la visualizzazione dei \emph{Point Cloud} ricostruito ancora più caotica e difficilmente usabile.\\
 Un possibile sviluppo è quindi quello di usare le caratteristiche stesse di questi artefatti (come essere isolati, sempre perfettamente planari etc) per filtrarli già durante la ripresa del singolo \emph{Point Cloud} lato \emph{tablet}. In figura \ref{figure:pcloud_artifacts} sono stati evidenziati in rosso alcuni degli artefatti.
-\begin{figure}[!h] 
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=0.9\columnwidth]{pointClouds/artefatti.png} 
     \caption{Point Cloud che presenta problemi di artefatti di un bidone conico, vista laterale}
@@ -104,6 +104,8 @@ Un \emph{bug} noto è che alla ripresa della attività, qualche volta la \emph{p
 
 %**************************************************************
 \section{Consuntivo finale}
+Il period di \emph{stage} ha avuto avvio il 13 Giugno 2016 ed è terminato il 16 Agosto 2016 invece che il 5 Agosto. Lo slittamento della data di fine è dovuto ad impegni universitari dello studente e da un breve periodo di chiusura estiva dell'azienda. Il tirocinio ha avuto una durata totale di 320 ore.\\
+In tabella \ref{tab:preventivo-consuntivo} sono riportate le ore preventivate per ogni attività ed esse sono confrontate con le ore effettivamente impiegate.
 \begin{table}[H]
 	\begin{center}
 	  \begin{tabular}{| l | c | c | c | c |}
@@ -131,8 +133,20 @@ Un \emph{bug} noto è che alla ripresa della attività, qualche volta la \emph{p
 	    \hline
 	  \end{tabular}
 	\end{center}
-	\caption{Distribuzione ore preventivo e consuntivo}
+	\caption{Distribuzione ore preventivo e consuntivo}\label{tab:preventivo-consuntivo}
 \end{table}
+Le ore totali sono state rispettate e non hanno avuto variazioni.\\
+La loro ripartizione interna, invece, ha subito grosse variazioni a causa di sovrastime e sottostime commesse durante la fase di pianificazione.\\
+Le attività che hanno subito variazioni più importanti sono state codifica e sviluppo dei prototipi preliminari. Questi ultimi hanno richiesto più del doppio del tempo preventivato a causa della difficoltà del compito richiesto, ma soprattutto perché lo studente ha intrapreso una strada sbagliata che ha portato ad un prototipo non funzionante e che è stato interamente scartato. Si può notare però che la maggiore attenzione riposta nei prototipi preliminari ha fatto risparmiare molte ore alla codifica: infatti molto del codice presente nei primi prototipi è stato riusato senza cambiamenti, o con modeste modifiche.\\
+Anche lo studio di fattibilità ha richiesto più tempo del previsto in quanto si è rivelato necessario cercare e provare molte applicazioni, alcune delle quali non manutenute o non aggiornate.\\
+In figura \ref{gantt:pianificaiozne} vengono riportati i diagrammi di \emph{Gantt} dove è possibile confrontare la pianificazione preventivata e quella effettiva.
+
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{varie/ganttConsuntivo.png} 
+    \caption{Gantt della pianificazione preventiva e consuntiva}
+    \label{gantt:pianificaiozne}
+\end{figure}
 
 %**************************************************************
 \section{Raggiungimento degli obiettivi}
@@ -237,7 +251,8 @@ Segue una tabella riassuntiva di questa tipologia di requisiti.
 	\end{center}
 \caption{Tabella riassuntiva del soddisfacimento dei requisiti prestazionali}
 \end{table}	
-(xxxx inserire qui alcuni dati sui test prestazionali xxxx)
+Attenzione particolare è stata posta al requisito \emph{RDP-1.2}. Esso richiede che sia possibile effettuare almeno 5-6 catture al secondo. Studi sperimentali condotti in diversi ambienti confermano che le rilevazioni impiegano in media circa 220 millisecondi ad essere elaborato, quindi circa 4,5 riprese al secondo. È però possibile in ogni caso far effettuare un numero arbitrario di rilevazioni, che verranno elaborate su \emph{thread} paralleli, e anche se la loro elaborazione richiede più di un secondo è quindi possibile effettuare le 5-6 riprese a secondo richieste a patto di essere disposti ad aspettare qualche tempo per la loro elaborazione. Per questo il requisito è segnalato come parzialmente soddisfatto.
+
 
 \subsubsection{Soddisfacimento requisiti}
 Segue una tabella generale che riassume la copertura di tutti i requisiti.
@@ -259,9 +274,13 @@ Dal punto di vista formativo l'attività di \emph{stage} è stata estremamente p
 
 La richiesta di app \emph{mobile} è in continuo aumento. Per questo l'apprendimento della progettazione e sviluppo delle applicazioni mobili \emph{Android} è certamente una pietra miliare in campo \emph{IT} in questi anni.\\
 
-L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da \emph{Lenovo} per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{HardWare}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
+L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da un noto marchio per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{HardWare}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
 
-In ambito aziendale si usa \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca compessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.
+In ambito aziendale si è usato \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca compessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.\\
+
+In generale ritengo l'approccio a librerie grafiche sia \emph{mobile} che per \emph{PC} estremamente interessante ai fini della formazione personale.\\
+
+L'apprendimento delle potenzialità della libreria \emph{PCL} e la gestione dei \emph{Point Cloud} è altrettanto importante, anche perché è uno dei pochi ambiti in cui l'Italia spicca in ambito di \emph{Computer} grafica.
 
 
 %**************************************************************
