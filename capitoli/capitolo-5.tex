@@ -782,7 +782,7 @@ Classe in grado di salvare su disco \emph{Point Cloud} serializzati.
 \end{itemize}
 
 \subsection{Samba.utils.services}
-\begin{figure}[!h] 
+\begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{st/Samba_utils_services.png} 
     \caption{Componente Samba.utils.services}
@@ -828,6 +828,99 @@ Servizio in grado di ottimizzare una ricostruzione 3D eliminando i punti ridonda
 
 %**************************************************************
 \section{Design Pattern utilizzati}
+I \emph{design pattern} sono soluzioni a problemi ricorrenti. Adottare i \emph{design pattern} semplifica
+l'attività di progettazione, favorisce il riutilizzo del codice e rende l'architettura
+più mantenibile.\\
+Nella realizzazione di \emph{Samba} sono stati usati i \emph{design pattern} descritti in questa sezione.
+
+\subsection{MVP}
+\subsubsection{Scopo dell'utilizzo}
+È stato scelto il \emph{design pattern} \emph{Model View Presenter} per separare la logica dell'applicazione dalla sua rappresentazione e per seguire le \emph{Android Best Practices}.
+\subsubsection{Diagramma}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/designPatterns/MVP.png} 
+    \caption{Design Pattern MVP, applicazione in Samba}
+\end{figure}
+Il diagramma spiega la struttura generale di come il pattern MVP è stato utilizzato all'interno di Samba perdendo come esempio una specifica implementazione. Tale implementazione è relativa alla struttura generale del sistema.
+\subsubsection{Contesto dell'utilizzo}
+Il pattern \emph{MVP} è usato per l'architettura generale del sistema. 
+
+\subsection{Strategy}
+\subsubsection{Scopo dell'utilizzo}
+Il \emph{Design Patter} \emph{Strategy} è stato usato per separare la dichiarazione di alcuni algoritmi dalla loro implementazione. Ad esempio negli stadi iniziali non era stato fissato un formato ufficiale per i \emph{file} di \emph{output}; quindi si è lasciata aperta la possibilità di modificarlo in un secondo momento.
+\subsubsection{Diagramma}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/designPatterns/Strategy.png} 
+    \caption{Design Pattern Strategy, applicazione in Samba}
+\end{figure}
+\subsubsection{Contesto dell'utilizzo}
+L'efficienza è un aspetto centrale del sistema, per questo molti algoritmi sono stati implementati mediante \emph{Strategy} per permettere migliorie future.\\
+Ad esempio è stato usato uno \emph{Strategy Pattern} per gestire il formato dei \emph{file} in \emph{output}, la rotazione dei \emph{Point Cloud}, le ottimizzazioni sui punti, i servizi per spedire e ricevere informazioni dal \emph{Server} etc.
+
+\subsection{Observer}
+\subsubsection{Scopo dell'utilizzo}
+Il \emph{Design Pattern} \emph{Observer} è stato usato per permettere l'aggiornamento della \emph{view} da parte dei \emph{manager}.
+\subsubsection{Diagramma}\label{dia:ObserverPattern}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=1.0\columnwidth]{st/designPatterns/Observer.png} 
+    \caption{Design Pattern Observer, applicazione in Samba}
+\end{figure}
+\subsubsection{Contesto dell'utilizzo}
+È stato usato per permettere l'aggiornamento della view da parte dei \emph{Manager} di:
+\begin{itemize}
+	\item ciclo di vita \emph{Tango}.
+	\item render grafico.
+	\item \emph{preview} della fotocamera.
+\end{itemize}
+Nel diagramma in figura \ref{dia:ObserverPattern} si può osservare il \emph{design pattern} relativo al \emph{manager} del ciclo di vita dei sensori \emph{Tango}.
+
+\subsection{Singleton}
+\subsubsection{Scopo dell'utilizzo}
+Il \emph{Design Pattern} \emph{Singleton} è stato usato per controllare gli accessi alle classi che mantengono gli stati condivisi tra i vari processi. 
+\subsubsection{Diagramma}
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.5\columnwidth]{st/designPatterns/Singleton.png} 
+    \caption{Design Pattern Singleton, applicazione in Samba}
+\end{figure}
+\subsubsection{Contesto dell'utilizzo}
+È stato usato nelle classi che mantengono gli stati condivisi tra i vari processi. Ovvero:
+\begin{itemize}
+	\item \texttt{Samba.sharedState.ReconstructionCache}
+	\item \texttt{Samba.sharedState.ReconstructionManager}	
+\end{itemize}
+
 
 %**************************************************************
 \section{Codifica}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
