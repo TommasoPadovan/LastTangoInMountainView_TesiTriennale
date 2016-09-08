@@ -107,10 +107,123 @@ Un \emph{bug} noto è che alla ripresa della attività, qualche volta la \emph{p
 xxxx
 %**************************************************************
 \section{Raggiungimento degli obiettivi}
+\subsection{Obiettivi generali}
+Gli obiettivi generali riportati nel piano di lavoro erano i seguenti:
+\begin{itemize}
+	\item Obbligatori
+	\begin{itemize}
+		\item \underline{\textit{ob01}}: studio delle soluzioni esistenti;
+		\item \underline{\textit{ob02}}: ideazione di una soluzione per il riconoscimento di un oggetto;
+		\item \underline{\textit{ob03}}: implementazione prototipo in grado di riconoscere un oggetto;
+		\item \underline{\textit{ob04}}: calcolo del volume dell'oggetto (approssimato);
+		\item \underline{\textit{ob05}}: implementazione app come indicato nella sezione \emph{Struttura applicazione} del documento \emph{Relazione app per Project Tango} fornito dall'azienda;
+	\end{itemize}
+	
+	\item Desiderabili 
+	\begin{itemize}
+		\item \underline{\textit{de01}}: generare modello 3D in un formato portabile (obj, ply, vtk);
+		\item \underline{\textit{de02}}: stima della precisione con cui viene ricostruito un oggetto;
+		\item \underline{\textit{de03}}: perfezionare calcolo del volume (cavità nell'oggetto, elimanazione dati di sfondo/rumore);
+		\item \underline{\textit{de04}}: stima della precisione nel calcolo del volume;
+	\end{itemize}
+	
+	\item Opzionali
+	\begin{itemize}
+		\item \underline{\textit{op01}}: ottimizzazione della comunicazione con il server nel caso risultasse necessaria.
+	\end{itemize} 
+\end{itemize}
+
+I requisiti obbligatori sono stati tutti raggiunti.\\
+Per quanto riguarda quelli desiderabili invece:
+\begin{itemize}
+	\item \underline{\textit{de01}}: È stato pienamente soddisfatto.
+	\item \underline{\textit{de02}}: Sono stati forniti molti modelli grafici, da cui è possibile effettuare delle considerazioni sulla precisione con cui vengono ricostruiti gli oggetti.
+	\item \underline{\textit{de03}}: Non soddisfatto.
+	\item \underline{\textit{de04}}: Sono stati condotti degli studi, ma si è ritenuto che l'applicazione fosse ad uno stato ancora troppo poco avanzato perché la statistica avesse senso.
+\end{itemize}
+Il requisito opzionale \underline{\textit{op01}} non è stato raggiunto.
+
+\subsection{Requisiti}
+Dagli obiettivi posti nel piano di lavoro sono stati ricavati i requisiti esposti nel capitolo \ref{cap:analisi-requisiti}. Seguono le tabelle di soddisfacimento di questi ultimi divisi per categorie.
+
+\subsubsection{Requisiti funzionali}
 \LTXtable{\textwidth}{tabelle/requisiti/soddisfacimento/funzionali.tex}
+Segue una tabella riassuntiva di questa tipologia di requisiti.
+\begin{table}[H]
+	\begin{center}
+	  \begin{tabular}{ l  c  c  c }
+	    \hline
+	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
+	    Obbligatori & 44 & 44 & 100\%\\ \hline
+	    Desiderabili & 2 & 0 & 0\%\\
+	    \hline
+	  \end{tabular}
+	\end{center}
+	\caption{Tabella riassuntiva del soddisfacimento dei requisiti funzionali}
+\end{table}
+
+\subsubsection{Requisiti qualitativi}
 \LTXtable{\textwidth}{tabelle/requisiti/soddisfacimento/qualitativi.tex}
+Segue una tabella riassuntiva di questa tipologia di requisiti.
+\begin{table}[H]
+	\begin{center}
+	  \begin{tabular}{ l  c  c  c }
+	    \hline
+	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
+	    Obbligatori & 3 & 3 & 100\%\\ \hline
+	    Desiderabili & 1 & 1 & 100\%\\
+	    \hline
+	  \end{tabular}
+	\end{center}
+	\caption{Tabella riassuntiva del soddisfacimento dei requisiti qualitativi}
+\end{table}
+
+\subsubsection{Requisiti di vincolo}
 \LTXtable{\textwidth}{tabelle/requisiti/soddisfacimento/vincolo.tex}
+Segue una tabella riassuntiva di questa tipologia di requisiti.
+\begin{table}[H]
+	\begin{center}
+	  \begin{tabular}{ l  c  c  c }
+	    \hline
+	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
+	    Obbligatori & 2 & 2 & 100\%\\
+	    \hline
+	  \end{tabular}
+	\end{center}
+\caption{Tabella riassuntiva del soddisfacimento dei requisiti di vincolo}
+\end{table}	
+
+\subsubsection{Requisiti prestazionali}
 \LTXtable{\textwidth}{tabelle/requisiti/soddisfacimento/prestazionali.tex}
+Segue una tabella riassuntiva di questa tipologia di requisiti.
+\begin{table}[H]
+	\begin{center}
+	  \begin{tabular}{ l  c  c  c }
+	    \hline
+	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
+	    Obbligatori & 2 & 2 & 100\%\\ \hline
+	    Desiderabili & 8 & 8 & 100\%\\
+	    \hline
+	  \end{tabular}
+	\end{center}
+\caption{Tabella riassuntiva del soddisfacimento dei requisiti prestazionali}
+\end{table}	
+(xxxx inserire qui alcuni dati sui test prestazionali xxxx)
+
+\subsubsection{Soddisfacimento requisiti}
+Segue una tabella generale che riassume la copertura di tutti i requisiti.
+\begin{table}[H]
+	\begin{center}
+	  \begin{tabular}{ l  c  c  c }
+	    \hline
+	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
+	    Obbligatori & 51 & 51 & 100\%\\ \hline
+	    Desiderabili & 11 & 9 & 81,8\%\\
+	    \hline
+	  \end{tabular}
+	\end{center}
+\caption{Tabella riassuntiva del soddisfacimento di tutti i requisiti}
+\end{table}	
 %**************************************************************
 \section{Conoscenze acquisite}
 Dal punto di vista formativo l'attività di \emph{stage} è stata estremamente positiva. Ha arricchito il mio bagaglio personale di competenze professionali.\\
