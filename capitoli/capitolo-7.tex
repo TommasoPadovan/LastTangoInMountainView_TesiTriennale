@@ -93,7 +93,7 @@ Risolvere queste criticità era oltre gli obiettivi dello \emph{stage}, ma è co
 	\item Gestire la priorità del servizio di ottimizzazione: è trasparente all'utente e non deve necessariamente essere performante. Quindi esso può avere una minore priorità nell'utilizzo della \emph{CPU} cercando di ridurre i \emph{burst} di dati.
 	\item Il \emph{render} non ha lo scopo di rappresentare tutti i punti salvati, ma di fornire all'utente una idea di quello che "vede" il sensore di profondità. Si può pensare quindi di approssimare parti della nuvola di punti a figure geometriche semplici, ad esempio il pavimento può essere approssimato ad un piano. Ciò ridurrebbe il carico di lavoro per processore e scheda grafica.
 \end{itemize}
-Comunque va tenuto a mente che il dispositivo è un \emph{HardWare} sperimentale che non è pensato per utilizzo su larga scala ma solo per lo sviluppo: comportamento instabile del dispositivo usando alcuni tipi di applicazioni è largamente documentato all'interno della comunità. xxxx (documentare)\\
+Comunque va tenuto a mente che il dispositivo è un \emph{Hardware} sperimentale che non è pensato per utilizzo su larga scala ma solo per lo sviluppo: comportamento instabile del dispositivo usando alcuni tipi di applicazioni è largamente documentato all'interno della comunità. xxxx (documentare)\\
 Durante il tirocinio sono stati sperimentati questo genere di problemi anche con applicazioni rilasciate dalla \emph{Google} stessa. xxxx (documentare)
 
 \subsection{Preview della fotocamera}
@@ -139,13 +139,13 @@ Le ore totali sono state rispettate e non hanno avuto variazioni.\\
 La loro ripartizione interna, invece, ha subito grosse variazioni a causa di sovrastime e sottostime commesse durante la fase di pianificazione.\\
 Le attività che hanno subito variazioni più importanti sono state codifica e sviluppo dei prototipi preliminari. Questi ultimi hanno richiesto più del doppio del tempo preventivato a causa della difficoltà del compito richiesto, ma soprattutto perché lo studente ha intrapreso una strada sbagliata che ha portato ad un prototipo non funzionante e che è stato interamente scartato. Si può notare però che la maggiore attenzione riposta nei prototipi preliminari ha fatto risparmiare diverse ore alla codifica: infatti molto del codice presente nei primi prototipi è stato riusato senza cambiamenti, o con modeste modifiche.\\
 Anche lo studio di fattibilità ha richiesto più tempo del previsto in quanto si è rivelato necessario cercare e provare molte applicazioni, alcune delle quali non manutenute o non aggiornate.\\
-In figura \ref{gantt:pianificaiozne} vengono riportati i diagrammi di \emph{Gantt} dove è possibile confrontare la pianificazione preventivata e quella effettiva.
+In figura \ref{gantt:pianificazione} vengono riportati i diagrammi di \emph{Gantt} dove è possibile confrontare la pianificazione preventivata e quella effettiva.
 
 \begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{varie/ganttConsuntivo.png} 
     \caption{Gantt della pianificazione preventiva e consuntiva}
-    \label{gantt:pianificaiozne}
+    \label{gantt:pianificazione}
 \end{figure}
 
 %**************************************************************
@@ -166,7 +166,7 @@ Gli obiettivi generali riportati nel piano di lavoro erano i seguenti:
 	\begin{itemize}
 		\item \underline{\textit{de01}}: generare modello 3D in un formato portabile (obj, ply, vtk);
 		\item \underline{\textit{de02}}: stima della precisione con cui viene ricostruito un oggetto;
-		\item \underline{\textit{de03}}: perfezionare calcolo del volume (cavità nell'oggetto, elimanazione dati di sfondo/rumore);
+		\item \underline{\textit{de03}}: perfezionare calcolo del volume (cavità nell'oggetto, eliminazione dati di sfondo/rumore);
 		\item \underline{\textit{de04}}: stima della precisione nel calcolo del volume;
 	\end{itemize}
 	
@@ -274,9 +274,9 @@ Dal punto di vista formativo l'attività di \emph{stage} è stata estremamente p
 
 La richiesta di app \emph{mobile} è in continuo aumento. Per questo l'apprendimento della progettazione e sviluppo delle applicazioni mobili \emph{Android} è certamente una pietra miliare in campo \emph{IT} in questi anni.\\
 
-L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da un noto marchio per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{HardWare}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
+L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da un noto marchio per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{Hardware}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
 
-In ambito aziendale si è usato \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca compessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.\\
+In ambito aziendale si è usato \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca complessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.\\
 
 In generale ritengo l'approccio a librerie grafiche sia \emph{mobile} che per \emph{PC} estremamente interessante ai fini della formazione personale.\\
 
