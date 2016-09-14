@@ -22,9 +22,9 @@ Da esso è emersa la presenza di diverse applicazioni dotate di sottoinsiemi del
 \subsection{Applicazioni per il meshing}
 Sul mercato sono disponibili diverse applicazioni in grado di effettuare il \emph{meshing} 3D di ambienti, ma non di registrare \emph{Point Cloud}. Alcune di queste sono:
 \begin{itemize}
-	\item \textbf{Tango Constructor\footcite{site: https://developers.google.com/tango/tools/constructor}}: applicazione rilasciata dal produttore sotto licenza proprietaria.
-	\item \textbf{RTAB-Map\footcite{site: http://introlab.github.io/rtabmap/}}: Applicazione della \emph{introlab} rilasciata sotto licenza \emph{BSD} che fa uso delle librerie native offerte dalla \emph{Google}.
-	\item \textbf{Esempio Google di ricostruzione per Unity\footcite{site: https://github.com/googlesamples/tango-examples-unity}}: Esempio rilasciato dal produttore sotto licenza \emph{Apache} per unity e con codice in \texttt{C\#}.
+	\item \textbf{Tango Constructor\footnote{https://developers.google.com/tango/tools/constructor}}: applicazione rilasciata dal produttore sotto licenza proprietaria.
+	\item \textbf{RTAB-Map\footnote{http://introlab.github.io/rtabmap/}}: Applicazione della \emph{introlab} rilasciata sotto licenza \emph{BSD} che fa uso delle librerie native offerte dalla \emph{Google}.
+	\item \textbf{Esempio Google di ricostruzione per Unity\footnote{https://github.com/googlesamples/tango-examples-unity}}: Esempio rilasciato dal produttore sotto licenza \emph{Apache} per unity e con codice in \texttt{C\#}.
 \end{itemize}
 Queste applicazioni sono ottime in quanto a qualità della ricostruzione, quasi tutte forniscono anche una ottima memorizzazione delle \emph{texture}, ma lavorare con le \emph{mesh} per quanto riguarda rimozione di oggetti di sfondo, pavimento etc appare piuttosto complesso.
 
@@ -32,14 +32,14 @@ Queste applicazioni sono ottime in quanto a qualità della ricostruzione, quasi 
 Ci sono diversi esempi che dimostrano la buona qualità del \emph{Motion Tracking} e della \emph{Drift Correction}.
 Eccone alcuni:
 \begin{itemize}
-	\item \textbf{Tango Blaster\footcite{site: https://play.google.com/store/apps/details?id=com.projecttango.tangoblaster}}: Una semplice avventura grafica che permette all'utente di spostare il proprio avatar in un ambiente completamente virtuale semplicemente spostando il dispositivo. Questa semplice applicazione dimostra che l'\emph{Hardware} \emph{Tango} è in grado di tracciare la propria posizione, così come di distruggere orde di robot.
-	\item \textbf{java\_motion\_tracking\_example\footcite{site: https://github.com/googlesamples/tango-examples-java/tree/master}}: Un esempio fornito sotto licenza \emph{BSD} dalla \emph{Google} che mostra graficamente la differenza tra la posizione stimata usando solamente il \emph{Motion Tracking} e quella corretta con metodi di \emph{Area Learning}.
+	\item \textbf{Tango Blaster\footnote{https://play.google.com/store/apps/details?id=com.projecttango.tangoblaster}}: Una semplice avventura grafica che permette all'utente di spostare il proprio avatar in un ambiente completamente virtuale semplicemente spostando il dispositivo. Questa semplice applicazione dimostra che l'\emph{Hardware} \emph{Tango} è in grado di tracciare la propria posizione, così come di distruggere orde di robot.
+	\item \textbf{java\_motion\_tracking\_example\footnote{https://github.com/googlesamples/tango-examples-java/tree/master}}: Un esempio fornito sotto licenza \emph{BSD} dalla \emph{Google} che mostra graficamente la differenza tra la posizione stimata usando solamente il \emph{Motion Tracking} e quella corretta con metodi di \emph{Area Learning}.
 \end{itemize}
 Queste due applicazioni dimostrano che è possibile usare le \emph{API Tango} per ricavare un buon tracciamento della posizione.
 
 \subsection{Applicazioni per la registrazione di punti}
 Punto centrale di questo studio di fattibilità era trovare evidenze della possibilità di registrare un numero consistente di punti e poi sovrapporli per creare una ricostruzione tridimensionale.
-Tra le applicazioni studiate le due su cui è stata riposta la maggiore attenzione sono le seguenti (entrambe disponibili nella \emph{repository} \emph{GitHub} di \emph{GoogleSamples}\footcite{site: https://github.com/googlesamples/tango-examples-java/tree/master}):
+Tra le applicazioni studiate le due su cui è stata riposta la maggiore attenzione sono le seguenti (entrambe disponibili nella \emph{repository} \emph{GitHub} di \emph{GoogleSamples}\footnote{https://github.com/googlesamples/tango-examples-java/tree/master}):
 \begin{itemize}
 	\item \textbf{java\_point\_cloud\_example}: Questa applicazione permette di catturare in tempo reale una nuvola consistente di punti e posizionarli nello spazio relativamente alla posizione del dispositivo; fornisce quindi evidenze riguardo alla possibilità di catturare un numero tale di punti da poter essere usati per ricostruire una facciata di un oggetto.
 	\item \textbf{java\_point\_to\_point\_example}: Quest'ultimo esempio dimostra invece che i punti possono essere scritti in coordinate "assolute", o meglio rispetto ad un sistema di riferimento fisso indipendente dalla posizione del \emph{device}. Fornisce infatti la possibilità di selezionare due punti tramite la pressione del dito, e poi ne calcola la distanza e rappresenta la retta congiungente nello spazio.
@@ -66,7 +66,7 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
 	\riskchance{Alta}
 	\riskseverity{Media}
     \riskdescription{Il dispositivo è dotato di sensori infrarossi e sfrutta la riflessione della luce per determinare la distanza dei punti che è in grado di individuare. Superfici riflettenti o molto scure possono compromettere la qualità della misurazione, allo stesso modo situazioni di illuminazione scarsa o assente}
-    \risksolution{Accurata analisi della documentazione fornita dal produttore\footcite{site: https://developers.google.com/tango/overview/depth-perception}, test preventivi nelle situazioni critiche utilizzando una semplice applicazione di prova fornita da \emph{Google}\footcite{site: https://github.com/googlesamples/tango-examples-java/tree/master/java_point_cloud_example}}
+    \risksolution{Accurata analisi della documentazione fornita dal produttore\footnote{https://developers.google.com/tango/overview/depth-perception}, test preventivi nelle situazioni critiche utilizzando una semplice applicazione di prova fornita da \emph{Google}\footnote{https://github.com/googlesamples/tango-examples-java/tree/master/java\_point\_cloud\_example}}
     \label{risk:device-limit} 
 \end{risk}
 
@@ -85,7 +85,7 @@ Segue la lista dei rischi individuati in questa fase:\\
 \begin{risk}{Difficoltà nel Motion Tracking}
 	\riskchance{Media}
 	\riskseverity{Alta}
-    \riskdescription{Determinare la posizione e l'orientamento del dispositivo in maniera assoluta è fondamentale per permettere la ricostruzione dell'oggetto inquadrato. Il \emph{device} fornisce ad intervalli regolari la sua posizione tramite una tripletta di coordinate ed la sua rotazione rappresentata come un quaternione. La somma di piccoli errori relativi nella stima della posizione crea un fenomeno detto \emph{drifting} che comporta importanti errori nella stima finale. Questo rischio può portare al fallimento del progetto, in quanto se non opportunamente mitigato renderebbe le ricostruzioni tridimensionali totalmente errate}
+    \riskdescription{Determinare la posizione e l'orientamento del dispositivo in maniera assoluta è fondamentale per permettere la ricostruzione dell'oggetto inquadrato. Il \emph{device} fornisce ad intervalli regolari la sua posizione tramite una tripletta di coordinate e la sua rotazione rappresentata come un quaternione. La somma di piccoli errori relativi nella stima della posizione crea un fenomeno detto \emph{drifting} che comporta importanti errori nella stima finale. Questo rischio può portare al fallimento del progetto, in quanto se non opportunamente mitigato renderebbe le ricostruzioni tridimensionali totalmente errate}
     \risksolution{Si è per questo deciso di adottare una tecnica denominata \emph{Area Learning}. Il dispositivo quindi riconoscerà alcune \emph{features}, ovvero dei punti fissi, rispetto ai quali determinerà la sua posizione}
     \label{risk:motion-tracking} 
 \end{risk}
