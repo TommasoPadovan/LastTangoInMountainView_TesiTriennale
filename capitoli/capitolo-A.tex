@@ -10,12 +10,11 @@
 Nell'esposizione dell'architettura del prodotto si procederà con un approccio di tipo top-down.  Si descriverà quindi l'architettura iniziando dal generale ed andando al particolare; descrivendo prima i componenti, per poi descrivere nel dettaglio le singole classi.\\
 Per ogni componente saranno descritti brevemente il tipo, l'obiettivo e la funzione e saranno specificati
 eventuali figli, classi ed interazioni con altri componenti. Ogni classe sarà dotata di una breve descrizione e
-ne saranno specificate le responsabilità, le classi ereditate, le sottoclassi e le relazioni con altre classi.\\
-Infine si illustreranno degli esempi di utilizzo dei \emph{design pattern} nell'architettura del sistema.
+ne saranno specificate le responsabilità, le classi ereditate, le sottoclassi e le relazioni con altre classi.
 
 \section{Legenda}
-Tutti i diagrammi usano la convenzione di colori descritta nella legenda in figura~\ref{fig:legenda} al fine di migliorare la leggibilità. I livelli di annidamento sono da intendere per la totale struttura dei package e non solo per il singolo schema.\\
-Si noti in particolare che le classi e componenti di colore arancio rappresentano classi di librerie esterne al sistema, ma vengono talora rappresentate comunque per maggiore chiarezza.
+Tutti i diagrammi usano la convenzione di colori descritta nella legenda in figura~\ref{fig:legenda} al fine di migliorarne la leggibilità. I livelli di annidamento sono da intendere per la totale struttura dei package e non solo per il singolo schema.\\
+Si noti in particolare che le classi e componenti di colore arancio rappresentano classi di librerie esterne al sistema, ma che vengono talora rappresentate per maggiore chiarezza.
 \begin{figure}[H] 
     \centering 
     \includegraphics[width=1.0\columnwidth]{varie/Legenda.png} 
@@ -551,7 +550,7 @@ Questa classe fornisce un \emph{sanity check} della fase di localizzazione.
 
 \subsection{Samba.clouds.utils.poseSanity.FIFOPoseCache}\label{comp:Samba.clouds.utils.poseSanity.FIFOPoseCache}
 \subsubsection{Descrizione}
-Fornisce una cosa \emph{FIFO} in grado di tenere in memoria le ultime $n$ posizioni rilevate e usarle per dei calcoli statistici in maniera efficiente.
+Fornisce una coda \emph{FIFO} in grado di tenere in memoria le ultime $n$ posizioni rilevate e usarle per dei calcoli statistici in maniera efficiente.
 \subsubsection{Utilizzo}
 È usata come classe di utilità per \texttt{PoseSanityChecker} (\ref{class:PoseSanityChecker}).
 \subsubsection{Relazioni con altre classi}

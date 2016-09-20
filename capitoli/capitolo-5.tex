@@ -22,7 +22,7 @@ Per comprendere il sistema è necessario innanzitutto studiare le strutture dati
     \includegraphics[width=0.7\columnwidth]{diagrammiGenerali/SambaPoint.png} 
     \caption{Diagramma UML della classe SambaPoint}
 \end{figure}
-La struttura di base, onnipresente nel sistema, è il \texttt{SambaPoint}: è un semplice punto nello spazio descritto dalle sue tre coordinate $x$, $y$ e $z$.\\
+La struttura di base, onnipresente nel sistema, è il \texttt{SambaPoint}: è un semplice punto nello spazio definito dalle sue tre coordinate $x$, $y$ e $z$.\\
 La classe \texttt{SambaPoint} è una estensione di \texttt{Vector3}, della nota libreria grafica \emph{Android} \emph{Rajawali3D}, al fine di aumentarne la compatibilità con le utilità grafiche offerte da quest'ultima. Come in \texttt{Vector3} i campi dati delle coordinate sono pubblici, per aumentare l'efficienza.\\
 \texttt{SambaPoint} aumenta le funzionalità della sua superclasse offrendo la possibilità di confronto coordinata a coordinata ed una funzione di approssimazione. 
 
@@ -66,7 +66,7 @@ Come detto nella sezione precedente le operazioni sulle nuvole di punti sono piu
 \end{figure}
 La figura \ref{fig:services} mostra, in un diagramma informale non UML, il ciclo di vita dei dati all'interno di \texttt{ReconstructionCache}.
 \begin{itemize}
-	\item Inizialmente i sensori \emph{Tango} inviano i, dati così come li raccolgono, alla \texttt{ReconstructionCache}; vengono posti nella pila.
+	\item Inizialmente i sensori \emph{Tango} inviano i, dati così come li raccolgono, alla \\\texttt{ReconstructionCache}; vengono posti nella pila.
 	\item Quando la pila è non vuota viene lanciato \texttt{MergingService} su un suo \emph{thread}. Quest'ultimo fa il \emph{pop} della pila, ottenendo i dati precedentemente inseriti dal sensore, che sono composti dall'insieme dei punti e da una matrice che descrive la trasformazione che è necessario applicare.
 	\item Una volta ottenuti i dati richiede l'accesso alla \texttt{Reconstruction} ed effettua la sovrapposizione del \emph{Point Cloud} grezzo con quello (eventualmente vuoto) salvato all'interno della \texttt{Reconstruction} stessa.\\Si noti che la \texttt{Reconstruction} attualmente viene bloccata dal processo di \emph{merging} durante le operazioni di trasformazione del \emph{Point Cloud} grezzo, anche se non ce ne sarebbe bisogno. Ciò è voluto in quanto le operazioni di \emph{merging} saranno soggette a miglioramenti e cambiamenti, quindi potrebbe in futuro rivelarsi necessario fare delle assunzioni sulla \texttt{Reconstruction} e non limitarsi alla trasformazione geometrica. A tal proposito si veda la sezione \ref{subs:ICP}.
 	\item La quantità di punti all'interno di \texttt{Reconstruction} cresce molto rapidamente. Pertanto il servizio di \emph{merging}, quando il numero di punti supera un tetto prefissato lo segnala al \texttt{VoxelingService}.
@@ -96,7 +96,7 @@ Nella realizzazione di \emph{Samba} sono stati usati i \emph{design pattern} des
     \includegraphics[width=1.0\columnwidth]{st/designPatterns/MVP.png} 
     \caption{Design Pattern MVP, applicazione in Samba}
 \end{figure}
-Il diagramma spiega la struttura generale di come il pattern MVP è stato utilizzato all'interno di Samba perdendo come esempio una specifica implementazione. Tale implementazione è relativa alla struttura generale del sistema.
+Il diagramma spiega la struttura generale di come il pattern MVP è stato utilizzato all'interno di Samba prendendo come esempio una specifica implementazione. Tale implementazione è relativa alla struttura generale del sistema.
 \subsubsection{Contesto dell'utilizzo}
 Il pattern \emph{MVP} è usato per l'architettura generale del sistema. 
 

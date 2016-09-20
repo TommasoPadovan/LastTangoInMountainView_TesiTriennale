@@ -33,7 +33,7 @@ Per questo un possibile sviluppo futuro potrebbe essere quello di implementare \
 
 \subsection{Integrazione C++/Jni lato tablet}
 \emph{Google} fornisce oltre a delle ricche librerie \emph{Java} anche delle \emph{API} in linguaggio \emph{C/C++}. Alcune funzioni esposte da queste ultime non sono presenti in quelle \emph{Java} oppure sono molto più efficienti. Sarebbe quindi necessario, negli sviluppi futuri, predisporre una interfaccia \emph{Jni} in maniera da integrare codice \emph{Java} e \emph{C++} all'interno della stessa applicazione.\\
-Tutto il progetto ne gioverebbe, specialmente per quanto riguarda le performance; inoltre si potrebbe pensare di importare parti della libreria \emph{PCD} in maniera da automatizzare alcuni processi.
+Tutto il progetto ne gioverebbe, specialmente per quanto riguarda le \emph{performance}; inoltre si potrebbe pensare di importare parti della libreria \emph{PCD} in maniera da automatizzare alcuni processi.
 
 \subsection{Texture dei punti}
 Il prodotto fornisce delle buone ricostruzioni 3D per quanto riguarda la forma e le dimensioni dell'oggetto; ai fini ispettivi, di fatto, non c'è bisogno d'altro. Ciononostante le ricostruzioni visualizzate sia su \emph{tablet} che su \emph{computer} essendo formate da soli punti sono spesso di difficile comprensione da parte dell'utenza. Per rispondere a queste esigenza potrebbe essere opportuno pensare ad aggiungere ad ogni singolo punto una opportuna texture in maniera da rendere più immediato il riconoscimento dell'oggetto da parte dell'utente.\\
@@ -81,7 +81,7 @@ Il prototipo prodotto ha un consumo della batteria piuttosto elevato ed a volte 
 Ciò secondo una prima analisi è dovuto ai seguenti fattori:
 \begin{itemize}
 	\item Utilizzo combinato dei quattro sensori principali del \emph{device}: fotocamera a colori, fotocamera \emph{Fish-eye}, sensore \emph{IR} ed accelerometro/giroscopio. Questi sensori sono tutti necessari per il \emph{Motion Tracking} e la cattura dei \emph{Point Cloud}.
-	\item Grande mole di dati da elaborare: un singolo \emph{Point Cloud} può contare anche 90 000 punti, essi devono essere elaborati e renderizzati in tempo reale.	
+	\item Grande mole di dati da elaborare: un singolo \emph{Point Cloud} può contare anche 9000 punti, essi devono essere elaborati e renderizzati in tempo reale.	
 	\item Necessità di pesanti elaborazioni parallele: per permettere all'utente una interfaccia fluida e non rallentare i calcoli è necessario usare molti processi paralleli. Ogni scatto registrato è elaborato su di un proprio \emph{Thread} ed è presente un servizio che ottimizza ad intervalli regolari la ricostruzione corrente (indispensabile per tenere sotto controllo la complessità delle strutture dati).
 	\item \emph{Rendering real-time}: come discusso in sezione \ref{cap:frame_preview} è un fondamentale requisito di usabilità avere una preview dei dati catturati dal \emph{depth sensor}. Ciò implica l'utilizzo di un \emph{render 3D} \emph{OpenGL} che richiede una grande quantità di risorse.
 	\item Connessione dati: la necessità di un \emph{backend Server} comporta l'utilizzo della connessione internet. Inoltre dato il tipo di utilizzo per cui è stata ideata l'applicazione userà spesso la connessione \emph{mobile} per inviare i dati.
@@ -97,7 +97,7 @@ Risolvere queste criticità era oltre gli obiettivi dello \emph{stage}, ma è co
 
 \subsection{Preview della fotocamera}
 Le \emph{API} forniscono degli strumenti per automatizzare la \emph{preview} della fotocamera a colori. Essi tuttavia si sono rivelati estremamente pesanti come carico computazionale e se combinati al resto dell'applicazione prodotta possono portare a rallentamenti imprevisti.\\
-Per questo si è scelto di ottenere questa anteprima tramite metodi di basso livello. Essi tuttavia richiedono uno sforzo ben maggiore e quelli applicati in \emph{Samba} vanno rivisti.\\
+Per questo si è scelto di ottenere questa anteprima tramite metodi di basso livello. Essi tuttavia richiedono, da parte del programmatore, uno sforzo ben maggiore e quelli applicati in \emph{Samba} vanno rivisti.\\
 Un \emph{bug} noto è che alla ripresa della attività, qualche volta la \emph{preview} non viene attivata ed il riquadro a lei riservato rimane nero.
 
 
@@ -136,7 +136,7 @@ In tabella \ref{tab:preventivo-consuntivo} sono riportate le ore preventivate pe
 \end{table}
 Le ore totali sono state rispettate e non hanno avuto variazioni.\\
 La loro ripartizione interna, invece, ha subito grosse variazioni a causa di sovrastime e sottostime commesse durante la fase di pianificazione.\\
-Le attività che hanno subito variazioni più importanti sono state codifica e sviluppo dei prototipi preliminari. Questi ultimi hanno richiesto più del doppio del tempo preventivato a causa della difficoltà del compito richiesto, ma soprattutto perché lo studente ha intrapreso una strada sbagliata che ha portato ad un prototipo non funzionante e che è stato interamente scartato. Si può notare però che la maggiore attenzione riposta nei prototipi preliminari ha fatto risparmiare diverse ore alla codifica: infatti molto del codice presente nei primi prototipi è stato riusato senza cambiamenti, o con modeste modifiche.\\
+Le attività che hanno subito variazioni più importanti sono state codifica e sviluppo dei prototipi preliminari. Questi ultimi hanno richiesto più del doppio del tempo preventivato a causa della difficoltà del compito richiesto, ma soprattutto perché lo studente ha intrapreso una strada sbagliata che ha portato ad un prototipo non funzionante e che è stato interamente scartato. Si può notare però che la maggiore attenzione riposta nei prototipi preliminari ha fatto risparmiare diverse ore alla codifica: infatti molto del codice presente nei primi prototipi è stato riusato senza cambiamenti, o con modifiche modeste.\\
 Anche lo studio di fattibilità ha richiesto più tempo del previsto in quanto si è rivelato necessario cercare e provare molte applicazioni, alcune delle quali non manutenute o non aggiornate.\\
 In figura \ref{gantt:pianificazione} vengono riportati i diagrammi di \emph{Gantt} dove è possibile confrontare la pianificazione preventivata e quella effettiva.
 
@@ -213,7 +213,7 @@ Segue una tabella riassuntiva di questa tipologia di requisiti.
 	    \hline
 	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
 	    Obbligatori & 3 & 3 & 100\%\\ \hline
-	    Desiderabili & 1 & 1 & 100\%\\
+	    Desiderabili & 1 & 0 & 0\%\\
 	    \hline
 	  \end{tabular}
 	\end{center}
@@ -261,7 +261,7 @@ Segue una tabella generale che riassume la copertura di tutti i requisiti.
 	    \hline
 	    \textbf{Tipologia} & \textbf{Totali} & \textbf{Soddisfatti} & \textbf{Percentuale} \\ \hline
 	    Obbligatori & 51 & 51 & 100\%\\ \hline
-	    Desiderabili & 11 & 9 & 81,8\%\\
+	    Desiderabili & 11 & 8 & 72,7\%\\
 	    \hline
 	  \end{tabular}
 	\end{center}
@@ -271,11 +271,11 @@ Segue una tabella generale che riassume la copertura di tutti i requisiti.
 \section{Conoscenze acquisite}
 Dal punto di vista formativo l'attività di \emph{stage} è stata estremamente positiva. Ha arricchito il mio bagaglio personale di competenze professionali.\\
 
-La richiesta di app \emph{mobile} è in continuo aumento. Per questo l'apprendimento della progettazione e sviluppo delle applicazioni mobili \emph{Android} è certamente una pietra miliare in campo \emph{IT} in questi anni.\\
+La richiesta di app \emph{mobile} è in continuo aumento. Per questo l'apprendimento della progettazione e sviluppo delle applicazioni mobili \emph{Android} è certamente una pietra miliare nel campo \emph{IT} in questi anni.\\
 
-L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da un noto marchio per settembre 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{Hardware}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
+L'approccio ad una tecnologia sperimentale ed ancora di nicchia come \emph{Tango Project} crea dei vantaggi in ambito occupazionale in quanto gli sviluppatori non sono molti. Inoltre il rilascio del primo \emph{smartphone} commerciale dotato dei sensori \emph{Tango} è stato annunciato da un noto marchio per l'autunno 2016; se dovesse prendere campo anche in ambito \emph{customer} ci sarebbe certamente una grande richiesta di sviluppatori con esperienza vista la scarsità di applicazioni dedicate a questo tipo di \emph{Hardware}. Altro aspetto positivo è stato l'inserimento all'interno della comunità degli sviluppatori \emph{Tango} sia su \emph{StackOverflow} che su \emph{Google plus}; lo studente ha avuto modo di confrontarsi con addetti \emph{Google} e con altri sviluppatori sia in ambito accademico/di ricerca che in ambito industriale.\\
 
-In ambito aziendale si è usato \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca complessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente in \emph{Java}. In ogni caso molte applicazioni \emph{mobile} specialmente in ambito grafico ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.\\
+In ambito aziendale si è usato \emph{Java} come linguaggio di programmazione ed \emph{Android Studio} come \emph{IDE}. La curva di apprendimento di questi strumenti è stata piuttosto rapida grazie all'esperienza già maturata in ambito accademico con \emph{Java} ed \emph{ItelliJ}, su cui è basato \emph{Android Studio}. Più complessa si è rivelata l'assimilazione e la comprensione del \emph{Framework Jni}, sia a causa della sua intrinseca complessità sia al fatto che \emph{Android Studio} lo supporta solo in \emph{release} sperimentale. Infatti in azienda è stato realizzato sono un piccolo prototipo che dimostra l'agibilità di questa via, ma poi la tecnologia \emph{Jni} è stata abbandonata in favore di uno sviluppo interamente \emph{Java}. In ogni caso molte applicazioni \emph{mobile}, specialmente in ambito grafico, ne fanno uso, quindi ai fini del curriculum si è rivelata comunque un'esperienza fruttuosa.\\
 
 In generale ritengo l'approccio a librerie grafiche sia \emph{mobile} che per \emph{PC} estremamente interessante ai fini della formazione personale.\\
 

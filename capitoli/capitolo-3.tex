@@ -23,7 +23,7 @@ Da esso è emersa la presenza di diverse applicazioni dotate di sottoinsiemi del
 Sul mercato sono disponibili diverse applicazioni in grado di effettuare il \emph{meshing} 3D di ambienti, ma non di registrare \emph{Point Cloud}. Alcune di queste sono:
 \begin{itemize}
 	\item \textbf{Tango Constructor\footnote{https://developers.google.com/tango/tools/constructor}}: applicazione rilasciata dal produttore sotto licenza proprietaria.
-	\item \textbf{RTAB-Map\footnote{http://introlab.github.io/rtabmap/}}: Applicazione della \emph{introlab} rilasciata sotto licenza \emph{BSD} che fa uso delle librerie native offerte dalla \emph{Google}.
+	\item \textbf{RTAB-Map\footnote{http://introlab.github.io/rtabmap/}}: Applicazione della \emph{introlab}\footnote{https://introlab.3it.usherbrooke.ca/mediawiki-introlab/index.php/Main\_Page} rilasciata sotto licenza \emph{BSD} che fa uso delle librerie native offerte dalla \emph{Google}.
 	\item \textbf{Esempio Google di ricostruzione per Unity\footnote{https://github.com/googlesamples/tango-examples-unity}}: Esempio rilasciato dal produttore sotto licenza \emph{Apache} per unity e con codice in \texttt{C\#}.
 \end{itemize}
 Queste applicazioni sono ottime in quanto a qualità della ricostruzione, quasi tutte forniscono anche una ottima memorizzazione delle \emph{texture}, ma lavorare con le \emph{mesh} per quanto riguarda rimozione di oggetti di sfondo, pavimento etc appare piuttosto complesso.
@@ -52,7 +52,7 @@ Alla luce dei test sulle applicazioni sopracitate il progetto appare fattibile e
 \section{Analisi preventiva dei rischi}
 
 Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
-Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
+Si è quindi proceduto ad elaborare delle possibili soluzioni per far fronte a tali rischi.\\
 
 \subsection{Rischi generali}
 \begin{risk}{Immaturità di API/librerie/documentazione}
@@ -65,7 +65,7 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
 \begin{risk}{Limiti fisici del dispositivo}
 	\riskchance{Alta}
 	\riskseverity{Media}
-    \riskdescription{Il dispositivo è dotato di sensori infrarossi e sfrutta la riflessione della luce per determinare la distanza dei punti che è in grado di individuare. Superfici riflettenti o molto scure possono compromettere la qualità della misurazione, allo stesso modo situazioni di illuminazione scarsa o assente}
+    \riskdescription{Il dispositivo è dotato di sensori infrarossi e sfrutta la riflessione della luce per determinare la distanza dei punti che è in grado di individuare. Superfici riflettenti o molto scure possono compromettere la qualità della misurazione, allo stesso modo situazioni di illuminazione scarsa o troppo intensa}
     \risksolution{Accurata analisi della documentazione fornita dal produttore\footnote{https://developers.google.com/tango/overview/depth-perception}, test preventivi nelle situazioni critiche utilizzando una semplice applicazione di prova fornita da \emph{Google}\footnote{https://github.com/googlesamples/tango-examples-java/tree/master/java\_point\_cloud\_example}}
     \label{risk:device-limit} 
 \end{risk}
