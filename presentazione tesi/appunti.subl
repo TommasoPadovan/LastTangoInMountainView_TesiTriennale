@@ -1,0 +1,51 @@
+SLIDE 1
+...
+
+
+SLIDE 2
+In questa presentazione tratterò di ...
+
+SLIDE 3
+L'obiettivo dello stage era quello di produrre una applicazione in grando di ... utilizzando un l'innovativa tecnologia Tango attualmente ancora in fase sperimentale.
+Come dispositivo fisico è stato usato un kit di sviluppo venduto da Google, come quello che vedete qui.
+
+SLIDE 4
+Il Progetto Tango è sviluppato e promosso da Google.
+E' una piattaforma tecnologica che permette di ...
+Integra tre funzionalità core ovvero: ...
+
+SLIDE 5
+Un concetto fondamentale da comprendere è quello di Point Cloud. Si tratta di un modello matematico che ...
+
+
+SLIDE 6
+Il prototipo che mi è stato richiesto di produrre deve essere in grado di sovrapporre ...
+
+
+SLIDE 7
+Tracciare il movimento del dispositivo è stato uno dei grossi scogli che ho incontrato nel corso del tirocinio.
+Il Motion Tracking non è una novità, infatti tecniche simili vengono usate anche in comuni applicazioni di realtà aumentata. Si tratta di ...
+
+
+
+
+SLIDE 8
+Oltre a quello del movimento uno dei grandi problemi che mi sono trovato ad affrontare durante il tirocinio è stato quella della dimensione delle ricostruzioni prodotte dall'applicazione.
+Una sola rilevazione può arrivare a contare fino a 9000 punti e la sovrapposizione di molti scatti porta ben presto ad un insime di punti troppo grande per essere gestito.
+Non parlo solamente del consumo di memoria, ma soprattutto della mole di calcoli necessari alla sua correta elaborazione.
+
+Si è rivelato per ciò necessario suddividere la computazione su più thread ed effettuare ottimizzazioni sulla nuovola di punti.
+La struttura dati che ho utilizzato è composta da 3 componenti, una pila per i dati grezzi, una ricostruzione elaborata ma non ottimizzate ed una ricostruzione risultati da operazioni di ottimizzazione.
+Nella figura si può osservare che i dati, una volta catturati dai sensori Tango vengono immagazzinati nella pila dei dati grezzi, successivamente un processo si occupa di effettuare le trasformazioni geometriche necessarie per scrivere la nuvola di punti in coordinate assolute e sovrappone quest'ultima alla ricostruzione non ottimizzata. Quando anche questa inizia ad avere una dimensione troppo importante interviene un secondo processo che lo ottimizza ad esempio eliminando i punti sovrapposti o troppo vicini.
+
+
+SLIDE 9
+Come la maggior parte delle applicazioni tango anche il mio prototipo ha una forte interazione con l'ambiene e i movimenti dell'utente.
+Per questo è fondamentale avere una buona interfaccia grafica.
+...
+
+SLIDE 10
+Data la natura innovativa del progetto ed il limitato tempo a disposizione alcune problematiche sono rimaste tuttora irrisolte.
+Nell'immagine di sinistra di può notare un fenomento detto "ghosting" ovvero ...
+L'immagine di destra invece presenta alcuni artefatti ...
+
